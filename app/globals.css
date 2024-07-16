@@ -1,3 +1,19 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles */
+.Montserrat {
+    @apply font-bold;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.filterText {
+    @apply font-normal;
+    font-family: 'Open Sans', sans-serif;
+}

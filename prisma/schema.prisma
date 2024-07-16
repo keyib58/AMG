@@ -6,27 +6,24 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
-
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
@@ -38,15 +35,18 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId])
 }
 
 model User {
   id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
   name          String?
-  email         String?   @unique
   emailVerified DateTime?
   image         String?
+  role          String    @default("USER")
   accounts      Account[]
   sessions      Session[]
 }
@@ -57,4 +57,55 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model News {
+  id           String   @id @default(cuid())
+  thumbnailUrl String
+  title        String
+  content      String
+  slug         String   @unique @default("news-slug")
+  status       String   @default("published")
+  date         DateTime @default(now())
+}
+
+model Game {
+  id                String         @id @default(cuid())
+  name              String
+  thumbnailUrl      String
+  description       String
+  gameBackgroundUrl String
+  gameGifUrl        String
+  gameType          String
+  RTP               Float
+  genre             String
+  volatility        String
+  maxWin            Float
+  placeHolderUrl    String
+  popularRank       Int
+  releaseDate       String
+  status            String         @default("published")
+  languageInfo      LanguageInfo[]
+  tags              Tag[]
+  slug              String         @unique @default("game-slug")
+}
+
+model Tag {
+  id     String @id @default(cuid())
+  name   String
+  gameId String
+  game   Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  @@index([gameId]) // This creates an index on the gameId field
+}
+
+model LanguageInfo {
+  id          String @id @default(cuid())
+  gameId      String
+  language    String
+  trailerLink String
+  demoLink    String
+  game        Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  @@index([gameId]) // This creates an index on the gameId field
 }
