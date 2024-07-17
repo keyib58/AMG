@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, Dispatch, SetStateAction, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useRef, Dispatch, SetStateAction, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { PlusIcon, MinusIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -44,6 +44,8 @@ export default function FilterComponent({
   );
 
   const router = useRouter();
+  const pathname = usePathname();
+  const hasFetchedIP = useRef(false);
 
   useEffect(() => {
     if (currentCountries.length > 0 && currentCountries[0] !== 'All') {
@@ -51,6 +53,54 @@ export default function FilterComponent({
     }
   }, [currentCountries]);
 
+  // Fetch user IP and filter by country
+  useEffect(() => {
+    if (pathname === '/games' && !hasFetchedIP.current) {
+      fetchUserIP();
+      hasFetchedIP.current = true;
+    }
+  }, [pathname]);
+
+  const fetchUserIP = async () => {
+    setFiltering(true);
+    try {
+      const response = (await Promise.race([
+        fetch('https://api.ipify.org?format=json'),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000)),
+      ])) as Response;
+      
+      const data = await response.json();
+      console.log('User IP:', data.ip);
+      FilterCountryByIP(data.ip);
+    } catch (error) {
+      console.error('Failed to fetch IP or timed out:', error);
+      setSelectedCountries(['All']);
+      setFiltering(false);
+    }
+  };
+
+  const FilterCountryByIP = async (ip: string) => {
+    try {
+      const response = await fetch(`https://ipapi.co/${ip}/json/`);
+      const data = await response.json();
+      const country = data.country_name;
+      console.log('User Country:', country);
+
+      if (country) {
+        setSelectedCountries([country]);
+        const params = new URLSearchParams(window.location.search);
+        params.set('country', country);
+        router.push(`${window.location.pathname}?${params.toString()}`);
+      }
+    } catch (error) {
+      console.error('Failed to filter by country:', error);
+    } finally {
+      console.log('Filtering done');
+      setFiltering(false);
+    }
+  };
+
+  // Toggle filter
   const toggleFilter = (type: string, value: string) => {
     let updatedValues: string[] = [];
     setFiltering(true);
@@ -80,6 +130,7 @@ export default function FilterComponent({
       setSelectedCountries(updatedValues);
     }
 
+    // Update URL
     const params = new URLSearchParams(window.location.search);
     if (updatedValues.length > 0 && updatedValues[0] !== 'All') {
       params.set(type, updatedValues.join(','));
@@ -91,6 +142,7 @@ export default function FilterComponent({
     setFiltering(false);
   };
 
+  // Check if filter is checked
   const isChecked = (type: string, value: string) => {
     if (type === 'genre') {
       return selectedGenres.includes(value);
@@ -102,6 +154,7 @@ export default function FilterComponent({
     return false;
   };
 
+  // Render
   return (
     <div className="rounded-lg mb-4 mt-[100px]">
       <div className="mb-4">
