@@ -1,14 +1,14 @@
 import { PrismaClient, Game } from '@prisma/client';
-import GameListing from '../../components/games/GameListing';
-import FilterComponent from '../../components/games/FilterComponent';
-import SortComponent from '../../components/games/SortComponent';
-import SearchComponent from '../../components/games/SearchComponent';
+import GameListWithFilter from '../../components/games/GameListWithFilter';
 
 const prisma = new PrismaClient();
 
+export const revalidate = 1111110; // Revalidate data every 60 seconds
+
 export default async function GamesPage({ searchParams }: { searchParams: { [key: string]: string } }) {
-  const genre = searchParams.genre || null;
-  const language = searchParams.language || null;
+  const genre = searchParams.genre ? searchParams.genre.split(',') : [];
+  const language = searchParams.language ? searchParams.language.split(',') : [];
+  const country = searchParams.country ? searchParams.country.split(',') : [];
   const sort = searchParams.sort || 'latest';
   const search = searchParams.search || null;
 
@@ -22,41 +22,57 @@ export default async function GamesPage({ searchParams }: { searchParams: { [key
     select: { language: true },
   });
 
-  const initialGames = await getFilteredGames(genre, language, sort, search);
+  const countries = await prisma.targetCountryByIP.findMany({
+    distinct: ['country'],
+    select: { country: true },
+  });
+
+  const initialGames = await getFilteredGames(genre, language, sort, search, country);
 
   return (
-    <div className="z-5 mx-5 flex max-w-[1320px] w-full">
-      <div className="w-1/4 p-4">
-        <SortComponent currentSort={sort} />
-        <FilterComponent genres={genres} languages={languages} currentGenre={genre} currentLanguage={language} />
-      </div>
-      <div className="w-3/4 p-4">
-        <SearchComponent currentSearch={search} />
-        <GameListing games={initialGames} />
-      </div>
-    </div>
+    <GameListWithFilter
+      genres={genres}
+      languages={languages}
+      countries={countries}
+      initialGames={initialGames}
+      initialGenres={genre}
+      initialLanguages={language}
+      initialCountries={country}
+      initialSort={sort}
+      initialSearch={search}
+    />
   );
 }
 
 async function getFilteredGames(
-  genre: string | null,
-  language: string | null,
+  genres: string[],
+  languages: string[],
   sort: string | null,
-  search: string | null
+  search: string | null,
+  countries: string[]
 ): Promise<(Game & {
   tags: { id: string; name: string }[];
   languageInfo: { id: string; language: string; trailerLink: string; demoLink: string }[];
+  targetCountriesByIP: { id: string; country: string }[];
 })[]> {
   const where: any = {};
 
-  if (genre) {
-    where.genre = genre;
+  if (genres.length > 0) {
+    where.genre = { in: genres };
   }
 
-  if (language) {
+  if (languages.length > 0) {
     where.languageInfo = {
       some: {
-        language: language,
+        language: { in: languages },
+      },
+    };
+  }
+
+  if (countries.length > 0) {
+    where.targetCountriesByIP = {
+      some: {
+        country: { in: countries },
       },
     };
   }
@@ -96,6 +112,7 @@ async function getFilteredGames(
     include: {
       tags: true,
       languageInfo: true,
+      targetCountriesByIP: true,
     },
   });
 

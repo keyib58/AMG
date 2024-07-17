@@ -1,4 +1,3 @@
-// api/games/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
@@ -8,6 +7,8 @@ export async function GET() {
       include: {
         languageInfo: true,
         tags: true,
+        targetMarkets: true,
+        targetCountriesByIP: true,
       },
     });
     return NextResponse.json(games, { status: 200 });
@@ -32,6 +33,12 @@ export async function POST(request: NextRequest) {
         },
         tags: {
           create: data.tags,
+        },
+        targetMarkets: {
+          create: data.targetMarkets,
+        },
+        targetCountriesByIP: {
+          create: data.targetCountriesByIP,
         },
       },
     });
@@ -70,6 +77,18 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
             name: tag.name,
           })),
         },
+        targetMarkets: {
+          deleteMany: {},
+          create: data.targetMarkets.map((market: any) => ({
+            market: market.market,
+          })),
+        },
+        targetCountriesByIP: {
+          deleteMany: {},
+          create: data.targetCountriesByIP.map((country: any) => ({
+            country: country.country,
+          })),
+        },
       },
     });
 
@@ -79,3 +98,4 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: "Error updating game" }, { status: 500 });
   }
 }
+

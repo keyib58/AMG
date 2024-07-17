@@ -17,3 +17,9 @@
     @apply font-normal;
     font-family: 'Open Sans', sans-serif;
 }
+/* Add this CSS to your global styles or a CSS module */
+.logo-image {
+    max-width: 100%; /* Responsive size */
+    height: auto;    /* Maintain aspect ratio */
+  }
+  

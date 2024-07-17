@@ -1,5 +1,4 @@
 //app/api/games/[id]/route.ts
-
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
@@ -27,6 +26,18 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
           deleteMany: {},
           create: data.tags.map((tag: any) => ({
             name: tag.name,
+          })),
+        },
+        targetMarkets: {
+          deleteMany: {},
+          create: data.targetMarkets.map((market: any) => ({
+            market: market.market,
+          })),
+        },
+        targetCountriesByIP: {
+          deleteMany: {},
+          create: data.targetCountriesByIP.map((country: any) => ({
+            country: country.country,
           })),
         },
       },

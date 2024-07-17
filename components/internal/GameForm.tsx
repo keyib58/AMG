@@ -14,6 +14,14 @@ type Tag = {
   name: string;
 };
 
+type TargetMarket = {
+  market: string;
+};
+
+type TargetCountryByIP = {
+  country: string;
+};
+
 type FormData = {
   id?: string;
   name: string;
@@ -30,9 +38,11 @@ type FormData = {
   popularRank: number;
   releaseDate: string;
   status: string;
-  slug: string; // Add slug field
+  slug: string;
   languageInfo: LanguageInfo[];
   tags: Tag[];
+  targetMarkets: TargetMarket[];
+  targetCountriesByIP: TargetCountryByIP[];
 };
 
 export default function GameForm() {
@@ -40,6 +50,8 @@ export default function GameForm() {
     defaultValues: {
       languageInfo: [{ language: "", trailerLink: "", demoLink: "" }],
       tags: [{ name: "" }],
+      targetMarkets: [{ market: "" }],
+      targetCountriesByIP: [{ country: "" }],
     },
   });
 
@@ -51,6 +63,16 @@ export default function GameForm() {
   const { fields: tagFields, append: appendTag, remove: removeTag } = useFieldArray({
     control,
     name: "tags",
+  });
+
+  const { fields: marketFields, append: appendMarket, remove: removeMarket } = useFieldArray({
+    control,
+    name: "targetMarkets",
+  });
+
+  const { fields: countryFields, append: appendCountry, remove: removeCountry } = useFieldArray({
+    control,
+    name: "targetCountriesByIP",
   });
 
   const [message, setMessage] = useState("");
@@ -246,6 +268,28 @@ export default function GameForm() {
               </div>
             ))}
             <button type="button" onClick={() => appendTag({ name: "" })} className="bg-blue-500 text-white p-2 rounded-md">Add Tag</button>
+          </div>
+
+          <div className="space-y-2">
+            <label className="block text-sm font-medium mb-1">Target Markets (FrontEnd)</label>
+            {marketFields.map((field, index) => (
+              <div key={field.id} className="space-y-2">
+                <input {...register(`targetMarkets.${index}.market`)} placeholder="Market" className="w-full p-2 bg-gray-800 rounded-md text-white" />
+                <button type="button" onClick={() => removeMarket(index)} className="bg-red-500 text-white p-2 rounded-md">Remove</button>
+              </div>
+            ))}
+            <button type="button" onClick={() => appendMarket({ market: "" })} className="bg-blue-500 text-white p-2 rounded-md">Add Market</button>
+          </div>
+
+          <div className="space-y-2">
+            <label className="block text-sm font-medium mb-1">Target Countries by IP (StoreInBrowser)</label>
+            {countryFields.map((field, index) => (
+              <div key={field.id} className="space-y-2">
+                <input {...register(`targetCountriesByIP.${index}.country`)} placeholder="Country" className="w-full p-2 bg-gray-800 rounded-md text-white" />
+                <button type="button" onClick={() => removeCountry(index)} className="bg-red-500 text-white p-2 rounded-md">Remove</button>
+              </div>
+            ))}
+            <button type="button" onClick={() => appendCountry({ country: "" })} className="bg-blue-500 text-white p-2 rounded-md">Add Country</button>
           </div>
 
           <button type="submit" className="bg-green-500 text-white p-2 rounded-md">

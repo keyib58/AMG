@@ -1,15 +1,19 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, Dispatch, SetStateAction, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { PlusIcon, MinusIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
+import FilterByIP from './FilterByIP'; // Ensure correct path to FilterByIP component
 
 interface FilterComponentProps {
   genres: { genre: string }[];
   languages: { language: string }[];
-  currentGenre: string | null;
-  currentLanguage: string | null;
+  countries: { country: string }[];
+  currentGenres: string[];
+  currentLanguages: string[];
+  currentCountries: string[];
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 const variants = {
@@ -22,28 +26,86 @@ const iconVariants = {
   closed: { rotate: 180 },
 };
 
-export default function FilterComponent({ genres, languages, currentGenre, currentLanguage }: FilterComponentProps) {
+export default function FilterComponent({
+  genres,
+  languages,
+  countries,
+  currentGenres,
+  currentLanguages,
+  currentCountries,
+  setLoading,
+}: FilterComponentProps) {
   const [isGenreOpen, setIsGenreOpen] = useState(true);
   const [isLanguageOpen, setIsLanguageOpen] = useState(true);
+  const [isCountryOpen, setIsCountryOpen] = useState(true);
+  const [selectedGenres, setSelectedGenres] = useState<string[]>(currentGenres);
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(currentLanguages);
+  const [selectedCountries, setSelectedCountries] = useState<string[]>(
+    currentCountries.length > 0 ? currentCountries : ['All']
+  );
+
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (currentCountries.length > 0 && currentCountries[0] !== 'All') {
+      setSelectedCountries(currentCountries);
+    }
+  }, [currentCountries]);
 
   const toggleFilter = (type: string, value: string) => {
+    let updatedValues: string[] = [];
+
+    if (type === 'genre') {
+      updatedValues = selectedGenres.includes(value)
+        ? selectedGenres.filter((v) => v !== value)
+        : [...selectedGenres, value];
+      setSelectedGenres(updatedValues);
+    } else if (type === 'language') {
+      updatedValues = selectedLanguages.includes(value)
+        ? selectedLanguages.filter((v) => v !== value)
+        : [...selectedLanguages, value];
+      setSelectedLanguages(updatedValues);
+    } else if (type === 'country') {
+      if (value === 'All') {
+        updatedValues = ['All'];
+      } else {
+        updatedValues = selectedCountries.includes(value)
+          ? selectedCountries.filter((v) => v !== value)
+          : [...selectedCountries.filter((v) => v !== 'All'), value];
+        if (updatedValues.length === 0) {
+          updatedValues = ['All'];
+        }
+      }
+      setSelectedCountries(updatedValues);
+    }
+
     const params = new URLSearchParams(window.location.search);
-    if (params.get(type) === value) {
-      params.delete(type);
+    if (updatedValues.length > 0 && updatedValues[0] !== 'All') {
+      params.set(type, updatedValues.join(','));
     } else {
-      params.set(type, value);
+      params.delete(type);
     }
     router.push(`${window.location.pathname}?${params.toString()}`);
   };
 
+  const isChecked = (type: string, value: string) => {
+    if (type === 'genre') {
+      return selectedGenres.includes(value);
+    } else if (type === 'language') {
+      return selectedLanguages.includes(value);
+    } else if (type === 'country') {
+      return selectedCountries.includes(value);
+    }
+    return false;
+  };
+
   return (
     <div className="rounded-lg mb-4 mt-[100px]">
+      <FilterByIP countries={countries} currentCountries={currentCountries} setLoading={setLoading} />
       <div className="mb-4">
         <div className="flex justify-between items-center">
-          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem]">
-            Genre
-          </h4>
+          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem]">Genre</h4>
           <motion.button
             onClick={() => setIsGenreOpen(!isGenreOpen)}
             className="text-white"
@@ -66,7 +128,7 @@ export default function FilterComponent({ genres, languages, currentGenre, curre
               <input
                 type="checkbox"
                 id={`genre-${genre.genre}`}
-                checked={currentGenre === genre.genre}
+                checked={isChecked('genre', genre.genre)}
                 onChange={() => toggleFilter('genre', genre.genre)}
                 className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
               />
@@ -79,9 +141,7 @@ export default function FilterComponent({ genres, languages, currentGenre, curre
       </div>
       <div className="mt-20">
         <div className="flex justify-between items-center">
-          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem]">
-            Language
-          </h4>
+          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem]">Language</h4>
           <motion.button
             onClick={() => setIsLanguageOpen(!isLanguageOpen)}
             className="text-white"
@@ -104,12 +164,60 @@ export default function FilterComponent({ genres, languages, currentGenre, curre
               <input
                 type="checkbox"
                 id={`language-${language.language}`}
-                checked={currentLanguage === language.language}
+                checked={isChecked('language', language.language)}
                 onChange={() => toggleFilter('language', language.language)}
                 className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
               />
               <label className="text-white filterText text-lg" htmlFor={`language-${language.language}`}>
                 {language.language}
+              </label>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+      <div className="mt-20">
+        <div className="flex justify-between items-center">
+          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem]">Country</h4>
+          <motion.button
+            onClick={() => setIsCountryOpen(!isCountryOpen)}
+            className="text-white"
+            initial={false}
+            animate={isCountryOpen ? 'open' : 'closed'}
+            variants={iconVariants}
+            transition={{ duration: 0.3 }}
+          >
+            {isCountryOpen ? <MinusIcon size={24} /> : <PlusIcon size={24} />}
+          </motion.button>
+        </div>
+        <motion.div
+          initial={false}
+          animate={isCountryOpen ? 'open' : 'closed'}
+          variants={variants}
+          transition={{ duration: 0.3 }}
+        >
+          <div key="All" className="flex items-center mb-2">
+            <input
+              type="checkbox"
+              id="country-All"
+              checked={isChecked('country', 'All')}
+              onChange={() => toggleFilter('country', 'All')}
+              className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
+            />
+            <label className="text-white filterText text-lg" htmlFor="country-All">
+              All
+            </label>
+          </div>
+          {countries.map((country) => (
+            <div key={country.country} className="flex items-center mb-2">
+              <input
+                type="checkbox"
+                id={`country-${country.country}`}
+                checked={isChecked('country', country.country)}
+                onChange={() => toggleFilter('country', country.country)}
+                className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
+              />
+              <label className="text-white filterText text-lg" htmlFor={`country-${country.country}`}>
+                {country.country}
               </label>
             </div>
           ))}

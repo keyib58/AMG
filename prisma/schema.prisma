@@ -85,9 +85,11 @@ model Game {
   popularRank       Int
   releaseDate       String
   status            String         @default("published")
+  slug              String         @unique @default("game-slug")
   languageInfo      LanguageInfo[]
   tags              Tag[]
-  slug              String         @unique @default("game-slug")
+  targetMarkets     TargetMarket[]
+  targetCountriesByIP TargetCountryByIP[]
 }
 
 model Tag {
@@ -96,7 +98,7 @@ model Tag {
   gameId String
   game   Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
 
-  @@index([gameId]) // This creates an index on the gameId field
+  @@index([gameId])
 }
 
 model LanguageInfo {
@@ -107,5 +109,24 @@ model LanguageInfo {
   demoLink    String
   game        Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
 
-  @@index([gameId]) // This creates an index on the gameId field
+  @@index([gameId])
 }
+
+model TargetMarket {
+  id      String @id @default(cuid())
+  market  String
+  gameId  String
+  game    Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  @@index([gameId])
+}
+
+model TargetCountryByIP {
+  id       String @id @default(cuid())
+  country  String
+  gameId   String
+  game     Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  @@index([gameId])
+}
+
