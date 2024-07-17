@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
 import GameListing from './GameListing';
 import FilterComponent from './FilterComponent';
 import SortComponent from './SortComponent';
@@ -34,7 +34,7 @@ export default function GameListWithFilter({
   initialSort,
   initialSearch,
 }: GameListWithFilterProps) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isFiltering, setIsFiltering] = useState<boolean>(false);
   const [filteredGames, setFilteredGames] = useState(initialGames);
 
   useEffect(() => {
@@ -52,12 +52,15 @@ export default function GameListWithFilter({
           currentGenres={initialGenres}
           currentLanguages={initialLanguages}
           currentCountries={initialCountries}
-          setLoading={setIsLoading} // Pass setLoading to FilterComponent
+          setFiltering={(value: SetStateAction<boolean>) => {
+            console.log('Filtering state:', value);
+            setIsFiltering(value);
+          }}
         />
       </div>
       <div className="w-3/4 p-4">
         <SearchComponent currentSearch={initialSearch} />
-        {isLoading ? <div>Loading...</div> : <GameListing games={filteredGames} />}
+        {isFiltering ? <div>Loading...</div> : <GameListing games={filteredGames} />}
       </div>
     </div>
   );

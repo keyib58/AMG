@@ -1,10 +1,9 @@
 'use client';
 
 import { useState, Dispatch, SetStateAction, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { PlusIcon, MinusIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-import FilterByIP from './FilterByIP'; // Ensure correct path to FilterByIP component
 
 interface FilterComponentProps {
   genres: { genre: string }[];
@@ -13,7 +12,7 @@ interface FilterComponentProps {
   currentGenres: string[];
   currentLanguages: string[];
   currentCountries: string[];
-  setLoading: Dispatch<SetStateAction<boolean>>;
+  setFiltering: Dispatch<SetStateAction<boolean>>;
 }
 
 const variants = {
@@ -33,7 +32,7 @@ export default function FilterComponent({
   currentGenres,
   currentLanguages,
   currentCountries,
-  setLoading,
+  setFiltering,
 }: FilterComponentProps) {
   const [isGenreOpen, setIsGenreOpen] = useState(true);
   const [isLanguageOpen, setIsLanguageOpen] = useState(true);
@@ -45,7 +44,6 @@ export default function FilterComponent({
   );
 
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (currentCountries.length > 0 && currentCountries[0] !== 'All') {
@@ -55,6 +53,8 @@ export default function FilterComponent({
 
   const toggleFilter = (type: string, value: string) => {
     let updatedValues: string[] = [];
+    setFiltering(true);
+    console.log('Filtering started');
 
     if (type === 'genre') {
       updatedValues = selectedGenres.includes(value)
@@ -87,6 +87,8 @@ export default function FilterComponent({
       params.delete(type);
     }
     router.push(`${window.location.pathname}?${params.toString()}`);
+    console.log('Filtering done');
+    setFiltering(false);
   };
 
   const isChecked = (type: string, value: string) => {
@@ -102,7 +104,6 @@ export default function FilterComponent({
 
   return (
     <div className="rounded-lg mb-4 mt-[100px]">
-      <FilterByIP countries={countries} currentCountries={currentCountries} setLoading={setLoading} />
       <div className="mb-4">
         <div className="flex justify-between items-center">
           <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem]">Genre</h4>
