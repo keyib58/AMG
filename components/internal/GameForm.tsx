@@ -148,7 +148,7 @@ export default function GameForm() {
   return (
     <div className="space-y-4 text-white bg-black p-6 rounded-lg">
       <button
-        className="bg-blue-500 text-white p-2 rounded-md"
+        className="bg-red-500 text-white p-2 rounded-md"
         onClick={toggleEditMode}
       >
         {editMode ? "Add Game" : "Edit Game"}
