@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Image from "next/image";
 import Link from "next/link";
@@ -11,10 +11,7 @@ import { Session } from "next-auth";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  // { name: "About", href: "/about" },
   { name: "Games", href: "/games" },
-  // { name: "News", href: "/news" },
-  // { name: "Contact", href: "/contact" },
 ];
 
 interface NavBarProps {
@@ -25,9 +22,8 @@ export default function NavBar({ session }: NavBarProps) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
   const segment = useSelectedLayoutSegment();
-  const searchParams = useSearchParams(); // Hook to get current search params
+  const searchParams = useSearchParams();
 
-  // Function to add query params to the link
   const getLinkWithParams = (href: string) => {
     const params = searchParams.toString();
     return params ? `${href}?${params}` : href;
@@ -47,7 +43,7 @@ export default function NavBar({ session }: NavBarProps) {
               alt="Kingmidas logo"
               width={300}
               height={100}
-              priority // Added priority for LCP
+              priority
               className="logo-image mr-2 rounded-sm"
             />
           </Link>
@@ -60,7 +56,7 @@ export default function NavBar({ session }: NavBarProps) {
                   : segment === link.href.replace("/", "");
               return (
                 <Link
-                  href={getLinkWithParams(link.href)} // Use function to preserve query params
+                  href={getLinkWithParams(link.href)}
                   key={link.name}
                   className={`${isActive ? "text-[#FFD868]" : ""}`}
                 >

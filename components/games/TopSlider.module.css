@@ -1,0 +1,38 @@
+/* Remove default background and border */
+.swiperContainer {
+    background: none;
+    position: relative;
+    padding-bottom: 50px;
+  }
+  
+  /* Custom styles for pagination bullets */
+  .swiperPaginationBullet {
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: 2px solid #fff;
+    opacity: 0.7;
+    margin: 0 5px;
+  }
+  
+  .swiperPaginationBulletActive {
+    background: #fff !important;
+    opacity: 1;
+  }
+  
+  .swiperSlide {
+    background: none !important;
+    cursor: grab;
+  }
+  
+  /* Custom styles for the pagination container */
+  .swiperPagination {
+    position: absolute;
+    bottom: -35px ; /* Adjust this value if needed to move it further below */
+    z-index: 100;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

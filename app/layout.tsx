@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SessionWrapper>
           <Suspense fallback="...">
             <Nav />
-            <main className="flex w-full flex-col items-center  py-32">
+            <main className="flex w-full flex-col items-center mt-16">
               {children}
             </main>
             <Footer />

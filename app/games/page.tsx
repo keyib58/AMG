@@ -3,8 +3,6 @@ import GameListWithFilter from '../../components/games/GameListWithFilter';
 
 const prisma = new PrismaClient();
 
-export const revalidate = 1111110; // Revalidate data every 60 seconds
-
 export default async function GamesPage({ searchParams }: { searchParams: { [key: string]: string } }) {
   const genre = searchParams.genre ? searchParams.genre.split(',') : [];
   const language = searchParams.language ? searchParams.language.split(',') : [];
@@ -57,11 +55,13 @@ async function getFilteredGames(
 })[]> {
   const where: any = {};
 
-  if (genres.length > 0) {
+  // Only apply genre filter if it's not set to 'All'
+  if (genres.length > 0 && !(genres.length === 1 && genres[0] === 'All')) {
     where.genre = { in: genres };
   }
 
-  if (languages.length > 0) {
+  // Only apply language filter if it's not set to 'All'
+  if (languages.length > 0 && !(languages.length === 1 && languages[0] === 'All')) {
     where.languageInfo = {
       some: {
         language: { in: languages },
@@ -69,7 +69,8 @@ async function getFilteredGames(
     };
   }
 
-  if (countries.length > 0) {
+  // Only apply country filter if it's not set to 'All'
+  if (countries.length > 0 && !(countries.length === 1 && countries[0] === 'All')) {
     where.targetCountriesByIP = {
       some: {
         country: { in: countries },

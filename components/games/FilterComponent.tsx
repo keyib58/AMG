@@ -6,7 +6,6 @@ import { PlusIcon, MinusIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { FilterComponentProps } from 'types/type';
 
-
 const variants = {
   open: { opacity: 1, height: 'auto' },
   closed: { opacity: 0, height: 0, overflow: 'hidden' },
@@ -127,8 +126,12 @@ export default function FilterComponent({
     if (updatedValues.length > 0 && updatedValues[0] !== 'All') {
       params.set(type, updatedValues.join(','));
     } else {
-      params.delete(type);
+      params.set(type, 'All');
     }
+
+    // Clear search parameter
+    params.delete('search');
+
     router.push(`${window.location.pathname}?${params.toString()}`);
     console.log('Filtering done');
     setFiltering(false);
@@ -178,7 +181,7 @@ export default function FilterComponent({
                 onChange={() => toggleFilter('genre', genre.genre)}
                 className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
               />
-              <label className="text-white filterText text-lg" htmlFor={`genre-${genre.genre}`}>
+              <label className="text-white OpenSans text-lg" htmlFor={`genre-${genre.genre}`}>
                 {genre.genre}
               </label>
             </div>
@@ -214,7 +217,7 @@ export default function FilterComponent({
                 onChange={() => toggleFilter('language', language.language)}
                 className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
               />
-              <label className="text-white filterText text-lg" htmlFor={`language-${language.language}`}>
+              <label className="text-white OpenSans text-lg" htmlFor={`language-${language.language}`}>
                 {language.language}
               </label>
             </div>
@@ -249,7 +252,7 @@ export default function FilterComponent({
               onChange={() => toggleFilter('country', 'All')}
               className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
             />
-            <label className="text-white filterText text-lg" htmlFor="country-All">
+            <label className="text-white OpenSans text-lg" htmlFor="country-All">
               All
             </label>
           </div>
@@ -262,7 +265,7 @@ export default function FilterComponent({
                 onChange={() => toggleFilter('country', country.country)}
                 className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
               />
-              <label className="text-white filterText text-lg" htmlFor={`country-${country.country}`}>
+              <label className="text-white OpenSans text-lg" htmlFor={`country-${country.country}`}>
                 {country.country}
               </label>
             </div>
