@@ -2,11 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { Search } from 'lucide-react';
-
-
-interface SearchComponentProps {
-  currentSearch: string | null;
-}
+import { SearchComponentProps } from 'types/type';
 
 export default function SearchComponent({ currentSearch }: SearchComponentProps) {
   const router = useRouter();

@@ -2,15 +2,8 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Game } from '@prisma/client';
 import Link from 'next/link';
-
-interface GameListingProps {
-  games: (Game & {
-    tags: { id: string; name: string }[];
-    languageInfo: { id: string; language: string; trailerLink: string; demoLink: string }[];
-  })[];
-}
+import { GameListingProps } from 'types/type';
 
 export default function GameListing({ games }: GameListingProps) {
   return (

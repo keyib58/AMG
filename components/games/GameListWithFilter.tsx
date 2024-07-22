@@ -5,23 +5,7 @@ import GameListing from './GameListing';
 import FilterComponent from './FilterComponent';
 import SortComponent from './SortComponent';
 import SearchComponent from './SearchComponent';
-import { Game } from '@prisma/client';
-
-interface GameListWithFilterProps {
-  genres: { genre: string }[];
-  languages: { language: string }[];
-  countries: { country: string }[];
-  initialGames: (Game & {
-    tags: { id: string; name: string }[];
-    languageInfo: { id: string; language: string; trailerLink: string; demoLink: string }[];
-    targetCountriesByIP: { id: string; country: string }[];
-  })[];
-  initialGenres: string[];
-  initialLanguages: string[];
-  initialCountries: string[];
-  initialSort: string | null;
-  initialSearch: string | null;
-}
+import { GameListWithFilterProps } from 'types/type';
 
 export default function GameListWithFilter({
   genres,
@@ -40,6 +24,8 @@ export default function GameListWithFilter({
   useEffect(() => {
     setFilteredGames(initialGames);
   }, [initialGames]);
+  
+  console.log('initialsort:' + initialSort);
 
   return (
     <div className="z-5 mx-5 flex max-w-[1320px] w-full">

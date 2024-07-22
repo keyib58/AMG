@@ -282,7 +282,7 @@ export default function GameForm() {
           </div>
 
           <div className="space-y-2">
-            <label className="block text-sm font-medium mb-1">Target Countries by IP (StoreInBrowser)</label>
+            <label className="block text-sm font-medium mb-1">Target Countries by IP</label>
             {countryFields.map((field, index) => (
               <div key={field.id} className="space-y-2">
                 <input {...register(`targetCountriesByIP.${index}.country`)} placeholder="Country" className="w-full p-2 bg-gray-800 rounded-md text-white" />

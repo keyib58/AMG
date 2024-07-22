@@ -4,16 +4,8 @@ import { useState, useRef, Dispatch, SetStateAction, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { PlusIcon, MinusIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { FilterComponentProps } from 'types/type';
 
-interface FilterComponentProps {
-  genres: { genre: string }[];
-  languages: { language: string }[];
-  countries: { country: string }[];
-  currentGenres: string[];
-  currentLanguages: string[];
-  currentCountries: string[];
-  setFiltering: Dispatch<SetStateAction<boolean>>;
-}
 
 const variants = {
   open: { opacity: 1, height: 'auto' },
@@ -68,7 +60,7 @@ export default function FilterComponent({
         fetch('https://api.ipify.org?format=json'),
         new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000)),
       ])) as Response;
-      
+
       const data = await response.json();
       console.log('User IP:', data.ip);
       FilterCountryByIP(data.ip);
