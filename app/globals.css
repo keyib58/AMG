@@ -8,7 +8,7 @@
 
 /* Custom styles */
 .Montserrat {
-    @apply font-bold;
+    @apply font-display;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .OpenSans {
-    @apply font-normal;
+    @apply font-display;
     font-family: 'Open Sans', sans-serif;
 }
 /* Add this CSS to your global styles or a CSS module */

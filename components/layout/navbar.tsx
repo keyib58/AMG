@@ -48,7 +48,7 @@ export default function NavBar({ session }: NavBarProps) {
               width={300}
               height={100}
               priority
-              className="logo-image mr-2 rounded-sm"
+              className="logo-image -ml-4"
             />
           </Link>
 

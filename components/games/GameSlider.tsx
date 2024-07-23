@@ -12,7 +12,7 @@ const slides = [
   { title: 'Slide 3', backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1721633628/banner1_xelpef.png' },
 ];
 
-const TopSlider = () => {
+const GameSlider = () => {
   return (
     
     <Swiper 
@@ -53,4 +53,4 @@ const TopSlider = () => {
   );
 };
 
-export default TopSlider;
+export default GameSlider;

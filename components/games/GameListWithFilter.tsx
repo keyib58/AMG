@@ -8,7 +8,7 @@ import SortComponent from './SortComponent';
 import SearchComponent from './SearchComponent';
 import { GameListWithFilterProps } from 'types/type';
 import { LoadingSpinner } from '../shared/icons';
-import TopSlider from './TopSlider';
+import GameSlider from './GameSlider'
 import { setGames } from '@/app/slices/gameSlice';
 import { setGenres, setLanguages, setMarkets, setFiltering, setSelectedGenres, setSelectedLanguages, setSelectedMarkets } from '@/app/slices/filterSlice';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -86,7 +86,7 @@ export default function GameListWithFilter({
 
   return (
     <>
-      <TopSlider />
+      <GameSlider />
       <div className="z-5 mx-5 flex flex-col lg:flex-row max-w-[1320px] w-full mb-[200px]">
         <div className="lg:w-1/4 p-4 mt-10">
           <SortComponent currentSort={initialSort} />

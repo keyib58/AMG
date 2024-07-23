@@ -22,24 +22,27 @@ const SubscribeForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 max-w-md mx-auto bg-gray-100 rounded-md shadow-md">
-      <label className="block mb-2 text-lg font-medium text-gray-700">
-        Email Address
+    <form onSubmit={handleSubmit} className=" m-auto rounded-md shadow-md">
+      <label className="block mb-2 text-lg font-medium text-white">
+        Email *
       </label>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        className="w-full p-2 mb-4 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-      />
-      <button
-        type="submit"
-        className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 transition duration-300"
-      >
-        Submit
-      </button>
-      {message && <p className="mt-4 text-center text-gray-700">{message}</p>}
+      <div className="flex items-center">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="flex-grow p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:border-transparent"
+        />
+        <button
+          type="submit"
+          className="py-2 px-4 ml-4 rounded-[25px] font-medium bg-gradient-to-r from-yellow-400 to-yellow-200 text-black OpenSans transition duration-300"
+          style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)' }}
+        >
+         JOIN FREE
+        </button>
+      </div>
+      {message && <p className="mt-4 text-center text-white">{message}</p>}
     </form>
   );
 };
