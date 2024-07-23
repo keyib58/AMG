@@ -37,8 +37,7 @@ export default async function GamesPage({ searchParams }: { searchParams: { [key
       initialLanguages={language}
       initialCountries={country}
       initialSort={sort}
-      initialSearch={search}
-    />
+      initialSearch={search} currentSort={''}    />
   );
 }
 

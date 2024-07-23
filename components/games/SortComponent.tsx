@@ -5,26 +5,28 @@ import { ChevronDownIcon, Calendar, Heart, ArrowDownIcon, ChevronRightIcon } fro
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import { setSortOption } from '@/app/slices/sortSlice';
 
 interface SortComponentProps {
-  currentSort: string | null;
+  currentSort?: string;
 }
 
-export default function SortComponent({ currentSort = 'latest' }: SortComponentProps) {
+const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
   const router = useRouter();
-  const [sort, setSort] = useState(currentSort);
+  const dispatch = useAppDispatch();
+  const sort = useAppSelector((state) => state.sort.sortOption);
 
   useEffect(() => {
-    const savedSort = localStorage.getItem('sortOption') || 'latest';
-    setSort(savedSort);
-  }, []);
+    // Reset to 'latest' sort option when the component mounts
+    dispatch(setSortOption('latest'));
+  }, [dispatch]);
 
-  const setSortOption = (option: string) => {
-    localStorage.setItem('sortOption', option);
-    setSort(option);
+  const setSort = (option: string) => {
+    dispatch(setSortOption(option));
     const params = new URLSearchParams(window.location.search);
     params.set('sort', option);
-    router.push(`${window.location.pathname}?${params.toString()}`);
+    router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
   };
 
   const getCurrentSortLabel = () => {
@@ -81,7 +83,7 @@ export default function SortComponent({ currentSort = 'latest' }: SortComponentP
                       name="sort"
                       value="alphabetical"
                       checked={sort === 'alphabetical'}
-                      onChange={() => setSortOption('alphabetical')}
+                      onChange={() => setSort('alphabetical')}
                       className="hidden"
                     />
                     Alphabetical
@@ -98,7 +100,7 @@ export default function SortComponent({ currentSort = 'latest' }: SortComponentP
                       name="sort"
                       value="popular"
                       checked={sort === 'popular'}
-                      onChange={() => setSortOption('popular')}
+                      onChange={() => setSort('popular')}
                       className="hidden"
                     />
                     Popular Rank
@@ -116,7 +118,7 @@ export default function SortComponent({ currentSort = 'latest' }: SortComponentP
                     name="sort"
                     value="latest"
                     checked={sort === 'latest'}
-                    onChange={() => setSortOption('latest')}
+                    onChange={() => setSort('latest')}
                     className="hidden"
                   />
                   Latest
@@ -128,4 +130,6 @@ export default function SortComponent({ currentSort = 'latest' }: SortComponentP
       </div>
     </Popover.Root>
   );
-}
+};
+
+export default SortComponent;

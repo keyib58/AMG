@@ -1,3 +1,4 @@
+
 import "./globals.css";
 import cx from "classnames";
 import { sfPro, inter } from "./fonts";
@@ -6,6 +7,7 @@ import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import SessionWrapper from "@/components/SessionWrapper";
+import ReduxProvider from "@/components/ReduxProvider";
 
 export const metadata = {
   title: "Kingmidas Games",
@@ -16,16 +18,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={cx(sfPro.variable, inter.variable, "bg-[#0d0d0d]")}>
-        <SessionWrapper>
-          <Suspense fallback="...">
-            <Nav />
-            <main className="flex w-full flex-col items-center mt-16">
-              {children}
-            </main>
-            <Footer />
-          </Suspense>
-          <VercelAnalytics />
-        </SessionWrapper>
+        <ReduxProvider>
+          <SessionWrapper>
+            <Suspense fallback="...">
+              <Nav />
+              <main className="flex w-full flex-col items-center mt-16">
+                {children}
+              </main>
+              <Footer />
+            </Suspense>
+            <VercelAnalytics />
+          </SessionWrapper>
+        </ReduxProvider>
       </body>
     </html>
   );

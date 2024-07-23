@@ -41,7 +41,7 @@ export default function SearchComponent({ currentSearch }: SearchComponentProps)
         </div>
         <button
           type="submit"
-          className="ml-4 px-10 py-2 uppercase text-black rounded-[20px] flex items-center OpenSans"
+          className="ml-2 px-6 py-2 uppercase text-black rounded-[20px] flex items-center OpenSans"
           style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)' }}
           disabled={isLoading} // Disable button while loading
         >

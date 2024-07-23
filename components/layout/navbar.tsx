@@ -12,6 +12,7 @@ import { Session } from "next-auth";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Games", href: "/games" },
+  { name: "News", href: "/news" },
 ];
 
 interface NavBarProps {
@@ -25,8 +26,11 @@ export default function NavBar({ session }: NavBarProps) {
   const searchParams = useSearchParams();
 
   const getLinkWithParams = (href: string) => {
-    const params = searchParams.toString();
-    return params ? `${href}?${params}` : href;
+    if (href === "/games") {
+      const params = searchParams.toString();
+      return params ? `${href}?${params}` : href;
+    }
+    return href;
   };
 
   return (

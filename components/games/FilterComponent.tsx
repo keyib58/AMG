@@ -1,9 +1,11 @@
 'use client';
 
-import { useState, useRef, Dispatch, SetStateAction, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { PlusIcon, MinusIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import { setSelectedGenres, setSelectedLanguages, setSelectedCountries, setFiltering } from '@/app/slices/filterSlice';
 import { FilterComponentProps } from 'types/type';
 
 const variants = {
@@ -25,26 +27,42 @@ export default function FilterComponent({
   currentCountries,
   setFiltering,
 }: FilterComponentProps) {
+  const dispatch = useAppDispatch();
+  const { selectedGenres, selectedLanguages, selectedCountries } = useAppSelector((state) => state.filter);
+
   const [isGenreOpen, setIsGenreOpen] = useState(true);
   const [isLanguageOpen, setIsLanguageOpen] = useState(true);
   const [isCountryOpen, setIsCountryOpen] = useState(true);
-  const [selectedGenres, setSelectedGenres] = useState<string[]>(currentGenres);
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(currentLanguages);
-  const [selectedCountries, setSelectedCountries] = useState<string[]>(
-    currentCountries.length > 0 ? currentCountries : ['All']
-  );
 
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const hasFetchedIP = useRef(false);
 
+  // Initialize state from props
   useEffect(() => {
-    if (currentCountries.length > 0 && currentCountries[0] !== 'All') {
-      setSelectedCountries(currentCountries);
-    }
-  }, [currentCountries]);
+    dispatch(setSelectedGenres(currentGenres));
+    dispatch(setSelectedLanguages(currentLanguages));
+    dispatch(setSelectedCountries(currentCountries));
+  }, [currentGenres, currentLanguages, currentCountries, dispatch]);
 
-  // Fetch user IP and filter by country
+  // Sync state with URL parameters on mount
+  useEffect(() => {
+    const genreParam = searchParams.get('genre');
+    const languageParam = searchParams.get('language');
+    const countryParam = searchParams.get('country');
+
+    if (genreParam) {
+      dispatch(setSelectedGenres(genreParam.split(',')));
+    }
+    if (languageParam) {
+      dispatch(setSelectedLanguages(languageParam.split(',')));
+    }
+    if (countryParam) {
+      dispatch(setSelectedCountries(countryParam.split(',')));
+    }
+  }, [dispatch, searchParams]);
+
   useEffect(() => {
     if (pathname === '/games' && !hasFetchedIP.current) {
       fetchUserIP();
@@ -55,17 +73,17 @@ export default function FilterComponent({
   const fetchUserIP = async () => {
     setFiltering(true);
     try {
-      const response = (await Promise.race([
+      const response = await Promise.race([
         fetch('https://api.ipify.org?format=json'),
         new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000)),
-      ])) as Response;
+      ]) as Response;
 
       const data = await response.json();
       console.log('User IP:', data.ip);
       FilterCountryByIP(data.ip);
     } catch (error) {
       console.error('Failed to fetch IP or timed out:', error);
-      setSelectedCountries(['All']);
+      dispatch(setSelectedCountries(['All']));
       setFiltering(false);
     }
   };
@@ -78,10 +96,10 @@ export default function FilterComponent({
       console.log('User Country:', country);
 
       if (country) {
-        setSelectedCountries([country]);
+        dispatch(setSelectedCountries([country]));
         const params = new URLSearchParams(window.location.search);
         params.set('country', country);
-        router.push(`${window.location.pathname}?${params.toString()}`);
+        router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
       }
     } catch (error) {
       console.error('Failed to filter by country:', error);
@@ -91,22 +109,29 @@ export default function FilterComponent({
     }
   };
 
-  // Toggle filter
   const toggleFilter = (type: string, value: string) => {
     let updatedValues: string[] = [];
     setFiltering(true);
     console.log('Filtering started');
 
     if (type === 'genre') {
-      updatedValues = selectedGenres.includes(value)
-        ? selectedGenres.filter((v) => v !== value)
-        : [...selectedGenres, value];
-      setSelectedGenres(updatedValues);
+      if (value === 'All') {
+        updatedValues = selectedGenres.includes(value) ? [] : ['All'];
+      } else {
+        updatedValues = selectedGenres.includes(value)
+          ? selectedGenres.filter((v) => v !== value)
+          : [...selectedGenres.filter((v) => v !== 'All'), value];
+      }
+      dispatch(setSelectedGenres(updatedValues));
     } else if (type === 'language') {
-      updatedValues = selectedLanguages.includes(value)
-        ? selectedLanguages.filter((v) => v !== value)
-        : [...selectedLanguages, value];
-      setSelectedLanguages(updatedValues);
+      if (value === 'All') {
+        updatedValues = selectedLanguages.includes(value) ? [] : ['All'];
+      } else {
+        updatedValues = selectedLanguages.includes(value)
+          ? selectedLanguages.filter((v) => v !== value)
+          : [...selectedLanguages.filter((v) => v !== 'All'), value];
+      }
+      dispatch(setSelectedLanguages(updatedValues));
     } else if (type === 'country') {
       if (value === 'All') {
         updatedValues = ['All'];
@@ -118,10 +143,9 @@ export default function FilterComponent({
           updatedValues = ['All'];
         }
       }
-      setSelectedCountries(updatedValues);
+      dispatch(setSelectedCountries(updatedValues));
     }
 
-    // Update URL
     const params = new URLSearchParams(window.location.search);
     if (updatedValues.length > 0 && updatedValues[0] !== 'All') {
       params.set(type, updatedValues.join(','));
@@ -129,15 +153,13 @@ export default function FilterComponent({
       params.set(type, 'All');
     }
 
-    // Clear search parameter
     params.delete('search');
 
-    router.push(`${window.location.pathname}?${params.toString()}`);
+    router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
     console.log('Filtering done');
     setFiltering(false);
   };
 
-  // Check if filter is checked
   const isChecked = (type: string, value: string) => {
     if (type === 'genre') {
       return selectedGenres.includes(value);
@@ -149,7 +171,6 @@ export default function FilterComponent({
     return false;
   };
 
-  // Render
   return (
     <div className="rounded-lg mb-4 mt-[100px]">
       <div className="mb-4">
@@ -172,6 +193,18 @@ export default function FilterComponent({
           variants={variants}
           transition={{ duration: 0.3 }}
         >
+          <div key="All" className="flex items-center mb-2">
+            <input
+              type="checkbox"
+              id="genre-All"
+              checked={isChecked('genre', 'All')}
+              onChange={() => toggleFilter('genre', 'All')}
+              className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
+            />
+            <label className="text-white OpenSans text-lg" htmlFor="genre-All">
+              All
+            </label>
+          </div>
           {genres.map((genre) => (
             <div key={genre.genre} className="flex items-center mb-2">
               <input
@@ -208,6 +241,18 @@ export default function FilterComponent({
           variants={variants}
           transition={{ duration: 0.3 }}
         >
+          <div key="All" className="flex items-center mb-2">
+            <input
+              type="checkbox"
+              id="language-All"
+              checked={isChecked('language', 'All')}
+              onChange={() => toggleFilter('language', 'All')}
+              className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
+            />
+            <label className="text-white OpenSans text-lg" htmlFor="language-All">
+              All
+            </label>
+          </div>
           {languages.map((language) => (
             <div key={language.language} className="flex items-center mb-2">
               <input

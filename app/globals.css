@@ -10,7 +10,10 @@
 .Montserrat {
     @apply font-bold;
     font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
+}
+
+.layoutWrapper {
+  @apply max-w-[1320px] items-center
 }
 
 .OpenSans {
