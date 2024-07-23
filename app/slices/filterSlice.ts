@@ -1,26 +1,27 @@
-// slices/filterSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface FilterState {
   genres: string[];
   languages: string[];
-  countries: string[];
+  markets: string[];
   selectedGenres: string[];
   selectedLanguages: string[];
-  selectedCountries: string[];
+  selectedMarkets: string[];
   isFiltering: boolean;
 }
 
+// Initial state for the filter slice
 const initialState: FilterState = {
   genres: [],
   languages: [],
-  countries: [],
+  markets: [],
   selectedGenres: [],
   selectedLanguages: [],
-  selectedCountries: ['All'],
+  selectedMarkets: ['All'],
   isFiltering: false,
 };
 
+// Creating the filter slice
 const filterSlice = createSlice({
   name: 'filter',
   initialState,
@@ -31,8 +32,8 @@ const filterSlice = createSlice({
     setLanguages(state, action: PayloadAction<string[]>) {
       state.languages = action.payload;
     },
-    setCountries(state, action: PayloadAction<string[]>) {
-      state.countries = action.payload;
+    setMarkets(state, action: PayloadAction<string[]>) {
+      state.markets = action.payload;
     },
     setSelectedGenres(state, action: PayloadAction<string[]>) {
       state.selectedGenres = action.payload;
@@ -40,8 +41,8 @@ const filterSlice = createSlice({
     setSelectedLanguages(state, action: PayloadAction<string[]>) {
       state.selectedLanguages = action.payload;
     },
-    setSelectedCountries(state, action: PayloadAction<string[]>) {
-      state.selectedCountries = action.payload;
+    setSelectedMarkets(state, action: PayloadAction<string[]>) {
+      state.selectedMarkets = action.payload;
     },
     setFiltering(state, action: PayloadAction<boolean>) {
       state.isFiltering = action.payload;
@@ -52,10 +53,10 @@ const filterSlice = createSlice({
 export const {
   setGenres,
   setLanguages,
-  setCountries,
+  setMarkets,
   setSelectedGenres,
   setSelectedLanguages,
-  setSelectedCountries,
+  setSelectedMarkets,
   setFiltering,
 } = filterSlice.actions;
 

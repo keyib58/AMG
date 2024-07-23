@@ -44,7 +44,7 @@ const TopSlider = () => {
               backgroundRepeat: 'no-repeat',
             }}
           >
-            <h1 className="text-white text-2xl Montserrat md:text-4xl lg:text-6xl font-bold">{slide.title}</h1>
+            <h1 className="text-white text-2xl Montserrat    md:text-4xl lg:text-6xl font-bold">{slide.title}</h1>
           </div>
         </SwiperSlide>
       ))}

@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { PlusIcon, MinusIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
-import { setSelectedGenres, setSelectedLanguages, setSelectedCountries, setFiltering } from '@/app/slices/filterSlice';
+import { setSelectedGenres, setSelectedLanguages, setSelectedMarkets, setFiltering } from '@/app/slices/filterSlice';
 import { FilterComponentProps } from 'types/type';
+import { mapCountryToMarket } from 'utils/mapCountryToMarket';
 
 const variants = {
   open: { opacity: 1, height: 'auto' },
@@ -21,36 +22,33 @@ const iconVariants = {
 export default function FilterComponent({
   genres,
   languages,
-  countries,
+  markets,
   currentGenres,
   currentLanguages,
-  currentCountries,
-  setFiltering,
+  currentMarkets,
 }: FilterComponentProps) {
   const dispatch = useAppDispatch();
-  const { selectedGenres, selectedLanguages, selectedCountries } = useAppSelector((state) => state.filter);
+  const { selectedGenres, selectedLanguages, selectedMarkets, isFiltering } = useAppSelector((state) => state.filter);
 
   const [isGenreOpen, setIsGenreOpen] = useState(true);
   const [isLanguageOpen, setIsLanguageOpen] = useState(true);
-  const [isCountryOpen, setIsCountryOpen] = useState(true);
+  const [isMarketOpen, setIsMarketOpen] = useState(true);
 
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const hasFetchedIP = useRef(false);
 
   // Initialize state from props
   useEffect(() => {
     dispatch(setSelectedGenres(currentGenres));
     dispatch(setSelectedLanguages(currentLanguages));
-    dispatch(setSelectedCountries(currentCountries));
-  }, [currentGenres, currentLanguages, currentCountries, dispatch]);
+    dispatch(setSelectedMarkets(currentMarkets));
+  }, [currentGenres, currentLanguages, currentMarkets, dispatch]);
 
   // Sync state with URL parameters on mount
   useEffect(() => {
     const genreParam = searchParams.get('genre');
     const languageParam = searchParams.get('language');
-    const countryParam = searchParams.get('country');
+    const marketParam = searchParams.get('market');
 
     if (genreParam) {
       dispatch(setSelectedGenres(genreParam.split(',')));
@@ -58,20 +56,13 @@ export default function FilterComponent({
     if (languageParam) {
       dispatch(setSelectedLanguages(languageParam.split(',')));
     }
-    if (countryParam) {
-      dispatch(setSelectedCountries(countryParam.split(',')));
+    if (marketParam) {
+      dispatch(setSelectedMarkets(marketParam.split(',')));
     }
   }, [dispatch, searchParams]);
 
-  useEffect(() => {
-    if (pathname === '/games' && !hasFetchedIP.current) {
-      fetchUserIP();
-      hasFetchedIP.current = true;
-    }
-  }, [pathname]);
-
   const fetchUserIP = async () => {
-    setFiltering(true);
+    dispatch(setFiltering(true));
     try {
       const response = await Promise.race([
         fetch('https://api.ipify.org?format=json'),
@@ -80,15 +71,15 @@ export default function FilterComponent({
 
       const data = await response.json();
       console.log('User IP:', data.ip);
-      FilterCountryByIP(data.ip);
+      FilterMarketByIP(data.ip);
     } catch (error) {
       console.error('Failed to fetch IP or timed out:', error);
-      dispatch(setSelectedCountries(['All']));
-      setFiltering(false);
+      dispatch(setSelectedMarkets(['All']));
+      dispatch(setFiltering(false));
     }
   };
 
-  const FilterCountryByIP = async (ip: string) => {
+  const FilterMarketByIP = async (ip: string) => {
     try {
       const response = await fetch(`https://ipapi.co/${ip}/json/`);
       const data = await response.json();
@@ -96,54 +87,61 @@ export default function FilterComponent({
       console.log('User Country:', country);
 
       if (country) {
-        dispatch(setSelectedCountries([country]));
+        const market = mapCountryToMarket(country);
+        dispatch(setSelectedMarkets([market]));
         const params = new URLSearchParams(window.location.search);
-        params.set('country', country);
+        params.set('market', market);
         router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
       }
     } catch (error) {
-      console.error('Failed to filter by country:', error);
+      console.error('Failed to filter by market:', error);
     } finally {
       console.log('Filtering done');
-      setFiltering(false);
+      dispatch(setFiltering(false));
     }
   };
 
   const toggleFilter = (type: string, value: string) => {
     let updatedValues: string[] = [];
-    setFiltering(true);
+    dispatch(setFiltering(true));
     console.log('Filtering started');
 
     if (type === 'genre') {
       if (value === 'All') {
-        updatedValues = selectedGenres.includes(value) ? [] : ['All'];
+        updatedValues = ['All'];
       } else {
         updatedValues = selectedGenres.includes(value)
           ? selectedGenres.filter((v) => v !== value)
           : [...selectedGenres.filter((v) => v !== 'All'), value];
-      }
-      dispatch(setSelectedGenres(updatedValues));
-    } else if (type === 'language') {
-      if (value === 'All') {
-        updatedValues = selectedLanguages.includes(value) ? [] : ['All'];
-      } else {
-        updatedValues = selectedLanguages.includes(value)
-          ? selectedLanguages.filter((v) => v !== value)
-          : [...selectedLanguages.filter((v) => v !== 'All'), value];
-      }
-      dispatch(setSelectedLanguages(updatedValues));
-    } else if (type === 'country') {
-      if (value === 'All') {
-        updatedValues = ['All'];
-      } else {
-        updatedValues = selectedCountries.includes(value)
-          ? selectedCountries.filter((v) => v !== value)
-          : [...selectedCountries.filter((v) => v !== 'All'), value];
         if (updatedValues.length === 0) {
           updatedValues = ['All'];
         }
       }
-      dispatch(setSelectedCountries(updatedValues));
+      dispatch(setSelectedGenres(updatedValues));
+    } else if (type === 'language') {
+      if (value === 'All') {
+        updatedValues = ['All'];
+      } else {
+        updatedValues = selectedLanguages.includes(value)
+          ? selectedLanguages.filter((v) => v !== value)
+          : [...selectedLanguages.filter((v) => v !== 'All'), value];
+        if (updatedValues.length === 0) {
+          updatedValues = ['All'];
+        }
+      }
+      dispatch(setSelectedLanguages(updatedValues));
+    } else if (type === 'market') {
+      if (value === 'All') {
+        updatedValues = ['All'];
+      } else {
+        updatedValues = selectedMarkets.includes(value)
+          ? selectedMarkets.filter((v) => v !== value)
+          : [...selectedMarkets.filter((v) => v !== 'All'), value];
+        if (updatedValues.length === 0) {
+          updatedValues = ['All'];
+        }
+      }
+      dispatch(setSelectedMarkets(updatedValues));
     }
 
     const params = new URLSearchParams(window.location.search);
@@ -157,7 +155,7 @@ export default function FilterComponent({
 
     router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
     console.log('Filtering done');
-    setFiltering(false);
+    dispatch(setFiltering(false));
   };
 
   const isChecked = (type: string, value: string) => {
@@ -165,8 +163,8 @@ export default function FilterComponent({
       return selectedGenres.includes(value);
     } else if (type === 'language') {
       return selectedLanguages.includes(value);
-    } else if (type === 'country') {
-      return selectedCountries.includes(value);
+    } else if (type === 'market') {
+      return selectedMarkets.includes(value);
     }
     return false;
   };
@@ -193,13 +191,13 @@ export default function FilterComponent({
           variants={variants}
           transition={{ duration: 0.3 }}
         >
-          <div key="All" className="flex items-center mb-2">
+          <div className="flex items-center mb-2">
             <input
               type="checkbox"
               id="genre-All"
               checked={isChecked('genre', 'All')}
               onChange={() => toggleFilter('genre', 'All')}
-              className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
+              className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none"
             />
             <label className="text-white OpenSans text-lg" htmlFor="genre-All">
               All
@@ -212,7 +210,7 @@ export default function FilterComponent({
                 id={`genre-${genre.genre}`}
                 checked={isChecked('genre', genre.genre)}
                 onChange={() => toggleFilter('genre', genre.genre)}
-                className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
+                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none"
               />
               <label className="text-white OpenSans text-lg" htmlFor={`genre-${genre.genre}`}>
                 {genre.genre}
@@ -241,13 +239,13 @@ export default function FilterComponent({
           variants={variants}
           transition={{ duration: 0.3 }}
         >
-          <div key="All" className="flex items-center mb-2">
+          <div className="flex items-center mb-2">
             <input
               type="checkbox"
               id="language-All"
               checked={isChecked('language', 'All')}
               onChange={() => toggleFilter('language', 'All')}
-              className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
+              className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none"
             />
             <label className="text-white OpenSans text-lg" htmlFor="language-All">
               All
@@ -260,7 +258,7 @@ export default function FilterComponent({
                 id={`language-${language.language}`}
                 checked={isChecked('language', language.language)}
                 onChange={() => toggleFilter('language', language.language)}
-                className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
+                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none"
               />
               <label className="text-white OpenSans text-lg" htmlFor={`language-${language.language}`}>
                 {language.language}
@@ -271,47 +269,53 @@ export default function FilterComponent({
       </div>
       <div className="mt-20">
         <div className="flex justify-between items-center">
-          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem]">Country</h4>
+          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem]">Market</h4>
           <motion.button
-            onClick={() => setIsCountryOpen(!isCountryOpen)}
+            onClick={() => setIsMarketOpen(!isMarketOpen)}
             className="text-white"
             initial={false}
-            animate={isCountryOpen ? 'open' : 'closed'}
+            animate={isMarketOpen ? 'open' : 'closed'}
             variants={iconVariants}
             transition={{ duration: 0.3 }}
           >
-            {isCountryOpen ? <MinusIcon size={24} /> : <PlusIcon size={24} />}
+            {isMarketOpen ? <MinusIcon size={24} /> : <PlusIcon size={24} />}
           </motion.button>
         </div>
         <motion.div
           initial={false}
-          animate={isCountryOpen ? 'open' : 'closed'}
+          animate={isMarketOpen ? 'open' : 'closed'}
           variants={variants}
           transition={{ duration: 0.3 }}
         >
+          <button
+            onClick={fetchUserIP}
+            className="mb-2 text-white bg-blue-500 hover:bg-blue-700 rounded p-2"
+          >
+            Detect Market by IP
+          </button>
           <div key="All" className="flex items-center mb-2">
             <input
               type="checkbox"
-              id="country-All"
-              checked={isChecked('country', 'All')}
-              onChange={() => toggleFilter('country', 'All')}
-              className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
+              id="market-All"
+              checked={isChecked('market', 'All')}
+              onChange={() => toggleFilter('market', 'All')}
+              className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none"
             />
-            <label className="text-white OpenSans text-lg" htmlFor="country-All">
+            <label className="text-white OpenSans text-lg" htmlFor="market-All">
               All
             </label>
           </div>
-          {countries.map((country) => (
-            <div key={country.country} className="flex items-center mb-2">
+          {markets.map((market) => (
+            <div key={market.market} className="flex items-center mb-2">
               <input
                 type="checkbox"
-                id={`country-${country.country}`}
-                checked={isChecked('country', country.country)}
-                onChange={() => toggleFilter('country', country.country)}
-                className="mr-4 rounded bg-transparent border-2 border-[#ffffff]"
+                id={`market-${market.market}`}
+                checked={isChecked('market', market.market)}
+                onChange={() => toggleFilter('market', market.market)}
+                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none"
               />
-              <label className="text-white OpenSans text-lg" htmlFor={`country-${country.country}`}>
-                {country.country}
+              <label className="text-white OpenSans text-lg" htmlFor={`market-${market.market}`}>
+                {market.market}
               </label>
             </div>
           ))}

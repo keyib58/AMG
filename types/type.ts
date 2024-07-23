@@ -8,17 +8,17 @@ export interface Language {
   language: string;
 }
 
-export interface Country {
-  country: string;
+export interface Market {
+  market: string;
 }
 
 export interface FilterComponentProps {
   genres: Genre[];
   languages: Language[];
-  countries: Country[];
+  markets: Market[];
   currentGenres: string[];
   currentLanguages: string[];
-  currentCountries: string[];
+  currentMarkets: string[];
   setFiltering: (value: boolean) => void;
 }
 
@@ -50,7 +50,7 @@ export interface GameListingProps {
 export interface GameListWithFilterProps {
   genres: { genre: string }[];
   languages: { language: string }[];
-  countries: { country: string }[];
+  markets: { market: string }[];
   initialGames: (Game & {
     tags: { id: string; name: string }[];
     languageInfo: { id: string; language: string; trailerLink: string; demoLink: string }[];
@@ -58,7 +58,7 @@ export interface GameListWithFilterProps {
   })[];
   initialGenres: string[];
   initialLanguages: string[];
-  initialCountries: string[];
+  initialMarkets: string[];
   initialSort: string | undefined;
   initialSearch: string | null;
   currentSort: string;
