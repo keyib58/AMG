@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { setSelectedGenres, setSelectedLanguages, setSelectedMarkets, setFiltering } from '@/app/slices/filterSlice';
 import { FilterComponentProps } from 'types/type';
-import { mapCountryToMarket } from 'utils/mapCountryToMarket';
+import FilterByIP from './DetectUserIP';
 
 const variants = {
   open: { opacity: 1, height: 'auto' },
@@ -19,14 +19,14 @@ const iconVariants = {
   closed: { rotate: 180 },
 };
 
-export default function FilterComponent({
+const FilterComponent: React.FC<FilterComponentProps> = ({
   genres,
   languages,
   markets,
   currentGenres,
   currentLanguages,
   currentMarkets,
-}: FilterComponentProps) {
+}) => {
   const dispatch = useAppDispatch();
   const { selectedGenres, selectedLanguages, selectedMarkets, isFiltering } = useAppSelector((state) => state.filter);
 
@@ -60,46 +60,6 @@ export default function FilterComponent({
       dispatch(setSelectedMarkets(marketParam.split(',')));
     }
   }, [dispatch, searchParams]);
-
-  const fetchUserIP = async () => {
-    dispatch(setFiltering(true));
-    try {
-      const response = await Promise.race([
-        fetch('https://api.ipify.org?format=json'),
-        new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000)),
-      ]) as Response;
-
-      const data = await response.json();
-      console.log('User IP:', data.ip);
-      FilterMarketByIP(data.ip);
-    } catch (error) {
-      console.error('Failed to fetch IP or timed out:', error);
-      dispatch(setSelectedMarkets(['All']));
-      dispatch(setFiltering(false));
-    }
-  };
-
-  const FilterMarketByIP = async (ip: string) => {
-    try {
-      const response = await fetch(`https://ipapi.co/${ip}/json/`);
-      const data = await response.json();
-      const country = data.country_name;
-      console.log('User Country:', country);
-
-      if (country) {
-        const market = mapCountryToMarket(country);
-        dispatch(setSelectedMarkets([market]));
-        const params = new URLSearchParams(window.location.search);
-        params.set('market', market);
-        router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
-      }
-    } catch (error) {
-      console.error('Failed to filter by market:', error);
-    } finally {
-      console.log('Filtering done');
-      dispatch(setFiltering(false));
-    }
-  };
 
   const toggleFilter = (type: string, value: string) => {
     let updatedValues: string[] = [];
@@ -150,7 +110,6 @@ export default function FilterComponent({
     } else {
       params.set(type, 'All');
     }
-
     params.delete('search');
 
     router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
@@ -171,9 +130,10 @@ export default function FilterComponent({
 
   return (
     <div className="rounded-lg mb-4 mt-[100px]">
+      <FilterByIP /> {/* Use the FilterByIP component */}
       <div className="mb-4">
         <div className="flex justify-between items-center">
-          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem]">Genre</h4>
+          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem] font-extrabold uppercase">Genre</h4>
           <motion.button
             onClick={() => setIsGenreOpen(!isGenreOpen)}
             className="text-white"
@@ -197,7 +157,7 @@ export default function FilterComponent({
               id="genre-All"
               checked={isChecked('genre', 'All')}
               onChange={() => toggleFilter('genre', 'All')}
-              className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none"
+              className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
             />
             <label className="text-white OpenSans text-lg" htmlFor="genre-All">
               All
@@ -210,7 +170,7 @@ export default function FilterComponent({
                 id={`genre-${genre.genre}`}
                 checked={isChecked('genre', genre.genre)}
                 onChange={() => toggleFilter('genre', genre.genre)}
-                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none"
+                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
               />
               <label className="text-white OpenSans text-lg" htmlFor={`genre-${genre.genre}`}>
                 {genre.genre}
@@ -221,7 +181,7 @@ export default function FilterComponent({
       </div>
       <div className="mt-20">
         <div className="flex justify-between items-center">
-          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem]">Language</h4>
+          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem] font-extrabold uppercase">Language</h4>
           <motion.button
             onClick={() => setIsLanguageOpen(!isLanguageOpen)}
             className="text-white"
@@ -245,7 +205,7 @@ export default function FilterComponent({
               id="language-All"
               checked={isChecked('language', 'All')}
               onChange={() => toggleFilter('language', 'All')}
-              className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none"
+              className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
             />
             <label className="text-white OpenSans text-lg" htmlFor="language-All">
               All
@@ -258,7 +218,7 @@ export default function FilterComponent({
                 id={`language-${language.language}`}
                 checked={isChecked('language', language.language)}
                 onChange={() => toggleFilter('language', language.language)}
-                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none"
+                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
               />
               <label className="text-white OpenSans text-lg" htmlFor={`language-${language.language}`}>
                 {language.language}
@@ -269,7 +229,7 @@ export default function FilterComponent({
       </div>
       <div className="mt-20">
         <div className="flex justify-between items-center">
-          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem]">Market</h4>
+          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem] font-extrabold uppercase">Market</h4>
           <motion.button
             onClick={() => setIsMarketOpen(!isMarketOpen)}
             className="text-white"
@@ -287,19 +247,13 @@ export default function FilterComponent({
           variants={variants}
           transition={{ duration: 0.3 }}
         >
-          <button
-            onClick={fetchUserIP}
-            className="mb-2 text-white bg-blue-500 hover:bg-blue-700 rounded p-2"
-          >
-            Detect Market by IP
-          </button>
           <div key="All" className="flex items-center mb-2">
             <input
               type="checkbox"
               id="market-All"
               checked={isChecked('market', 'All')}
               onChange={() => toggleFilter('market', 'All')}
-              className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none"
+              className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
             />
             <label className="text-white OpenSans text-lg" htmlFor="market-All">
               All
@@ -312,7 +266,7 @@ export default function FilterComponent({
                 id={`market-${market.market}`}
                 checked={isChecked('market', market.market)}
                 onChange={() => toggleFilter('market', market.market)}
-                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none"
+                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
               />
               <label className="text-white OpenSans text-lg" htmlFor={`market-${market.market}`}>
                 {market.market}
@@ -323,4 +277,6 @@ export default function FilterComponent({
       </div>
     </div>
   );
-}
+};
+
+export default FilterComponent;

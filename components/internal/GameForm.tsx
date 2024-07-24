@@ -271,7 +271,7 @@ export default function GameForm() {
           </div>
 
           <div className="space-y-2">
-            <label className="block text-sm font-medium mb-1">Target Markets (FrontEnd)</label>
+            <label className="block text-sm font-medium mb-1">Target Markets</label>
             {marketFields.map((field, index) => (
               <div key={field.id} className="space-y-2">
                 <input {...register(`targetMarkets.${index}.market`)} placeholder="Market" className="w-full p-2 bg-gray-800 rounded-md text-white" />

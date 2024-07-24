@@ -1,38 +1,75 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { SearchComponentProps } from 'types/type';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchTerm } from '@/app/slices/searchSlice';
+import { setSelectedGenres, setSelectedLanguages, setSelectedMarkets } from '@/app/slices/filterSlice';
+import { RootState } from '@/app/store';
+import { useSearchParams, useRouter } from 'next/navigation';
+import LoadingDots from './LoadingDots';
+import { XIcon } from 'lucide-react';
 
-export default function SearchComponent({ currentSearch }: SearchComponentProps) {
-  const router = useRouter();
+interface SearchComponentProps {
+  currentSearch?: string;
+}
+
+const SearchComponent = ({ currentSearch = '' }: SearchComponentProps) => {
+  const dispatch = useDispatch();
+  const searchTerm = useSelector((state: RootState) => state.search.searchTerm);
   const [isLoading, setIsLoading] = useState(false);
+  const [inputValue, setInputValue] = useState(currentSearch);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState<string | null>(null);
 
-  const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const resetFilters = () => {
+    dispatch(setSelectedGenres([]));
+    dispatch(setSelectedLanguages([]));
+    dispatch(setSelectedMarkets([]));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
+    setSearchQuery(inputValue);
+    dispatch(setSearchTerm(inputValue));
+    resetFilters(); // Clear filters when search is performed
+
     const params = new URLSearchParams(window.location.search);
-    const searchInput = (e.currentTarget as HTMLFormElement).search.value;
-    (e.currentTarget as HTMLFormElement).search.value = ''; // Clear input field
-    if (searchInput) {
-      params.set('search', searchInput);
+    params.delete('genre');
+    params.delete('language');
+    params.delete('market');
+    if (inputValue) {
+      params.set('search', inputValue);
     } else {
       params.delete('search');
     }
+    router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
+    setTimeout(() => {
+      setIsLoading(false);
+    }); // Simulate loading delay
+  };
 
-    await new Promise(resolve => setTimeout(resolve, 200));
-    await router.push(`${window.location.pathname}?${params.toString()}`);
-    setIsLoading(false);
+  const resetSearch = () => {
+    setInputValue('');
+    setSearchQuery(null);
+    dispatch(setSearchTerm(''));
+    const params = new URLSearchParams(window.location.search);
+    params.delete('search');
+    router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
   };
 
   return (
-    <div className="relative mb-4 w-full">
-      <form onSubmit={handleSearch} className="flex items-center w-full">
+    <div className='relative'>
+      <form onSubmit={handleSubmit} className="flex items-center w-full">
         <div className="relative w-full">
           <input
             type="text"
             name="search"
-            defaultValue={currentSearch || ''}
+            value={isLoading ? '' : inputValue}
+            onChange={handleSearchChange}
             placeholder={isLoading ? '' : 'Search...'}
             className={`w-full p-2 pl-4 text-black rounded-[20px] OpenSans mr-4 ${isLoading ? 'loading-placeholder' : ''}`}
             disabled={isLoading} // Disable input while loading
@@ -48,59 +85,18 @@ export default function SearchComponent({ currentSearch }: SearchComponentProps)
           Search
         </button>
       </form>
+      {searchQuery && !isLoading && (
+        <div className="mt-2 p-2 bg-[#111111] text-white rounded flex items-center justify-between OpenSans absolute">
+          <div>
+            Searching: <span className="font-bold">{searchQuery}</span>
+          </div>
+          <button onClick={resetSearch} className="ml-4 text-white">
+            <XIcon className="w-4 h-4" />
+          </button>
+        </div>
+      )}
     </div>
   );
-}
+};
 
-function LoadingDots({ className } = { className: '' }) {
-  return (
-    <div className={`loading ${className}`}>
-      <span className="dot" />
-      <span className="dot" />
-      <span className="dot" />
-      <style jsx>{`
-        .loading {
-          display: inline-flex;
-          align-items: center;
-        }
-
-        .loading .spacer {
-          margin-right: 2px;
-        }
-
-        .loading span {
-          animation-name: blink;
-          animation-duration: 1.4s;
-          animation-iteration-count: infinite;
-          animation-fill-mode: both;
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          display: inline-block;
-          margin: 0 4px;
-          background-color: rgb(202, 202, 202);
-        }
-
-        .loading span:nth-of-type(2) {
-          animation-delay: 0.2s;
-        }
-
-        .loading span:nth-of-type(3) {
-          animation-delay: 0.4s;
-        }
-
-        @keyframes blink {
-          0% {
-            opacity: 0.2;
-          }
-          20% {
-            opacity: 1;
-          }
-          100% {
-            opacity: 0.2;
-          }
-        }
-      `}</style>
-    </div>
-  );
-}
+export default SearchComponent;

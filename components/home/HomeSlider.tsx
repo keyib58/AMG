@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
-import styles from './TopSlider.module.css';
+import styles from './css/HomeSlider.module.css'
 
 const slides = [
   { title: 'Slide 1', backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1721633628/banner1_xelpef.png' },
@@ -13,9 +13,8 @@ const slides = [
   { title: 'Slide 3', backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1721633628/banner1_xelpef.png' },
 ];
 
-const GameSlider = () => {
+const HomeSlider = () => {
   return (
-
     <Swiper
       spaceBetween={0}
       slidesPerView={1}
@@ -45,7 +44,7 @@ const GameSlider = () => {
               backgroundRepeat: 'no-repeat',
             }}
           >
-            <h1 className="text-white text-2xl Montserrat    md:text-4xl lg:text-6xl font-bold">{slide.title}</h1>
+            <h1 className="text-white text-2xl Montserrat md:text-4xl lg:text-6xl font-bold">{slide.title}</h1>
           </div>
         </SwiperSlide>
       ))}
@@ -54,4 +53,4 @@ const GameSlider = () => {
   );
 };
 
-export default GameSlider;
+export default HomeSlider;

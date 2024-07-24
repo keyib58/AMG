@@ -51,17 +51,30 @@ export interface GameListWithFilterProps {
   genres: { genre: string }[];
   languages: { language: string }[];
   markets: { market: string }[];
-  initialGames: (Game & {
-    tags: { id: string; name: string }[];
-    languageInfo: { id: string; language: string; trailerLink: string; demoLink: string }[];
-    targetCountriesByIP: { id: string; country: string }[];
-  })[];
+  initialGames: {
+    id: string;
+    name: string;
+    thumbnailUrl: string;
+    description: string;
+    gameBackgroundUrl: string;
+    gameGifUrl: string;
+    gameType: string;
+    RTP: number;
+    genre: string;
+    volatility: string;
+    maxWin: number;
+    placeHolderUrl: string;
+    popularRank: number;
+    releaseDate: string;
+    status: string;
+    slug: string;
+  }[];
   initialGenres: string[];
   initialLanguages: string[];
   initialMarkets: string[];
-  initialSort: string | undefined;
-  initialSearch: string | null;
-  currentSort: string;
+  initialSort: string;
+  initialSearch: string;
+  currentSort: string;  // Add this property
 }
 
 export interface SearchComponentProps {

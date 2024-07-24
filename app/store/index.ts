@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import sortReducer from '../slices/sortSlice';
 import filterReducer from '../slices/filterSlice';
 import gameReducer from '../slices/gameSlice';
+import searchSlice from '../slices/searchSlice';
 
 // Configure the Redux store with the reducers from the slices
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
     sort: sortReducer,
     filter: filterReducer,
     game: gameReducer,
+    search : searchSlice
   },
 });
 

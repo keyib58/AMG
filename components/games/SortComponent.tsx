@@ -4,7 +4,7 @@ import * as Popover from '@radix-ui/react-popover';
 import { ChevronDownIcon, Calendar, Heart, ArrowDownIcon, ChevronRightIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { setSortOption } from '@/app/slices/sortSlice';
 
@@ -18,9 +18,12 @@ const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
   const sort = useAppSelector((state) => state.sort.sortOption);
 
   useEffect(() => {
-    // Reset to 'latest' sort option when the component mounts
-    dispatch(setSortOption('latest'));
-  }, [dispatch]);
+    if (currentSort) {
+      dispatch(setSortOption(currentSort));
+    } else {
+      dispatch(setSortOption('latest'));
+    }
+  }, [currentSort, dispatch]);
 
   const setSort = (option: string) => {
     dispatch(setSortOption(option));

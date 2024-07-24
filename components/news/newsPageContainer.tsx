@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import NewsCTA from '@/components/news/newsCTA';
-import SubHeader from '../layout/subHeader';
+import SubHeader from '../shared/subHeader';
 
 const newsContainer = () => {
     return (
-        <div className="max-w-[1320px] mt-10 mx-auto flex flex-col items-center">
+        <div className="max-w-[1320px] mt-10 mx-auto flex flex-col items-center px-4">
 
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-6">
                 {/* Left Column */}
@@ -24,8 +24,8 @@ const newsContainer = () => {
                 </div>
             </div>
 
-                        {/* Full Width SubHeader */}
-                        <div className="w-full">
+            {/* Full Width SubHeader */}
+            <div className="w-full">
                 <SubHeader title="OUR LATEST NEWS" />
             </div>
         </div>

@@ -1,4 +1,4 @@
-'use client'; // Ensure this is treated as a client component
+'use client'; // Redux Provider need to be used in the client side
 
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';

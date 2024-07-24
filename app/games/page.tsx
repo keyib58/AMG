@@ -9,7 +9,7 @@ export default async function GamesPage({ searchParams }: { searchParams: { [key
   const language = searchParams.language ? searchParams.language.split(',') : [];
   const market = searchParams.market ? searchParams.market.split(',') : [];
   const sort = searchParams.sort || 'latest';
-  const search = searchParams.search || null;
+  const search = searchParams.search || '';
 
   const genres = await prisma.game.findMany({
     distinct: ['genre'],
@@ -30,6 +30,8 @@ export default async function GamesPage({ searchParams }: { searchParams: { [key
 
   const initialGames = await getFilteredGames(genre, language, sort, search, market);
 
+
+
   return (
     <GameListWithFilter
       genres={genres}
@@ -40,7 +42,9 @@ export default async function GamesPage({ searchParams }: { searchParams: { [key
       initialLanguages={language}
       initialMarkets={market}
       initialSort={sort}
-      initialSearch={search} currentSort={''}    />
+      initialSearch={search}
+      currentSort={sort} // Ensure this property is passed
+    />
   );
 }
 
@@ -72,18 +76,20 @@ async function getFilteredGames(
   if (markets.length > 0 && !(markets.length === 1 && markets[0] === 'All')) {
     where.targetCountriesByIP = {
       some: {
-        country: { in: markets.flatMap(market => {
-          const marketCountryMap = Object.entries(countryMarketMap).filter(([_, marketValue]) => marketValue === market);
-          return marketCountryMap.map(([country]) => country);
-        }) },
+        country: {
+          in: markets.flatMap(market => {
+            const marketCountryMap = Object.entries(countryMarketMap).filter(([_, marketValue]) => marketValue === market);
+            return marketCountryMap.map(([country]) => country);
+          })
+        },
       },
     };
   }
 
   if (search) {
     where.OR = [
-      { name: { contains: search } },
-      { tags: { some: { name: { contains: search } } } },
+      { name: { contains: search, mode: 'insensitive' } },
+      { tags: { some: { name: { contains: search, mode: 'insensitive' } } } },
     ];
   }
 

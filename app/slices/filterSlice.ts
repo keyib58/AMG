@@ -17,7 +17,7 @@ const initialState: FilterState = {
   markets: [],
   selectedGenres: [],
   selectedLanguages: [],
-  selectedMarkets: ['All'],
+  selectedMarkets: [],
   isFiltering: false,
 };
 
@@ -50,14 +50,7 @@ const filterSlice = createSlice({
   },
 });
 
-export const {
-  setGenres,
-  setLanguages,
-  setMarkets,
-  setSelectedGenres,
-  setSelectedLanguages,
-  setSelectedMarkets,
-  setFiltering,
-} = filterSlice.actions;
-
+// Export the actions to be used in components
+export const { setGenres, setLanguages, setMarkets, setSelectedGenres, setSelectedLanguages, setSelectedMarkets, setFiltering } = filterSlice.actions;
+// Export the reducer to be combined in the store
 export default filterSlice.reducer;
