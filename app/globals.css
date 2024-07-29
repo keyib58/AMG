@@ -31,3 +31,7 @@
 .subheader_bg {
   @apply col-span-3 row-span-3 flex items-center justify-center rounded-xl bg-[#151515] py-8;
 }
+
+.pagewrapper {
+  @apply mx-5 flex flex-col lg:flex-row max-w-[1320px] w-full mb-[200px]
+}

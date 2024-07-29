@@ -25,7 +25,6 @@ export default function NavBar({ session }: NavBarProps) {
   const segment = useSelectedLayoutSegment();
   const searchParams = useSearchParams();
 
-  // Function to get link with current search params
   const getLinkWithParams = (href: string) => {
     if (href === "/games") {
       const params = searchParams.toString();
@@ -38,7 +37,7 @@ export default function NavBar({ session }: NavBarProps) {
     <>
       <SignInModal />
       <div
-        className={`fixed bg-[#0D0D0D] top-0 w-full flex justify-center ${scrolled ? "bg-[#0D0D0D]" : "bg-white/0"} z-30 transition-all`}
+        className={`fixed bg-[#0D0D0D] top-0 w-full flex justify-center ${scrolled ? "bg-[#0D0D0D]" : "bg-[#0D0D0D]"} z-30 transition-all`}
       >
         <div className="mx-5 flex h-16 max-w-[1320px] items-center justify-between w-full">
           <Link href="/" className="flex items-center font-display text-2xl">

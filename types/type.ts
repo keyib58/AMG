@@ -1,3 +1,4 @@
+// types.ts
 import { Dispatch, SetStateAction } from "react";
 
 export interface Genre {
@@ -39,6 +40,19 @@ export interface Game {
   name: string;
   slug: string;
   thumbnailUrl: string;
+  description: string; // Added this line
+  gameBackgroundUrl: string; // Added this line
+  gameGifUrl: string; // Added this line
+  gameType: string; // Added this line
+  RTP: number; // Added this line
+  genre: string; // Added this line
+  volatility: string; // Added this line
+  maxWin: number; // Added this line
+  placeHolderUrl: string; // Added this line
+  popularRank: number; // Added this line
+  releaseDate: string; // Added this line
+  status: string; // Added this line
+  assetUrl: string; // Added this line
   tags: Tag[];
   languageInfo: LanguageInfo[];
 }
@@ -51,30 +65,13 @@ export interface GameListWithFilterProps {
   genres: { genre: string }[];
   languages: { language: string }[];
   markets: { market: string }[];
-  initialGames: {
-    id: string;
-    name: string;
-    thumbnailUrl: string;
-    description: string;
-    gameBackgroundUrl: string;
-    gameGifUrl: string;
-    gameType: string;
-    RTP: number;
-    genre: string;
-    volatility: string;
-    maxWin: number;
-    placeHolderUrl: string;
-    popularRank: number;
-    releaseDate: string;
-    status: string;
-    slug: string;
-  }[];
+  initialGames: Game[]; // Updated to use Game type
   initialGenres: string[];
   initialLanguages: string[];
   initialMarkets: string[];
   initialSort: string;
   initialSearch: string;
-  currentSort: string;  // Add this property
+  currentSort: string;
 }
 
 export interface SearchComponentProps {

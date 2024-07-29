@@ -30,8 +30,6 @@ export default async function GamesPage({ searchParams }: { searchParams: { [key
 
   const initialGames = await getFilteredGames(genre, language, sort, search, market);
 
-
-
   return (
     <GameListWithFilter
       genres={genres}
@@ -74,14 +72,17 @@ async function getFilteredGames(
   }
 
   if (markets.length > 0 && !(markets.length === 1 && markets[0] === 'All')) {
+    const countriesInMarkets = markets.flatMap(market => {
+      const marketCountryMap = Object.entries(countryMarketMap).filter(([_, marketValue]) => marketValue === market);
+      return marketCountryMap.map(([country]) => country);
+    });
+
     where.targetCountriesByIP = {
       some: {
-        country: {
-          in: markets.flatMap(market => {
-            const marketCountryMap = Object.entries(countryMarketMap).filter(([_, marketValue]) => marketValue === market);
-            return marketCountryMap.map(([country]) => country);
-          })
-        },
+        OR: [
+          { country: 'ALL' },
+          { country: { in: countriesInMarkets } }
+        ]
       },
     };
   }

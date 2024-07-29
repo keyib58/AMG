@@ -1,4 +1,8 @@
+// app/games/[slug]/page.tsx
+
 import { PrismaClient } from '@prisma/client';
+import GameInfo from '@/components/game_detail/gameInfo';
+import { Game } from 'types/type';
 
 const prisma = new PrismaClient();
 
@@ -16,14 +20,6 @@ export default async function GamePage({ params }: { params: { slug: string } })
   }
 
   return (
-    <div className='text-white'>
-      <h1>{game.name}</h1>
-      <img src={game.thumbnailUrl} alt={game.name} />
-      <p>{game.description}</p>
-      <p>Genre: {game.genre}</p>
-      <p>Volatility: {game.volatility}</p>
-      <p>Max Win: {game.maxWin}</p>
-      {/* Include more fields as necessary */}
-    </div>
+      <GameInfo game={game as Game} />
   );
 }

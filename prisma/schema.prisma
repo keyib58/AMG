@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
@@ -71,25 +71,26 @@ model News {
 }
 
 model Game {
-  id                String         @id @default(cuid())
-  name              String
-  thumbnailUrl      String
-  description       String
-  gameBackgroundUrl String
-  gameGifUrl        String
-  gameType          String
-  RTP               Float
-  genre             String
-  volatility        String
-  maxWin            Float
-  placeHolderUrl    String
-  popularRank       Int
-  releaseDate       String
-  status            String         @default("published")
-  slug              String         @unique @default("game-slug")
-  languageInfo      LanguageInfo[]
-  tags              Tag[]
-  targetMarkets     TargetMarket[]
+  id                  String              @id @default(cuid())
+  name                String
+  thumbnailUrl        String
+  description         String
+  gameBackgroundUrl   String
+  gameGifUrl          String
+  gameType            String
+  RTP                 Float
+  genre               String
+  volatility          String
+  maxWin              Float
+  placeHolderUrl      String
+  popularRank         Int
+  releaseDate         String
+  assetUrl            String              @default("asset-url")
+  status              String              @default("published")
+  slug                String              @unique @default("game-slug")
+  languageInfo        LanguageInfo[]
+  tags                Tag[]
+  targetMarkets       TargetMarket[]
   targetCountriesByIP TargetCountryByIP[]
 }
 
@@ -114,20 +115,19 @@ model LanguageInfo {
 }
 
 model TargetMarket {
-  id      String @id @default(cuid())
-  market  String
-  gameId  String
-  game    Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  id     String @id @default(cuid())
+  market String
+  gameId String
+  game   Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
 
   @@index([gameId])
 }
 
 model TargetCountryByIP {
-  id       String @id @default(cuid())
-  country  String
-  gameId   String
-  game     Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  id      String @id @default(cuid())
+  country String
+  gameId  String
+  game    Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
 
   @@index([gameId])
 }
-

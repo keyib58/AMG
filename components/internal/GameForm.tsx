@@ -29,6 +29,7 @@ type FormData = {
   description: string;
   gameBackgroundUrl: string;
   gameGifUrl: string;
+  assetUrl: string; // Added this line
   gameType: string;
   RTP: number;
   genre: string;
@@ -224,6 +225,10 @@ export default function GameForm() {
             <label className="block text-sm font-medium mb-1">Placeholder URL</label>
             <input {...register("placeHolderUrl")} required className="w-full p-2 bg-gray-800 rounded-md text-white" />
             {placeHolderUrl && <img src={placeHolderUrl} alt="Placeholder Preview" className="mt-2 rounded-md" />}
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Asset URL</label> {/* Added this block */}
+            <input {...register("assetUrl")} required className="w-full p-2 bg-gray-800 rounded-md text-white" />
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">Popular Rank</label>
