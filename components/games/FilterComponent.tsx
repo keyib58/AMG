@@ -247,18 +247,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
           variants={variants}
           transition={{ duration: 0.3 }}
         >
-          <div key="All" className="flex items-center mb-2">
-            <input
-              type="checkbox"
-              id="market-All"
-              checked={isChecked('market', 'All')}
-              onChange={() => toggleFilter('market', 'All')}
-              className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
-            />
-            <label className="text-white OpenSans text-lg" htmlFor="market-All">
-              All
-            </label>
-          </div>
+
           {markets.map((market) => (
             <div key={market.market} className="flex items-center mb-2">
               <input

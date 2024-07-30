@@ -1,5 +1,4 @@
 // types.ts
-import { Dispatch, SetStateAction } from "react";
 
 export interface Genre {
   genre: string;

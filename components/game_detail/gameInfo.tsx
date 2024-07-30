@@ -47,7 +47,7 @@ const GameInfo: React.FC<GameInfoProps> = ({ game }) => {
             <BackgroundOverlay url={game.gameBackgroundUrl} />
 
             <motion.div
-                className='mx-auto max-w-[1350px] mt-20 w-full mb-[200px] px-8 lg:px-0'
+                className='mx-auto max-w-[1350px] mt-20 w-full mb-[200px] px-8 lg:px-6'
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
@@ -66,6 +66,13 @@ const GameInfo: React.FC<GameInfoProps> = ({ game }) => {
                                 />
                                 {selectedLanguage && (
                                     <>
+                                        <button
+                                            onClick={() => window.open(selectedLanguage.demoLink, '_blank')}
+                                            className={`flex-1 rounded-full text-black px-8 shadow-md py-2 OpenSans font-medium uppercase text-xl ${selectedLanguage.trailerLink ? '' : 'ml-2'}`}
+                                            style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)' }}
+                                        >
+                                            {changeLanguage('Try Demo', selectedLanguage.language)}
+                                        </button>
                                         {selectedLanguage.trailerLink ? (
                                             <button
                                                 onClick={() => window.open(selectedLanguage.trailerLink, '_blank')}
@@ -83,15 +90,8 @@ const GameInfo: React.FC<GameInfoProps> = ({ game }) => {
                                                 {changeLanguage('Trailer', selectedLanguage.language)}
                                             </button>
                                         ) : (
-                                            <div className="flex-1"></div> // Placeholder
+                                            <div className="flex-1"></div>
                                         )}
-                                        <button
-                                            onClick={() => window.open(selectedLanguage.demoLink, '_blank')}
-                                            className={`flex-1 rounded-full text-black px-8 shadow-md py-2 OpenSans font-medium uppercase text-xl ${selectedLanguage.trailerLink ? '' : 'ml-2'}`}
-                                            style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)' }}
-                                        >
-                                            {changeLanguage('Try Demo', selectedLanguage.language)}
-                                        </button>
                                     </>
                                 )}
                             </div>

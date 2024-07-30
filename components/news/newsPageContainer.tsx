@@ -1,11 +1,12 @@
+// components/news/newsPageContainer.tsx
 import Image from 'next/image';
 import NewsCTA from '@/components/news/newsCTA';
 import SubHeader from '../shared/subHeader';
+import NewsList from './NewsList';
 
-const newsContainer = () => {
+const NewsPageContainer = () => {
     return (
         <div className="max-w-[1320px] mt-10 mx-auto flex flex-col items-center px-4">
-
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-6">
                 {/* Left Column */}
                 <div className="flex justify-center">
@@ -25,11 +26,14 @@ const newsContainer = () => {
             </div>
 
             {/* Full Width SubHeader */}
-            <div className="w-full">
+            <div className="w-full mt-8">
                 <SubHeader title="OUR LATEST NEWS" />
             </div>
+
+            {/* List of News Articles */}
+            <NewsList />
         </div>
     );
 }
 
-export default newsContainer;
+export default NewsPageContainer;

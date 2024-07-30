@@ -76,8 +76,8 @@ const AnimatedGifCard: React.FC<AnimatedGifCardProps> = ({ gif, index }) => {
                     />
                 </div>
                 <div className="p-4">
-                    <h3 className="text-white text-center text-4xl font-semibold Montserrat uppercase">{gif.title}</h3>
-                    <p className="text-white text-center mt-2 OpenSans">{gif.description}</p>
+                    <h3 className="text-white text-center text-[20px] lg:text-4xl font-semibold Montserrat uppercase">{gif.title}</h3>
+                    <p className="text-white text-[16px] text-center mt-2 OpenSans">{gif.description}</p>
                 </div>
             </div>
         </motion.div>

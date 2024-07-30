@@ -80,7 +80,6 @@ export default function GameForm() {
   const [games, setGames] = useState<FormData[]>([]);
   const [editMode, setEditMode] = useState(false);
   const [editingGame, setEditingGame] = useState<FormData | null>(null);
-  const router = useRouter();
 
   const fetchGames = async () => {
     try {

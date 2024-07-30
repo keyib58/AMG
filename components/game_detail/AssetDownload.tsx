@@ -19,7 +19,6 @@ const AssetDownload: React.FC<AssetDownloadProps> = ({ assetUrl }) => {
     let buttonStyle: React.CSSProperties = {
         background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)',
         color: 'black',
-        cursor: 'not-allowed',
     };
 
     if (user) {
@@ -33,7 +32,7 @@ const AssetDownload: React.FC<AssetDownloadProps> = ({ assetUrl }) => {
                 color: 'black',
                 cursor: 'not-allowed',
             };
-            buttonAction = () => { }; // No action
+            buttonAction = () => { };
         }
     }
 
@@ -49,7 +48,7 @@ const AssetDownload: React.FC<AssetDownloadProps> = ({ assetUrl }) => {
                 <h2 className="text-3xl font-bold mb-6 Montserrat">DOWNLOAD GAME <br /> MARKETING ASSETS</h2>
                 <button
                     onClick={buttonAction}
-                    className={`px-8 py-4 rounded-full text-xl font-medium`}
+                    className={`px-8 py-4 rounded-full text-xl font-medium OpenSans`}
                     style={buttonStyle}
                     disabled={buttonText === 'No Permission'}
                 >

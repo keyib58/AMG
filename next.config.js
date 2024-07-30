@@ -9,7 +9,8 @@ const nextConfig = {
       "api.dicebear.com",
       "res.cloudinary.com",
       "media.giphy.com",
-      "publiccdn.kingdomhall729.com"
+      "publiccdn.kingdomhall729.com",
+      "kingmakergames-public.s3.ap-southeast-1.amazonaws.com",
     ],
     dangerouslyAllowSVG: true,
   },

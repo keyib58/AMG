@@ -35,13 +35,13 @@ const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
   const getCurrentSortLabel = () => {
     switch (sort) {
       case 'alphabetical':
-        return 'Alphabetical';
+        return 'ALPHABETICAL';
       case 'popular':
-        return 'Popular Rank';
+        return 'POPULAR';
       case 'latest':
-        return 'Latest';
+        return 'LATEST';
       default:
-        return 'Latest';
+        return 'LATEST';
     }
   };
 
@@ -89,7 +89,7 @@ const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
                       onChange={() => setSort('alphabetical')}
                       className="hidden"
                     />
-                    Alphabetical
+                    ALPHABETICAL
                   </label>
                   <div className="border-t border-gray-300 my-1"></div>
                 </>
@@ -106,7 +106,7 @@ const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
                       onChange={() => setSort('popular')}
                       className="hidden"
                     />
-                    Popular Rank
+                    POPULAR
                   </label>
                   {sort !== 'latest' && (
                     <div className="border-t border-gray-300 my-1"></div>
@@ -124,7 +124,7 @@ const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
                     onChange={() => setSort('latest')}
                     className="hidden"
                   />
-                  Latest
+                LATEST
                 </label>
               )}
             </motion.div>

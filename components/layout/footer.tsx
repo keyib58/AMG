@@ -29,13 +29,11 @@ export default function Footer() {
             <p>© 2024 KingMidas. All rights reserved.</p>
           </div>
         </div>
-
         {/* Middle Column */}
         <div className="flex flex-col items-center lg:items-start space-y-6 text-center lg:text-left">
           <h2 className="text-xl font-bold OpenSans">Contact Us</h2>
           <a href="mailto:hello@kingmidasgames.co" className="block OpenSans text-xl">hello@kingmidasgames.co</a>
           <a href="mailto:sales@kingmidasgames.co" className="block OpenSans text-xl">sales@kingmidasgames.co</a>
-          <p className="block OpenSans text-xl">+65 8987 8903</p>
         </div>
 
         {/* Right Column */}

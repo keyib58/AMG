@@ -115,19 +115,21 @@ model LanguageInfo {
 }
 
 model TargetMarket {
-  id     String @id @default(cuid())
-  market String
-  gameId String
-  game   Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  id               String @id @default(cuid())
+  market           String
+  gameId           String
+  game             Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  demoLinkByMarket String @default("demo-link-by-market")
 
   @@index([gameId])
 }
 
 model TargetCountryByIP {
-  id      String @id @default(cuid())
-  country String
-  gameId  String
-  game    Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  id                String @id @default(cuid())
+  country           String
+  gameId            String
+  game              Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  demoLinkByCountry String @default("demo-link-by-country")
 
   @@index([gameId])
 }

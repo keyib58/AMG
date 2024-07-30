@@ -5,7 +5,7 @@ import { BsTwitterX } from "react-icons/bs";
 
 const SocialMedia = () => {
     return (
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
+        <div className="grid grid-cols-6 sm:grid-cols-6 gap-4">
             <a href="https://www.linkedin.com/company/kingmidas-games" className="text-[#0d0d0d] bg-[#868686] p-2 rounded-[50%]">
                 <FaLinkedin size={20} />
             </a>
