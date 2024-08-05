@@ -1,53 +1,52 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
-import { NewsType } from 'types/newsType';
+// lib/news.ts
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { remark } from "remark";
+import html from "remark-html";
+import remarkMdx from "remark-mdx";
+import { NewsType } from "types/newsType";
 
-const newsDirectory = path.join(process.cwd(), 'content/news');
+const newsDirectory = path.join(process.cwd(), "public/content/news");
 
-// Get all news slugs (both .md and .mdx files)
 export function getAllNewsSlugs() {
   const fileNames = fs.readdirSync(newsDirectory);
-  return fileNames
-    .filter(fileName => fileName.endsWith('.md') || fileName.endsWith('.mdx')) // Filter for .md and .mdx
-    .map((fileName) => {
-      return {
-        params: {
-          slug: fileName.replace(/\.(md|mdx)$/, ''), // Remove the file extension
-        },
-      };
-    });
+  return fileNames.map((fileName) => {
+    return {
+      params: {
+        slug: fileName.replace(/\.mdx$/, ""),
+      },
+    };
+  });
 }
 
-// Get news data based on the slug (includes only the metadata)
 export function getNewsData(slug: string): NewsType {
-  const fullPathMd = path.join(newsDirectory, `${slug}.md`);
-  const fullPathMdx = path.join(newsDirectory, `${slug}.mdx`);
-  
-  const fullPath = fs.existsSync(fullPathMdx) ? fullPathMdx : fullPathMd;
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  try {
+    const fullPath = path.join(newsDirectory, `${slug}.mdx`);
+    const fileContents = fs.readFileSync(fullPath, "utf8");
 
-  const matterResult = matter(fileContents);
+    const matterResult = matter(fileContents);
 
-  return {
-    slug,
-    ...matterResult.data,
-  } as NewsType;
+    return {
+      slug,
+      ...matterResult.data,
+    } as NewsType;
+  } catch (error) {
+    console.error(`Error fetching news data for slug: ${slug}`, error);
+    throw error;
+  }
 }
 
-// Get the complete news content (process Markdown or MDX to HTML)
 export async function getNewsContent(slug: string): Promise<NewsType> {
-  const fullPathMd = path.join(newsDirectory, `${slug}.md`);
-  const fullPathMdx = path.join(newsDirectory, `${slug}.mdx`);
-  
-  const fullPath = fs.existsSync(fullPathMdx) ? fullPathMdx : fullPathMd;
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const fullPath = path.join(newsDirectory, `${slug}.mdx`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
 
   const matterResult = matter(fileContents);
 
-  const processedContent = await remark().use(html).process(matterResult.content);
+  const processedContent = await remark()
+    .use(remarkMdx)
+    .use(html)
+    .process(matterResult.content);
   const contentHtml = processedContent.toString();
 
   return {
@@ -57,17 +56,13 @@ export async function getNewsContent(slug: string): Promise<NewsType> {
   } as NewsType;
 }
 
-// Get sorted news data based on the date
 export function getSortedNewsData(): NewsType[] {
   const fileNames = fs.readdirSync(newsDirectory);
   const allNewsData = fileNames.map((fileName) => {
-    const slug = fileName.replace(/\.(md|mdx)$/, ''); // Handle both .md and .mdx
+    const slug = fileName.replace(/\.mdx$/, "");
 
-    const fullPathMd = path.join(newsDirectory, `${slug}.md`);
-    const fullPathMdx = path.join(newsDirectory, `${slug}.mdx`);
-    
-    const fullPath = fs.existsSync(fullPathMdx) ? fullPathMdx : fullPathMd;
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const fullPath = path.join(newsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, "utf8");
 
     const matterResult = matter(fileContents);
 
