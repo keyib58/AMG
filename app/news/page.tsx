@@ -1,9 +1,8 @@
-import NewsContainer from "@/components/news/newsPageContainer";
-
+import NewsPageContainer from "@/components/news/newsPageContainer";
 
 export default function News() {
     return (
-        <NewsContainer />
+        <NewsPageContainer />
     );
 }
 
