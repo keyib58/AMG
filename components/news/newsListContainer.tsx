@@ -1,5 +1,5 @@
 import SubHeader from '../shared/subHeader';
-import NewsList from './newsList';
+import NewsListing from '@/components/news/newsListing';
 import NewsHero from './newsHero';
 
 
@@ -12,7 +12,7 @@ const NewsListContainer = () => {
                 <SubHeader title="OUR LATEST NEWS" />
             </div>
 
-            <NewsList />
+            <NewsListing />
         </div>
     );
 }

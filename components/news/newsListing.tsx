@@ -1,9 +1,8 @@
-// components/news/newsList.tsx
 import { getSortedNewsData } from '@/lib/news';
 import { NewsType } from 'types/newsType';
 import NewsCard from './newsCard';
 
-export default function NewsList() {
+export default function NewsListing() {
   const allNewsData: NewsType[] = getSortedNewsData();
 
   return (
