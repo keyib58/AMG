@@ -1,8 +1,8 @@
 /* Remove default background and border */
 .swiperContainer {
-  background: none;
-  position: relative;
-  padding-bottom: 50px;
+  background: none !important;
+  position: relative !important;
+  padding-bottom: 50px !important;
 }
 
 /* Custom styles for pagination bullets */
@@ -16,12 +16,12 @@
 }
 
 .swiperPaginationBulletActive {
-  background: #fff;
+  background: #fff !important;
   opacity: 1;
 }
 
 .swiperSlide {
-  background: none;
+  background: none !important;
   cursor: grab;
 }
 

@@ -9,13 +9,10 @@ thumbnail: "https://res.cloudinary.com/detatjujs/image/upload/v1722327823/efe437
 
 This is the introduction to the first news article.
 
-![Unsplash Image](https://source.unsplash.com/random/800x600?sig=1)
-
 ## Main Content
 
 This is the main content of the article. It's more detailed and includes more information.
 
-![Unsplash Image](https://source.unsplash.com/random/800x600?sig=2)
 
 ## Conclusion
 
