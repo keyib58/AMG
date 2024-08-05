@@ -12,6 +12,7 @@ import { Session } from "next-auth";
 
 const navLinks = [
   { name: "Home", href: "/" },
+  { name: "About us", href: "/about" },
   { name: "Games", href: "/games" },
   { name: "News", href: "/news" },
 ];

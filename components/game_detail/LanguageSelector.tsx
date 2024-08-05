@@ -33,7 +33,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ languageInfo, selec
         <ChevronDownIcon className="w-5 h-5" />
       </Popover.Trigger>
       <Popover.Content
-        className="bg-white text-black rounded-lg shadow-lg -ml-4 p-2 mt-2 border-b border-gray-300"
+        className="bg-white text-black rounded-lg shadow-lg  p-2 mt-2 border-b border-gray-300"
         style={{ width: triggerWidth }}
       >
         <motion.div
