@@ -1,10 +1,9 @@
-// components/news/newsPageContainer.tsx
 import SubHeader from '../shared/subHeader';
 import NewsList from './newsList';
 import NewsHero from './newsHero';
 
 
-const NewsPageContainer = () => {
+const NewsListContainer = () => {
     return (
         <div className="max-w-[1320px] mt-10 mx-auto flex flex-col items-center px-4 lg:px-0">
             <NewsHero />
@@ -18,4 +17,4 @@ const NewsPageContainer = () => {
     );
 }
 
-export default NewsPageContainer;
+export default NewsListContainer;

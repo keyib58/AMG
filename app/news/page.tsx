@@ -1,8 +1,10 @@
-import NewsPageContainer from "@/components/news/newsPageContainer";
+import NewsListContainer from "@/components/news/newsListContainer";
 
-export default function News() {
+const NewsPage = () => {
     return (
-        <NewsPageContainer />
+        <div className="max-w-[1320px] mt-10 mx-auto px-4">
+            <NewsListContainer />
+        </div>
     );
 }
-
+export default NewsPage;
