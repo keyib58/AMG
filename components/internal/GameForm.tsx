@@ -3,53 +3,26 @@
 import { useState, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { FormData, LanguageInfo } from "types/editGameForm";
 
-type LanguageInfo = {
-  language: string;
-  trailerLink: string;
-  demoLink: string;
-};
-
-type Tag = {
-  name: string;
-};
-
-type TargetMarket = {
-  market: string;
-};
-
-type TargetCountryByIP = {
-  country: string;
-};
-
-type FormData = {
-  id?: string;
-  name: string;
-  thumbnailUrl: string;
-  description: string;
-  gameBackgroundUrl: string;
-  gameGifUrl: string;
-  assetUrl: string; // Added this line
-  gameType: string;
-  RTP: number;
-  genre: string;
-  volatility: string;
-  maxWin: number;
-  placeHolderUrl: string;
-  popularRank: number;
-  releaseDate: string;
-  status: string;
-  slug: string;
-  languageInfo: LanguageInfo[];
-  tags: Tag[];
-  targetMarkets: TargetMarket[];
-  targetCountriesByIP: TargetCountryByIP[];
-};
+// Default languages list
+const defaultLanguages: LanguageInfo[] = [
+  { language: "ENGLISH", trailerLink: "", demoLink: "" },
+  { language: "CHINESE", trailerLink: "", demoLink: "" },
+  { language: "VIETNAMESE", trailerLink: "", demoLink: "" },
+  { language: "THAI", trailerLink: "", demoLink: "" },
+  { language: "BAHASA INDONESIA", trailerLink: "", demoLink: "" },
+  { language: "KOREAN", trailerLink: "", demoLink: "" },
+  { language: "BURMESE", trailerLink: "", demoLink: "" },
+  { language: "PORTUGUESE BRAZILIAN", trailerLink: "", demoLink: "" },
+  { language: "SPANISH", trailerLink: "", demoLink: "" },
+  { language: "TAGALOG", trailerLink: "", demoLink: "" },
+];
 
 export default function GameForm() {
   const { register, handleSubmit, reset, control, watch, setValue } = useForm<FormData>({
     defaultValues: {
-      languageInfo: [{ language: "", trailerLink: "", demoLink: "" }],
+      languageInfo: defaultLanguages, // Initialize with default languages
       tags: [{ name: "" }],
       targetMarkets: [{ market: "" }],
       targetCountriesByIP: [{ country: "" }],

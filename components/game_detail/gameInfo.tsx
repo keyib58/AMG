@@ -58,7 +58,7 @@ const GameInfo: React.FC<GameInfoProps> = ({ game }) => {
                         <p className="mb-4 Montserrat font-medium mt-8">{game.description}</p>
 
                         <div className="mt-4 lg:mt-20">
-                            <div className="flex justify-between items-center space-x-2">
+                            <div className="flex justify-between items-center space-x-4">
                                 <LanguageSelector
                                     languageInfo={game.languageInfo}
                                     selectedLanguage={selectedLanguage}
@@ -68,7 +68,7 @@ const GameInfo: React.FC<GameInfoProps> = ({ game }) => {
                                     <>
                                         <button
                                             onClick={() => window.open(selectedLanguage.demoLink, '_blank')}
-                                            className={`flex-1 rounded-full text-black px-8 shadow-md py-2 OpenSans font-medium uppercase text-xl ${selectedLanguage.trailerLink ? '' : 'ml-2'}`}
+                                            className={`flex-1 rounded-full text-black px-8 shadow-md py-2 OpenSans font-medium uppercase ${selectedLanguage.trailerLink ? '' : 'ml-2'}`}
                                             style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)' }}
                                         >
                                             {changeLanguage('Try Demo', selectedLanguage.language)}
@@ -76,7 +76,7 @@ const GameInfo: React.FC<GameInfoProps> = ({ game }) => {
                                         {selectedLanguage.trailerLink ? (
                                             <button
                                                 onClick={() => window.open(selectedLanguage.trailerLink, '_blank')}
-                                                className="flex-1 relative px-8 py-2 border-2 rounded-full OpenSans font-medium uppercase text-xl"
+                                                className="flex-1 relative px-8 py-2 border-2 rounded-full OpenSans font-medium uppercase "
                                                 style={{
                                                     borderColor: '#FFA100',
                                                     background: 'none',
@@ -108,7 +108,7 @@ const GameInfo: React.FC<GameInfoProps> = ({ game }) => {
                         <Image
                             src={game.gameGifUrl}
                             alt={game.name}
-                            width={427}
+                            width={400}
                             height={733}
                             className="rounded-md"
                         />
