@@ -1,7 +1,5 @@
-// app/news/[slug]/page.tsx
 import { getAllNewsSlugs, getNewsContent } from '@/lib/news';
 import { NewsType } from 'types/newsType';
-import Image from 'next/image';
 
 export async function generateStaticParams() {
     const paths = getAllNewsSlugs();

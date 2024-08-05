@@ -9,11 +9,9 @@ thumbnail: "https://res.cloudinary.com/detatjujs/image/upload/v1722329248/thumbn
 
 This is the introduction to the first news article.
 
-
 ## Main Content
 
 This is the main content of the article. It's more detailed and includes more information.
-
 
 ## Conclusion
 

@@ -13,7 +13,6 @@ This is the introduction to the first news article.
 
 This is the main content of the article. It's more detailed and includes more information.
 
-
 ## Conclusion
 
 This is the conclusion of the article, wrapping up the main points discussed.
