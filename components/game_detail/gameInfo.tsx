@@ -32,10 +32,10 @@ const changeLanguage = (label: string, language: string): string => {
 
 type GameInfoProps = {
     game: Game;
-    placeholderUrl: string;  // Add a placeholderUrl prop
+    placeHolderUrl: string;  // Add a placeHolderUrl prop
 };
 
-const GameInfo: React.FC<GameInfoProps> = ({ game, placeholderUrl }) => {
+const GameInfo: React.FC<GameInfoProps> = ({ game, placeHolderUrl }) => {
     const [selectedLanguage, setSelectedLanguage] = useState<LanguageInfo | null>(game.languageInfo[0]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState({ url: '', isTrailer: true });
