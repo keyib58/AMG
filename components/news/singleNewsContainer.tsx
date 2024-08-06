@@ -7,7 +7,7 @@ export async function generateStaticParams() {
     return paths;
 }
 
-export default async function NewsPostPage({ params }: { params: { slug: string } }) {
+export default async function SingleNewsContainer({ params }: { params: { slug: string } }) {
     const postData: NewsType = await getNewsContent(params.slug);
 
     return (

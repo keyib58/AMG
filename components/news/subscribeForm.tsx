@@ -39,7 +39,7 @@ const SubscribeForm: React.FC = () => {
           className="py-2 px-4 ml-4 rounded-[25px] font-medium bg-gradient-to-r from-yellow-400 to-yellow-200 text-black OpenSans transition duration-300"
           style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)' }}
         >
-         JOIN FREE
+          JOIN FREE
         </button>
       </div>
       {message && <p className="mt-4 text-center text-white">{message}</p>}

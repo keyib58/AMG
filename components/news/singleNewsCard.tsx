@@ -1,8 +1,11 @@
-import Link from 'next/link';
+
+
+
 import Image from 'next/image';
+import Link from 'next/link';
 import { NewsType } from 'types/newsType';
 
-export default function CardNews({ news }: { news: NewsType }) {
+const SingleNews = ({ news }: { news: NewsType }) => {
     const formattedDate = new Intl.DateTimeFormat('en-GB').format(new Date(news.date));
 
     return (
@@ -26,3 +29,5 @@ export default function CardNews({ news }: { news: NewsType }) {
         </li>
     );
 }
+
+export default SingleNews;

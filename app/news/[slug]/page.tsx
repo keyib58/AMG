@@ -1,3 +1,3 @@
-import NewsPostPage from "@/components/news/SingNews";
+import SingleNewsContainer from "@/components/news/singleNewsContainer";
 
-export default NewsPostPage;
+export default SingleNewsContainer;
