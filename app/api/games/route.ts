@@ -14,7 +14,10 @@ export async function GET() {
     return NextResponse.json(games, { status: 200 });
   } catch (error) {
     console.error("Error fetching games:", error);
-    return NextResponse.json({ error: "Error fetching games" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Error fetching games" },
+      { status: 500 },
+    );
   }
 }
 
@@ -50,7 +53,10 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: { id: string } },
+) {
   const { id } = params;
 
   try {
@@ -98,4 +104,3 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: "Error updating game" }, { status: 500 });
   }
 }
-

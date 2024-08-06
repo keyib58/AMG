@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useRef, useEffect, useState } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import { ChevronDownIcon } from 'lucide-react';
@@ -11,9 +11,14 @@ type LanguageSelectorProps = {
   onLanguageChange: (id: string) => void;
 };
 
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({ languageInfo, selectedLanguage, onLanguageChange }) => {
+const LanguageSelector: React.FC<LanguageSelectorProps> = ({
+  languageInfo,
+  selectedLanguage,
+  onLanguageChange,
+}) => {
   const triggerRef = useRef<HTMLButtonElement>(null);
   const [triggerWidth, setTriggerWidth] = useState(0);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (triggerRef.current) {
@@ -21,8 +26,13 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ languageInfo, selec
     }
   }, [triggerRef]);
 
+  const handleSelect = (id: string) => {
+    onLanguageChange(id);
+    setOpen(false); // Close the popover after selection
+  };
+
   return (
-    <Popover.Root>
+    <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger
         ref={triggerRef}
         className="flex-1 bg-white flex py-2 px-6 items-center text-black rounded-lg justify-between"
@@ -33,8 +43,11 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ languageInfo, selec
         <ChevronDownIcon className="w-5 h-5" />
       </Popover.Trigger>
       <Popover.Content
-        className="bg-white text-black rounded-lg shadow-lg  p-2 mt-2 border-b border-gray-300"
+        className="bg-white text-black rounded-lg z-10 shadow-lg p-2 mt-2 border-b border-gray-300"
         style={{ width: triggerWidth }}
+        side="bottom"
+        align="center"
+        sideOffset={5}
       >
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -45,8 +58,9 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ languageInfo, selec
           {languageInfo.map((info, index) => (
             <label
               key={info.id}
-              className={`flex items-center justify-center cursor-pointer p-2 w-full ${index < languageInfo.length - 1 ? 'border-b border-gray-300' : ''}`}
-              onClick={() => onLanguageChange(info.id)}
+              className={`flex items-center justify-center cursor-pointer p-2 w-full ${index < languageInfo.length - 1 ? 'border-b border-gray-300' : ''
+                }`}
+              onClick={() => handleSelect(info.id)}
             >
               {info.language}
             </label>

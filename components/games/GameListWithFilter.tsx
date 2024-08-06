@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import GameListing from './GameListing';
 import FilterComponent from './FilterComponent';
@@ -14,10 +15,10 @@ import { setGenres, setLanguages, setMarkets, setFiltering, setSelectedGenres, s
 import { setSortOption } from '@/app/slices/sortSlice';
 import { setSearchTerm } from '@/app/slices/searchSlice';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { X } from 'lucide-react';
 
 const localStorageKey = 'filterState';
 
-// Component to manage game list with filters
 export default function GameListWithFilter({
   genres,
   languages,
@@ -30,6 +31,7 @@ export default function GameListWithFilter({
   initialSearch,
   currentSort,
 }: GameListWithFilterProps) {
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
   const dispatch = useAppDispatch();
   const isFiltering = useAppSelector((state) => state.filter.isFiltering);
   const filteredGames = useAppSelector((state) => state.game.games);
@@ -39,7 +41,6 @@ export default function GameListWithFilter({
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // Initialize state from localStorage and URL parameters on mount
   useEffect(() => {
     dispatch(setGames(initialGames));
     dispatch(setGenres(initialGenres));
@@ -79,10 +80,9 @@ export default function GameListWithFilter({
     if (searchParam) {
       dispatch(setSearchTerm(searchParam));
     }
-    dispatch(setFiltering(false)); // Set filtering to false after initial load
+    dispatch(setFiltering(false));
   }, [dispatch, initialGames, initialGenres, initialLanguages, initialMarkets, searchParams]);
 
-  // Save filter state to localStorage whenever it changes
   const selectedGenres = useAppSelector((state) => state.filter.selectedGenres);
   const selectedLanguages = useAppSelector((state) => state.filter.selectedLanguages);
   const selectedMarkets = useAppSelector((state) => state.filter.selectedMarkets);
@@ -105,14 +105,15 @@ export default function GameListWithFilter({
     if (currentSearchState) params.set('search', currentSearchState);
     router.replace(`/games?${params.toString()}`, { scroll: false });
 
-    dispatch(setFiltering(false)); // Set filtering to false after state update
+    dispatch(setFiltering(false));
   }, [selectedGenres, selectedLanguages, selectedMarkets, currentSortState, currentSearchState, router, dispatch]);
 
   return (
     <>
       <GameSlider />
       <div className="z-5 mx-5 flex flex-col lg:flex-row max-w-[1320px] w-full mb-[200px]">
-        <div className="lg:w-1/4 p-4 mt-10">
+        {/* Filter Component - visible on desktop */}
+        <div className="hidden lg:block lg:w-1/4 p-4 mt-10">
           <SortComponent currentSort={currentSortState} />
           <FilterComponent
             genres={genres}
@@ -122,10 +123,26 @@ export default function GameListWithFilter({
             currentLanguages={selectedLanguages}
             currentMarkets={selectedMarkets}
             setFiltering={(value) => dispatch(setFiltering(value))}
-          />
+            setIsFilterVisible={setIsFilterVisible} // Pass setIsFilterVisible to FilterComponent
+            isFilterVisible={false} />
         </div>
-        <div className="lg:w-3/4 p-4 mt-10">
+        <div className="lg:w-3/4 p-4 lg:mt-10 w-full">
+          {/* Search Component */}
           <SearchComponent currentSearch={currentSearchState} />
+
+          {/* Filter and Sort Buttons for Mobile/Tablet - Below Search */}
+          <div className="lg:hidden flex justify-between w-full mt-4">
+            <button
+              onClick={() => setIsFilterVisible(true)}
+              className="px-4 py-2 bg-white text-black rounded-md w-1/2 mr-2"
+            >
+              FILTER BY
+            </button>
+            <div className="w-1/2">
+              <SortComponent currentSort={currentSortState} />
+            </div>
+          </div>
+
           {isFiltering ? (
             <div className="mt-10 text-center">
               <LoadingSpinner />
@@ -134,7 +151,39 @@ export default function GameListWithFilter({
             <GameListing games={filteredGames} />
           )}
         </div>
+
+        {/* Filter Modal for Mobile/Tablet */}
+        <AnimatePresence>
+          {isFilterVisible && (
+            <motion.div
+              className="fixed inset-0 z-50 bg-[#151515] flex flex-col"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="p-4 flex justify-between items-center">
+                <h3 className="text-xl font-semibold text-white">FILTER BY</h3>
+                <X className="w-6 h-6 ml-2 text-white" onClick={() => setIsFilterVisible(false)} />
+              </div>
+              <div className="flex-1 overflow-y-auto p-4">
+                <FilterComponent
+                  genres={genres}
+                  languages={languages}
+                  markets={markets}
+                  currentGenres={selectedGenres}
+                  currentLanguages={selectedLanguages}
+                  currentMarkets={selectedMarkets}
+                  setFiltering={(value) => dispatch(setFiltering(value))}
+                  setIsFilterVisible={setIsFilterVisible} // Pass setIsFilterVisible to FilterComponent
+                  isFilterVisible={isFilterVisible} // Pass isFilterVisible to FilterComponent for conditional handling
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
 }
+

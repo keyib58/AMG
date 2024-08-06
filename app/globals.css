@@ -28,3 +28,25 @@
 .pagewrapper {
   @apply mx-5 mb-[200px] flex w-full max-w-[1320px] flex-col lg:flex-row;
 }
+
+.bgGradientBtn {
+  @apply w-full cursor-pointer rounded-full bg-gradient-to-r from-[#FFA100] to-[#FFDD00] px-8 py-2 uppercase text-black shadow-md;
+}
+
+@layer components {
+  .gradientOutlineBtn {
+    @apply Montserrat w-full rounded-full border-2 px-8 py-2 font-bold uppercase;
+    border-color: #ffa100;
+    background: none;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(90deg, #ffa100 0%, #ffdd00 100%);
+  }
+
+  .bgGradientBtn {
+    @apply Montserrat w-full rounded-full px-8 py-2 font-bold uppercase text-black shadow-md;
+    background: linear-gradient(90deg, #ffa100 0%, #ffdd00 100%);
+  }
+}

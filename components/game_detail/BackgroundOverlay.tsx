@@ -8,7 +8,11 @@ const BackgroundOverlay: React.FC<BackgroundOverlayProps> = ({ url }) => {
     useEffect(() => {
         const overlay = document.getElementById('background-overlay');
         if (overlay) {
-            overlay.style.backgroundImage = url ? `url(${url})` : '';
+            if (url && url !== 'NA') {
+                overlay.style.backgroundImage = `url(${url})`;
+            } else {
+                overlay.style.backgroundImage = 'none';
+            }
         }
         return () => {
             if (overlay) {

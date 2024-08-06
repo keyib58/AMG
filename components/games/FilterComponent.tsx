@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { PlusIcon, MinusIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
-import { setSelectedGenres, setSelectedLanguages, setSelectedMarkets, setFiltering } from '@/app/slices/filterSlice';
+import { setSelectedGenres, setSelectedLanguages, setSelectedMarkets, setFiltering, resetFilters } from '@/app/slices/filterSlice';
 import { FilterComponentProps } from 'types/type';
 import FilterByIP from './DetectUserIP';
 
@@ -19,16 +19,18 @@ const iconVariants = {
   closed: { rotate: 180 },
 };
 
-const FilterComponent: React.FC<FilterComponentProps> = ({
+const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (visible: boolean) => void, isFilterVisible: boolean }> = ({
   genres,
   languages,
   markets,
   currentGenres,
   currentLanguages,
   currentMarkets,
+  setIsFilterVisible, // Prop to control sidebar visibility
+  isFilterVisible, // Visibility state of the filter sidebar
 }) => {
   const dispatch = useAppDispatch();
-  const { selectedGenres, selectedLanguages, selectedMarkets, isFiltering } = useAppSelector((state) => state.filter);
+  const { selectedGenres, selectedLanguages, selectedMarkets } = useAppSelector((state) => state.filter);
 
   const [isGenreOpen, setIsGenreOpen] = useState(true);
   const [isLanguageOpen, setIsLanguageOpen] = useState(true);
@@ -64,8 +66,6 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
   const toggleFilter = (type: string, value: string) => {
     let updatedValues: string[] = [];
     dispatch(setFiltering(true));
-    console.log('Filtering started');
-
     if (type === 'genre') {
       if (value === 'All') {
         updatedValues = ['All'];
@@ -113,8 +113,17 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
     params.delete('search');
 
     router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
-    console.log('Filtering done');
     dispatch(setFiltering(false));
+  };
+
+  const handleResetFilters = () => {
+    dispatch(resetFilters()); // Dispatch the resetFilters action
+    setIsFilterVisible(true);
+    router.replace(`${window.location.pathname}?`, { scroll: false });
+  };
+
+  const applyFilters = () => {
+    setIsFilterVisible(false); // Close the sidebar when "Apply Filter" is clicked
   };
 
   const isChecked = (type: string, value: string) => {
@@ -129,7 +138,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
   };
 
   return (
-    <div className="rounded-lg mb-4 mt-[100px]">
+    <div className="rounded-lg mb-4 lg:mt-[100px]">
       <FilterByIP /> {/* Use the FilterByIP component */}
       <div className="mb-4">
         <div className="flex justify-between items-center">
@@ -179,7 +188,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
           ))}
         </motion.div>
       </div>
-      <div className="mt-20">
+      <div className="lg:mt-20 mt-[50px]">
         <div className="flex justify-between items-center">
           <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem] font-extrabold uppercase">Language</h4>
           <motion.button
@@ -227,7 +236,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
           ))}
         </motion.div>
       </div>
-      <div className="mt-20">
+      <div className="lg:mt-20 mt-[50px]">
         <div className="flex justify-between items-center">
           <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem] font-extrabold uppercase">Market</h4>
           <motion.button
@@ -247,7 +256,6 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
           variants={variants}
           transition={{ duration: 0.3 }}
         >
-
           {markets.map((market) => (
             <div key={market.market} className="flex items-center mb-2">
               <input
@@ -263,6 +271,22 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
             </div>
           ))}
         </motion.div>
+      </div>
+
+      {/* Apply Filter and Reset Filter Buttons - Visible only on Tablet and Mobile */}
+      <div className="lg:hidden flex justify-between mt-8 gap-4">
+        <button
+          onClick={handleResetFilters}
+          className="gradientOutlineBtn"
+        >
+          Reset Filter
+        </button>
+        <button
+          onClick={applyFilters}
+          className="bgGradientBtn "
+        >
+          Filter
+        </button>
       </div>
     </div>
   );
