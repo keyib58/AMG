@@ -3,6 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import SubHeader from '../shared/subHeader';
+import clsx from 'clsx';
 
 interface Props {
     bgImage1: string;
@@ -11,21 +13,16 @@ interface Props {
     opacity1: number;
     opacity2: number;
     opacity3: number;
+    className?: string;
 }
 
-const InnovationGrid: React.FC<Props> = ({ bgImage1, bgImage2, bgImage3, opacity1, opacity2, opacity3 }) => {
+
+const InnovationGrid: React.FC<Props> = ({ bgImage1, bgImage2, bgImage3, opacity1, opacity2, opacity3, className }) => {
     return (
-        <div className="w-full mx-auto p-4 mt-20">
+        <div className={clsx("w-full mx-auto p-4", className)}>
             <div className="grid grid-cols-2 lg:grid-cols-3 grid-rows-1 gap-y-4 lg:gap-x-4">
                 {/* Title card */}
-                <motion.div
-                    className="subheader_bg"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <h3 className="subheader">DRIVEN BY INNOVATION</h3>
-                </motion.div>
+                <SubHeader title="DRIVEN BY INNOVATION" />
 
                 {/* RESPONSIBLE GAMING */}
                 <motion.div

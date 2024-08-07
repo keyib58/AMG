@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React from 'react';
 import { useSignInModal } from '../layout/sign-in-modal';
 import { useSession } from 'next-auth/react';
@@ -32,8 +32,13 @@ const AssetDownload: React.FC<AssetDownloadProps> = ({ assetUrl }) => {
                 color: 'black',
                 cursor: 'not-allowed',
             };
-            buttonAction = () => { };
+            buttonAction = () => { }; // Disable click
         }
+    } else {
+        // Show sign-in modal if the user is not logged in
+        buttonAction = () => {
+            setShowSignInModal(true);
+        };
     }
 
     return (
@@ -45,7 +50,12 @@ const AssetDownload: React.FC<AssetDownloadProps> = ({ assetUrl }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
             >
-                <h2 className="lg:text-3xl text-[20px] font-bold mb-6 Montserrat text-white">DOWNLOAD GAME <br /> MARKETING ASSETS</h2>
+                <h3 className="lg:text-3xl text-[20px] font-bold mb-6 Montserrat text-white">
+                    GET YOUR GAME PROMO KIT
+                </h3>
+                <p className='OpenSans text-white max-w-[580px]'>
+                    Download the complete set of game marketing materials, including editable PSD files for landing pages and banners, plus ready-to-use JPG and PNG images in various sizes. All assets are available in multiple languages to support your global marketing campaign.
+                </p>
                 {user && (user.role === 'ADMIN' || user.role === 'CLIENT') ? (
                     <a
                         href={assetUrl}
@@ -58,7 +68,7 @@ const AssetDownload: React.FC<AssetDownloadProps> = ({ assetUrl }) => {
                 ) : (
                     <button
                         onClick={buttonAction}
-                        className="px-8 py-4 rounded-full text-xl font-bold Montserrat"
+                        className="px-8 py-4 mt-4 rounded-full text-xl font-bold Montserrat"
                         style={buttonStyle}
                         disabled={buttonText === 'No Permission'}
                     >

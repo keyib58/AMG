@@ -9,6 +9,7 @@ import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
 import { signOut } from "next-auth/react";
 import { Session } from "next-auth";
+import HamburgerIcon from "../icon/hamburger";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -51,18 +52,13 @@ export default function NavBar({ session }: NavBarProps) {
             className="text-white md:hidden absolute left-0"
             onClick={toggleMenu}
           >
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="50" height="50" rx="15" fill="#151515" />
-              <path d="M13 14H37.5" stroke="white" strokeWidth="4" strokeLinecap="round" />
-              <path d="M13 24.5H37.5" stroke="white" strokeWidth="4" strokeLinecap="round" />
-              <path d="M13 35H25" stroke="white" strokeWidth="4" strokeLinecap="round" />
-            </svg>
+            <HamburgerIcon />
           </button>
-          <Link href="/" className="lg:mx-0  mx-auto font-display text-2xl">
+          <Link href="/" className="lg:mx-0 mx-auto md:mx-0 font-display text-2xl">
             <Image
               src="/logo.png"
               alt="Kingmidas logo"
-              className="max-w-[200px] lg:max-w-[280px]"
+              className="max-w-[12rem] lg:max-w-[280px]"
               width={300}
               height={100}
               priority
@@ -88,7 +84,8 @@ export default function NavBar({ session }: NavBarProps) {
               <>
                 <UserDropdown session={session} />
                 <button
-                  className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
+                  className="rounded-full text-black p-1.5 px-4 text-sm hover:text-white transition-all"
+                  style={{ background: "linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)" }}
                   onClick={() => signOut()}
                 >
                   Logout
@@ -96,7 +93,8 @@ export default function NavBar({ session }: NavBarProps) {
               </>
             ) : (
               <button
-                className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
+                className="rounded-full text-black p-1.5 px-4 text-sm hover:text-white transition-all"
+                style={{ background: "linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)" }}
                 onClick={() => setShowSignInModal(true)}
               >
                 Sign In

@@ -14,16 +14,30 @@ const changeLanguage = (label: string, language: string): string => {
         Trailer: {
             English: 'Trailer',
             Spanish: 'Tráiler',
-            French: 'Bande-annonce',
+            French: 'Bande-annonce',  // Not in your list but kept for reference
             THAI: 'ตัวอย่าง',
             CHINESE: '预告片',
+            VIETNAMESE: 'Đoạn phim',
+            "BAHASA INDONESIA": 'Cuplikan',
+            KOREAN: '예고편',
+            BURMESE: 'နမူနာ',
+            "PORTUGUESE BRAZILIAN": 'Trailer',
+            TAGALOG: 'Patingin',
+            SPANISH: 'Tráiler',
         },
         'Try Demo': {
             English: 'Try Demo',
             Spanish: 'Prueba Demo',
-            French: 'Essayer Démo',
+            French: 'Essayer Démo',  // Not in your list but kept for reference
             THAI: 'ลองเล่นเกม',
             CHINESE: '试玩演示',
+            VIETNAMESE: 'Thử Demo',
+            "BAHASA INDONESIA": 'Coba Demo',
+            KOREAN: '데모 시도',
+            BURMESE: 'ဒေမိုကိုကြိုးစားပါ',
+            "PORTUGUESE BRAZILIAN": 'Experimentar Demo',
+            TAGALOG: 'Subukan ang Demo',
+            SPANISH: 'Prueba Demo',
         },
     };
 
@@ -120,17 +134,20 @@ const GameInfo: React.FC<GameInfoProps> = ({ game, placeHolderUrl }) => {
                             maxWin={game.maxWin}
                         />
                     </div>
-                    <div className="lg:w-1/2 flex justify-end order-1 lg:order-2 gifContainer mb-8">
+
+                    <div className="lg:w-1/2 w-full flex justify-end order-1 lg:order-2 mb-8">
                         {isLoading && (
                             <div className="w-full lg:max-w-[400px] h-[733px] rounded-[15px] bg-neutral-800 animate-pulse"></div>
                         )}
-                        <img
-                            ref={imgRef}
-                            src={imageUrl}
-                            alt={game.name}
-                            className={`w-full lg:max-w-[400px] h-auto rounded-[15px] ${isLoading ? 'hidden' : 'block'}`}
-                            onLoad={handleImageLoad}
-                        />
+                        <div className='lg:bg-transparent lg:p-0 rounded-[15px] bg-[#151515] p-10 w-full flex items-center justify-center'>
+                            <img
+                                ref={imgRef}
+                                src={imageUrl}
+                                alt={game.name}
+                                className={`w-full max-w-[400px] h-auto rounded-[15px] ${isLoading ? 'hidden' : 'block'}`}
+                                onLoad={handleImageLoad}
+                            />
+                        </div>
                     </div>
                 </div>
             </motion.div>

@@ -1,12 +1,11 @@
-'use client';
-
+import React, { useEffect, useRef, useState } from 'react';
 import * as Popover from '@radix-ui/react-popover';
-import { ChevronDownIcon, Calendar, Heart, ArrowDownIcon } from 'lucide-react';
+import { ChevronDownIcon, Calendar, Heart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { setSortOption } from '@/app/slices/sortSlice';
+import AlphabeticalIcon from '../icon/alpha'; // Import the AlphabeticalIcon
 
 interface SortComponentProps {
   currentSort?: string;
@@ -67,7 +66,7 @@ const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
   const getIcon = () => {
     switch (sort) {
       case 'alphabetical':
-        return <ArrowDownIcon className="w-5 h-5 mr-2" />;
+        return <AlphabeticalIcon className="w-5 h-5 ml-2 mr-2" />; // Use AlphabeticalIcon with the appropriate size
       case 'popular':
         return <Heart className="w-5 h-5 mr-2" />;
       case 'latest':
@@ -105,7 +104,7 @@ const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
             {sort !== 'alphabetical' && (
               <>
                 <label className="flex items-center cursor-pointer p-2">
-                  <ArrowDownIcon className="w-5 h-5 mr-2" />
+                  <AlphabeticalIcon className="w-5 h-5 ml-1 mr-2" />
                   <input
                     type="radio"
                     name="sort"

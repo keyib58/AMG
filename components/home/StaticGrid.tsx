@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import SubHeader from "../shared/subHeader";
+import clsx from 'clsx';
 
 interface Data {
     url: string;
@@ -34,10 +35,10 @@ const staticData: Data[] = [
     }
 ];
 
-const StaticGrid: React.FC = () => {
+const StaticGrid: React.FC<{ className?: string }>  = ({ className }) => {
     return (
-        <div className="w-full mx-auto p-4 mt-20">
-            <SubHeader title='GAMES FOR EVERY PLAYER' />
+        <div className={clsx("w-full mx-auto p-4", className)}>
+            <SubHeader title='BOOSTING PLAYER ENGAGEMENT AND GROWTH' />
             <div className="flex flex-wrap -mx-2 mt-8">
                 {staticData.map((data, index) => (
                     <AnimatedCard key={index} data={data} index={index} />

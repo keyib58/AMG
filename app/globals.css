@@ -18,11 +18,11 @@
 }
 
 .subheader {
-  @apply Montserrat bg-gradient-to-r from-[#FFD868] to-[#FFFFFF] bg-clip-text text-center text-2xl font-semibold uppercase text-transparent xl:text-4xl;
+  @apply Montserrat bg-gradient-to-r from-[#FFD868] to-[#FFFFFF] bg-clip-text py-2 text-center text-3xl font-semibold uppercase text-transparent;
 }
 
 .subheader_bg {
-  @apply col-span-3 row-span-3 flex items-center justify-center rounded-xl bg-[#151515] py-8;
+  @apply col-span-3 row-span-3 rounded-xl bg-[#151515] py-4 lg:py-8;
 }
 
 .pagewrapper {

@@ -1,9 +1,10 @@
-'use client'
+'use client';
 
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import SubHeader from "../shared/subHeader";
+import clsx from 'clsx';
 
 interface GifData {
     url: string;
@@ -13,25 +14,25 @@ interface GifData {
 
 const gifData: GifData[] = [
     {
-        url: "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif",
+        url: "https://res.cloudinary.com/detatjujs/image/upload/v1723002364/Website-Assets_Next-Gen_GIFs_427x427_2s.gif",
         title: "NEXT-GEN",
         description: "Minesweeper, crash, virtual, plinko"
     },
     {
-        url: "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif",
+        url: "https://res.cloudinary.com/detatjujs/image/upload/v1723002364/Website-Assets_Classic_GIFs_427x427_2s.gif",
         title: "CLASSIC",
         description: "Cards, dice, table, roulette, traditional"
     },
     {
-        url: "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif",
+        url: "https://res.cloudinary.com/detatjujs/image/upload/v1723002364/Website-Assets_Slots_GIFs_427x427_2s.gif",
         title: "SLOTS",
         description: "Cascade, reel-slot"
     }
 ];
 
-const GifGrid: React.FC = () => {
+const GifGrid: React.FC<{ className?: string }> = ({ className }) => {
     return (
-        <div className="w-full mx-auto p-4 mt-20">
+        <div className={clsx("w-full mx-auto p-4", className)}>
             <SubHeader title='GAMES FOR EVERY PLAYER' />
             <div className="flex flex-wrap -mx-2 mt-8">
                 {gifData.map((gif, index) => (

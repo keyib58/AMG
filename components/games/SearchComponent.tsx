@@ -6,6 +6,7 @@ import { RootState } from '@/app/store';
 import { useSearchParams, useRouter } from 'next/navigation';
 import LoadingDots from './LoadingDots';
 import { XIcon } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 interface SearchComponentProps {
   currentSearch?: string;
@@ -76,17 +77,22 @@ const SearchComponent = ({ currentSearch = '' }: SearchComponentProps) => {
           />
           {isLoading && <LoadingDots className="absolute left-4 top-1/2 transform -translate-y-1/2" />}
         </div>
+
         <button
           type="submit"
-          className="ml-2 px-6 py-2 uppercase text-black rounded-[20px] flex items-center OpenSans"
-          style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)' }}
+          className="ml-2 px-4 py-2 uppercase text-black rounded-[20px] flex items-center justify-center OpenSans"
+          style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)', height: '40px' }}
           disabled={isLoading} // Disable button while loading
         >
-          Search
+          <div className="flex items-center align-middle">
+            <Search className='w-5 h-5' />
+            <span className="ml-2">Search</span>
+          </div>
         </button>
       </form>
+
       {searchQuery && !isLoading && (
-        <div className="mt-2 p-2 bg-[#111111] text-white rounded flex items-center justify-between OpenSans absolute">
+        <div className="mt-2 p-2 bg-[#111111] text-white rounded flex items-center justify-between OpenSans relative lg:absolute">
           <div>
             Searching: <span className="font-bold">{searchQuery}</span>
           </div>

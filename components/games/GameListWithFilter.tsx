@@ -114,6 +114,7 @@ export default function GameListWithFilter({
       <div className="z-5 mx-5 flex flex-col lg:flex-row max-w-[1320px] w-full mb-[200px]">
         {/* Filter Component - visible on desktop */}
         <div className="hidden lg:block lg:w-1/4 p-4 mt-10">
+    
           <SortComponent currentSort={currentSortState} />
           <FilterComponent
             genres={genres}

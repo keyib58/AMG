@@ -45,9 +45,9 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
       <Popover.Content
         className="bg-white text-black rounded-lg z-10 shadow-lg p-2 mt-2 border-b border-gray-300"
         style={{ width: triggerWidth }}
-        side="bottom"
-        align="center"
-        sideOffset={5}
+        side="bottom"  // Ensures the content appears below the trigger
+        align="center" // Centers the content relative to the trigger
+        sideOffset={5} // Optional: Adjusts the distance between the trigger and content
       >
         <motion.div
           initial={{ opacity: 0, y: -10 }}
