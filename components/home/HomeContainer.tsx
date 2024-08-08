@@ -3,6 +3,7 @@ import InnovationGrid from "./InnovationGrid";
 import GifGrid from "./GifGrid";
 import StaticGrid from "./StaticGrid";
 import LetsTalk from "../shared/letstalk";
+import ClientsLogo from "../shared/clientLogos";
 
 const HomeContainer = () => {
     return (
@@ -31,6 +32,7 @@ const HomeContainer = () => {
                 />
                 <GifGrid className="mt-20" />
                 <StaticGrid className="mt-20" />
+                <ClientsLogo className="mt-20" />
                 <LetsTalk />
             </div>
         </div>
