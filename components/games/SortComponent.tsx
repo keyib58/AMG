@@ -18,6 +18,7 @@ const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
 
   const triggerRef = useRef<HTMLButtonElement>(null);
   const [popoverWidth, setPopoverWidth] = useState<string | number>('auto');
+  const [open, setOpen] = useState(false);
 
   const updatePopoverWidth = () => {
     if (triggerRef.current) {
@@ -48,6 +49,7 @@ const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
     const params = new URLSearchParams(window.location.search);
     params.set('sort', option);
     router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
+    setOpen(false); // Close the popover after sorting
   };
 
   const getCurrentSortLabel = () => {
@@ -77,7 +79,7 @@ const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
   };
 
   return (
-    <Popover.Root>
+    <Popover.Root open={open} onOpenChange={setOpen}>
       <div className="flex items-center w-full">
         {/* Hide on mobile and tablet, show only on larger screens */}
         <div className="text-white mr-2 hidden lg:block">SORT&nbsp;BY:</div>

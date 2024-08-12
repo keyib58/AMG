@@ -172,20 +172,22 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
               All
             </label>
           </div>
-          {genres.map((genre) => (
-            <div key={genre.genre} className="flex items-center mb-2">
-              <input
-                type="checkbox"
-                id={`genre-${genre.genre}`}
-                checked={isChecked('genre', genre.genre)}
-                onChange={() => toggleFilter('genre', genre.genre)}
-                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
-              />
-              <label className="text-white OpenSans text-lg" htmlFor={`genre-${genre.genre}`}>
-                {genre.genre}
-              </label>
-            </div>
-          ))}
+          {genres
+            .sort((a, b) => a.genre.localeCompare(b.genre)) // Sort options alphabetically
+            .map((genre) => (
+              <div key={genre.genre} className="flex items-center mb-2">
+                <input
+                  type="checkbox"
+                  id={`genre-${genre.genre}`}
+                  checked={isChecked('genre', genre.genre)}
+                  onChange={() => toggleFilter('genre', genre.genre)}
+                  className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
+                />
+                <label className="text-white OpenSans text-lg" htmlFor={`genre-${genre.genre}`}>
+                  {genre.genre}
+                </label>
+              </div>
+            ))}
         </motion.div>
       </div>
       <div className="lg:mt-20 mt-[50px]">
@@ -220,20 +222,22 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
               All
             </label>
           </div>
-          {languages.map((language) => (
-            <div key={language.language} className="flex items-center mb-2">
-              <input
-                type="checkbox"
-                id={`language-${language.language}`}
-                checked={isChecked('language', language.language)}
-                onChange={() => toggleFilter('language', language.language)}
-                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
-              />
-              <label className="text-white OpenSans text-lg" htmlFor={`language-${language.language}`}>
-                {language.language}
-              </label>
-            </div>
-          ))}
+          {languages
+            .sort((a, b) => a.language.localeCompare(b.language)) // Sort options alphabetically
+            .map((language) => (
+              <div key={language.language} className="flex items-center mb-2">
+                <input
+                  type="checkbox"
+                  id={`language-${language.language}`}
+                  checked={isChecked('language', language.language)}
+                  onChange={() => toggleFilter('language', language.language)}
+                  className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
+                />
+                <label className="text-white OpenSans text-lg" htmlFor={`language-${language.language}`}>
+                  {language.language}
+                </label>
+              </div>
+            ))}
         </motion.div>
       </div>
       <div className="lg:mt-20 mt-[50px]">
@@ -256,20 +260,22 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
           variants={variants}
           transition={{ duration: 0.3 }}
         >
-          {markets.map((market) => (
-            <div key={market.market} className="flex items-center mb-2">
-              <input
-                type="checkbox"
-                id={`market-${market.market}`}
-                checked={isChecked('market', market.market)}
-                onChange={() => toggleFilter('market', market.market)}
-                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
-              />
-              <label className="text-white OpenSans text-lg" htmlFor={`market-${market.market}`}>
-                {market.market}
-              </label>
-            </div>
-          ))}
+          {markets
+            .sort((a, b) => a.market.localeCompare(b.market)) // Sort options alphabetically
+            .map((market) => (
+              <div key={market.market} className="flex items-center mb-2">
+                <input
+                  type="checkbox"
+                  id={`market-${market.market}`}
+                  checked={isChecked('market', market.market)}
+                  onChange={() => toggleFilter('market', market.market)}
+                  className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
+                />
+                <label className="text-white OpenSans text-lg" htmlFor={`market-${market.market}`}>
+                  {market.market}
+                </label>
+              </div>
+            ))}
         </motion.div>
       </div>
 

@@ -14,7 +14,7 @@ const changeLanguage = (label: string, language: string): string => {
         Trailer: {
             English: 'Trailer',
             Spanish: 'Tráiler',
-            French: 'Bande-annonce',  // Not in your list but kept for reference
+            French: 'Bande-annonce', // Not in your list but kept for reference
             THAI: 'ตัวอย่าง',
             CHINESE: '预告片',
             VIETNAMESE: 'Đoạn phim',
@@ -28,7 +28,7 @@ const changeLanguage = (label: string, language: string): string => {
         'Try Demo': {
             English: 'Try Demo',
             Spanish: 'Prueba Demo',
-            French: 'Essayer Démo',  // Not in your list but kept for reference
+            French: 'Essayer Démo', // Not in your list but kept for reference
             THAI: 'ลองเล่นเกม',
             CHINESE: '试玩演示',
             VIETNAMESE: 'Thử Demo',
@@ -46,7 +46,7 @@ const changeLanguage = (label: string, language: string): string => {
 
 type GameInfoProps = {
     game: Game;
-    placeHolderUrl: string;  // Add a placeHolderUrl prop
+    placeHolderUrl: string; // Add a placeHolderUrl prop
 };
 
 const GameInfo: React.FC<GameInfoProps> = ({ game, placeHolderUrl }) => {
@@ -83,7 +83,7 @@ const GameInfo: React.FC<GameInfoProps> = ({ game, placeHolderUrl }) => {
         <>
             <BackgroundOverlay url={game.gameBackgroundUrl} />
             <motion.div
-                className='mx-auto max-w-[1350px] mt-6 lg:mt-20 w-full px-8 lg:px-6'
+                className="mx-auto max-w-[1350px] mt-6 lg:mt-20 w-full px-8 lg:px-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
@@ -139,7 +139,7 @@ const GameInfo: React.FC<GameInfoProps> = ({ game, placeHolderUrl }) => {
                         {isLoading && (
                             <div className="w-full lg:max-w-[400px] h-[733px] rounded-[15px] bg-neutral-800 animate-pulse"></div>
                         )}
-                        <div className='lg:bg-transparent lg:p-0 rounded-[15px] bg-[#151515] p-10 lg:w-auto w-full flex items-center justify-center lg:items-end'>
+                        <div className="lg:bg-transparent lg:p-0 rounded-[15px] bg-[#151515] p-10 lg:w-auto w-full flex items-center justify-center lg:items-end">
                             <img
                                 ref={imgRef}
                                 src={imageUrl}
@@ -158,6 +158,7 @@ const GameInfo: React.FC<GameInfoProps> = ({ game, placeHolderUrl }) => {
                 onClose={() => setIsModalOpen(false)}
                 mediaUrl={modalContent.url}
                 isTrailer={modalContent.isTrailer}
+                DialogTitle={game.name}
             />
         </>
     );

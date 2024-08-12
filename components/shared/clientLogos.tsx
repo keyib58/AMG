@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import SubHeader from './subHeader';
@@ -31,13 +31,26 @@ interface ClientsLogoProps {
 
 const ClientsLogo: React.FC<ClientsLogoProps> = ({ className }) => {
     const [showMore, setShowMore] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        // This will run only on the client-side
+        const handleResize = () => {
+            setIsDesktop(window.innerWidth >= 1024);
+        };
+
+        handleResize(); // Set initial value
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const initialLogosDesktop = clientLogos.slice(0, 15);
     const initialLogosMobile = clientLogos.slice(0, 8);
 
     const displayedLogos = showMore
         ? clientLogos
-        : window.innerWidth >= 1024
+        : isDesktop
             ? initialLogosDesktop
             : initialLogosMobile;
 

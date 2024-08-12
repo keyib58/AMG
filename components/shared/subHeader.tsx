@@ -1,9 +1,14 @@
-// components/SubHeader.jsx
 import React from 'react';
+import clsx from 'clsx';
 
-const SubHeader = ({ title }: { title: string }) => {
+interface SubHeaderProps {
+  title: string;
+  className?: string;
+}
+
+const SubHeader: React.FC<SubHeaderProps> = ({ title, className }) => {
   return (
-    <div className="subheader_bg">
+    <div className={clsx("subheader_bg", className)}>
       <h3 className="subheader">
         {title}
       </h3>

@@ -35,7 +35,7 @@ const staticData: Data[] = [
     }
 ];
 
-const StaticGrid: React.FC<{ className?: string }>  = ({ className }) => {
+const StaticGrid: React.FC<{ className?: string }> = ({ className }) => {
     return (
         <div className={clsx("w-full mx-auto p-4", className)}>
             <SubHeader title='BOOSTING PLAYER ENGAGEMENT AND GROWTH' />
@@ -67,7 +67,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ data, index }) => {
             animate={controls}
             transition={{ duration: 0.5, delay: index * 0.2 }}
         >
-            <div className="flex flex-col h-full bg-[#151515] rounded-xl overflow-hidden pb-8">
+            <div className="flex flex-col h-full bg-[#151515] rounded-xl overflow-hidden pb-4">
                 <div className="relative w-full h-0 pb-[100%]">
                     <Image
                         src={data.url}

@@ -58,6 +58,12 @@ export interface Game {
 
 export interface GameListingProps {
   games: Game[];
+  filters: {
+    selectedGenres: string[];
+    selectedLanguages: string[];
+    selectedMarkets: string[];
+  };
+  searchQuery: string;
 }
 
 export interface GameListWithFilterProps {

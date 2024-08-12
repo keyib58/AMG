@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <main className="flex w-full flex-col items-center mt-16 " >
                 {children}
               </main>
-              <Footer />
+              <Footer className="mt-[100px] lg:mt-[200px]" />
             </Suspense>
             <VercelAnalytics />
           </SessionWrapper>

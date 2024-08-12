@@ -16,7 +16,7 @@ import { setSortOption } from '@/app/slices/sortSlice';
 import { setSearchTerm } from '@/app/slices/searchSlice';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { X } from 'lucide-react';
-
+import { ChevronDownIcon } from 'lucide-react';
 const localStorageKey = 'filterState';
 
 export default function GameListWithFilter({
@@ -111,10 +111,9 @@ export default function GameListWithFilter({
   return (
     <>
       <GameSlider />
-      <div className="z-5 mx-5 flex flex-col lg:flex-row max-w-[1320px] w-full mb-[200px]">
+      <div className="z-5 mx-5 flex flex-col lg:flex-row max-w-[1320px] w-full">
         {/* Filter Component - visible on desktop */}
         <div className="hidden lg:block lg:w-1/4 p-4 mt-10">
-    
           <SortComponent currentSort={currentSortState} />
           <FilterComponent
             genres={genres}
@@ -125,7 +124,8 @@ export default function GameListWithFilter({
             currentMarkets={selectedMarkets}
             setFiltering={(value) => dispatch(setFiltering(value))}
             setIsFilterVisible={setIsFilterVisible} // Pass setIsFilterVisible to FilterComponent
-            isFilterVisible={false} />
+            isFilterVisible={false}
+          />
         </div>
         <div className="lg:w-3/4 p-4 lg:mt-10 w-full">
           {/* Search Component */}
@@ -135,9 +135,10 @@ export default function GameListWithFilter({
           <div className="lg:hidden flex justify-between w-full mt-4">
             <button
               onClick={() => setIsFilterVisible(true)}
-              className="px-4 py-2 bg-white text-black rounded-md w-1/2 mr-2"
+              className="px-4 py-2 bg-white text-black flex flex-row items-center justify-center rounded-md w-1/2 mr-2"
             >
               FILTER BY
+              <ChevronDownIcon className="w-5 h-5 ml-2" />
             </button>
             <div className="w-1/2">
               <SortComponent currentSort={currentSortState} />
@@ -149,7 +150,11 @@ export default function GameListWithFilter({
               <LoadingSpinner />
             </div>
           ) : (
-            <GameListing games={filteredGames} />
+            <GameListing
+              games={filteredGames}
+              filters={{ selectedGenres, selectedLanguages, selectedMarkets }} // Pass filters object
+              searchQuery={currentSearchState} // Pass search query
+            />
           )}
         </div>
 
@@ -187,4 +192,3 @@ export default function GameListWithFilter({
     </>
   );
 }
-

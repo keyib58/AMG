@@ -16,9 +16,12 @@
 .layoutWrapper {
   @apply max-w-[1320px] items-center;
 }
+.newsHidden {
+  display: none !important;
+}
 
 .subheader {
-  @apply Montserrat bg-gradient-to-r from-[#FFD868] to-[#FFFFFF] bg-clip-text py-2 text-center text-3xl font-semibold uppercase text-transparent;
+  @apply text-[2rem] px-4 lg:text-5xl Montserrat bg-gradient-to-r from-[#FFD868] to-[#FFFFFF] bg-clip-text py-2 text-center font-semibold uppercase text-transparent;
 }
 
 .subheader_bg {
