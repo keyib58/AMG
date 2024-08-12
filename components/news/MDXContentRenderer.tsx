@@ -13,8 +13,8 @@ export default function MDXContentRenderer({ slug }: MDXContentRendererProps) {
   useEffect(() => {
     // Dynamically import the MDX content
     async function loadMDXContent() {
-      const module = await import(`app/content/news/${slug}.mdx`);
-      const MDXComponent = module.default;
+      const importedModule = await import(`app/content/news/${slug}.mdx`); // Renamed variable to importedModule
+      const MDXComponent = importedModule.default;
       setMDXContent(() => MDXComponent);
     }
 
