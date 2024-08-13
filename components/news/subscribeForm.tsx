@@ -22,21 +22,21 @@ const SubscribeForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className=" m-auto rounded-md shadow-md">
+    <form onSubmit={handleSubmit} className="m-auto rounded-md shadow-md">
       <label className="block mb-2 text-lg font-medium text-white">
         Email *
       </label>
-      <div className="flex items-center">
+      <div className="flex flex-col md:flex-row items-center">
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="flex-grow p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:border-transparent"
+          className="w-full p-2 mb-4 md:mb-0 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:border-transparent"
         />
         <button
           type="submit"
-          className="py-2 px-4 ml-4 rounded-[25px] font-medium bg-gradient-to-r from-yellow-400 to-yellow-200 text-black OpenSans transition duration-300"
+          className="py-2 max-w-[170px] px-4 md:ml-4 rounded-[25px] font-medium bg-gradient-to-r from-yellow-400 to-yellow-200 text-black OpenSans transition duration-300 w-full md:w-auto whitespace-nowrap"
           style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)' }}
         >
           JOIN FREE

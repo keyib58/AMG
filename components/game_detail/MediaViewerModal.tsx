@@ -17,7 +17,7 @@ const MediaViewerModal: React.FC<MediaViewerModalProps> = ({ open, onClose, medi
         <Dialog.Root open={open} onOpenChange={onClose}>
             <Dialog.Portal>
                 <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-75 z-50" />
-                <Dialog.Content className="fixed top-1/2 left-1/2 z-50 w-[90%] max-w-[400px] aspect-[9/16] transform -translate-x-1/2 -translate-y-1/2 bg-black rounded-lg overflow-hidden">
+                <Dialog.Content className="fixed top-1/2 left-1/2 z-50 w-[100%] max-w-[550px] h-[100vh] transform -translate-x-1/2 -translate-y-1/2 bg-black rounded-lg overflow-hidden">
                     <Dialog.Title className="text-white text-center text-lg p-2">
                         {DialogTitle} {isTrailer ? 'Trailer' : 'Demo'}
                     </Dialog.Title>

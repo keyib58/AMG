@@ -4,9 +4,9 @@ const withMDX = require('@next/mdx')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withMDX({
-  reactStrictMode: true,
+  reactStrictMode: true,  
   swcMinify: true,
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'], // Add MDX extension support
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   images: {
     domains: [
       "lh3.googleusercontent.com",

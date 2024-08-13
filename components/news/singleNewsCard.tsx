@@ -1,6 +1,3 @@
-
-
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { NewsType } from 'types/newsType';
@@ -21,7 +18,7 @@ const SingleNews = ({ news }: { news: NewsType }) => {
                     />
                     <div className="bg-[#151515] p-4 w-full flex flex-col text-white">
                         <h3 className="text-2xl font-extrabold Montserrat">{news.title}</h3>
-                        <p className="mt-3 text-md OpenSans font-semibold">{news.excerpt}</p>
+                        <p className="mt-3 text-md OpenSans font-semibold line-clamp-2">{news.excerpt}</p>
                         <p className="mt-3 text-sm italic OpenSans">{formattedDate}</p>
                     </div>
                 </div>

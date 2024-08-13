@@ -139,15 +139,13 @@ const GameInfo: React.FC<GameInfoProps> = ({ game, placeHolderUrl }) => {
                         {isLoading && (
                             <div className="w-full lg:max-w-[400px] h-[733px] rounded-[15px] bg-neutral-800 animate-pulse"></div>
                         )}
-                        <div className="lg:bg-transparent lg:p-0 rounded-[15px] bg-[#151515] p-10 lg:w-auto w-full flex items-center justify-center lg:items-end">
-                            <img
-                                ref={imgRef}
-                                src={imageUrl}
-                                alt={game.name}
-                                className={`w-full max-w-[400px] h-auto rounded-[15px] ${isLoading ? 'hidden' : 'block'}`}
-                                onLoad={handleImageLoad}
-                            />
-                        </div>
+                        <img
+                            ref={imgRef}
+                            src={imageUrl}
+                            alt={game.name}
+                            className={`w-full lg:max-w-[400px] lg:p-0 lg:bg-transparent bg-[#151515] p-4 h-auto rounded-[15px] ${isLoading ? 'hidden' : 'block'}`}
+                            onLoad={handleImageLoad}
+                        />
                     </div>
                 </div>
             </motion.div>

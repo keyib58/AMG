@@ -163,9 +163,9 @@ export default function GameListWithFilter({
           {isFilterVisible && (
             <motion.div
               className="fixed inset-0 z-50 bg-[#151515] flex flex-col"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
               transition={{ duration: 0.2 }}
             >
               <div className="p-4 flex justify-between items-center">
@@ -182,7 +182,7 @@ export default function GameListWithFilter({
                   currentMarkets={selectedMarkets}
                   setFiltering={(value) => dispatch(setFiltering(value))}
                   setIsFilterVisible={setIsFilterVisible} // Pass setIsFilterVisible to FilterComponent
-                  isFilterVisible={isFilterVisible} // Pass isFilterVisible to FilterComponent for conditional handling
+                  isFilterVisible={isFilterVisible}
                 />
               </div>
             </motion.div>

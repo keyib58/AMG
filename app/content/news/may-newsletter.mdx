@@ -5,24 +5,68 @@ excerpt: "Explore the May newsletter for an exclusive feature on the game Pengui
 thumbnail: "https://res.cloudinary.com/detatjujs/image/upload/v1722327823/efe4377e195e80a9f1a6d34a4198d81c_fkojmg.png"
 ---
 
-<div className='newsContent'>
-  <div className="flex items-center justify-between mt-5 mb-5">
+import Link from 'next/link';
+import Image from 'next/image';
+
+<div className='newsContent' style={{ maxWidth: '750px', margin: '0 auto', color: 'white' }}>
+  <div className='newsHeader' style={{ textAlign: 'center', marginBottom: '20px' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
+      <Image
+        src="/logo.png"
+        alt="Kingmidas logo"
+        width={300}
+        height={100}
+        priority
+      />
+    </div>
+    <h2 className="text-lg font-semibold Montserrat">NEWSLETTER • May Newsletter</h2>
+  </div>
+
+  <h3 className="text-center text-xl font-bold uppercase Montserrat golden">Featuring</h3>
+  <img
+    src="https://res.cloudinary.com/detatjujs/image/upload/v1723522442/reflect_kxizdl.webp"
+    alt="Penguin Panic"
+    style={{ maxWidth: '450px', width: '100%', margin: '50px auto 0px auto' }}
+    className="rounded-lg mb-5 mx-auto"
+  />
+        <p className="text-xl text-center font-bold uppercase Montserrat mb-4">Social multiplayer with a classic minesweeper twist!</p>
+  <div className='flex lg:flex-nowrap items-center lg:justify-between mt-5'>
+
+    <div className='text-center lg:w-1/2 p-4'>
+      <p>Claim your share of the cash pot or emerge as the sole Penguin Ace!</p>
+    </div>
+
+    <div className='text-center lg:w-1/2 p-4'>
+      <p>Win up to 200x your bet and express yourself with emojis!</p>
+    </div>
+  </div>
+
+  <div className="flex flex-col lg:flex-row items-center justify-between mt-5 mb-5">
     <img
       src="https://kingmidasgames.com/wp-content/uploads/2024/05/news_cut_out.png"
       alt="News Cut Out"
-      className="max-w-[45%] rounded-lg"
+      className="rounded-lg lg:w-1/2"
     />
-    <div className="max-w-[50%] ml-5">
+    
+    <div className="mt-5 lg:mt-0 lg:w-1/2 lg:ml-[20px] gap-4 flex flex-col items-center lg:items-start">
       <h2 className="text-2xl mb-2.5">PRESS RELEASE</h2>
-      <p className="text-lg mb-5">
+      <p className="text-lg mb-5 text-center lg:text-left">
         Last month, we revealed four new titles with live multiplayer functionality across games like Minesweeper, Crash, and Plinko.
       </p>
-      <a
+      <Link
         href="https://gamingnewsroom.com/press-releases/2024/04/15/126127/kingmidas-games-unveils-cutting-edge-range-of-multiplayer-games/"
-        className="inline-block px-5 py-2.5 bg-blue-500 text-white no-underline rounded-lg"
+        style={{ 
+          display: 'inline-block', 
+          padding: '10px 30px', 
+          background: 'linear-gradient(90deg, #ffa100 0%, #ffdd00 100%)', 
+          color: 'black', 
+          borderRadius: '25px', 
+          textDecoration: 'none', 
+          textAlign: 'center'
+        }}
       >
         Read More
-      </a>
+      </Link>
     </div>
   </div>
 </div>

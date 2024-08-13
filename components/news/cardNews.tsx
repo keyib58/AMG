@@ -6,7 +6,7 @@ export default function CardNews({ news }: { news: NewsType }) {
     const formattedDate = new Intl.DateTimeFormat('en-GB').format(new Date(news.date));
 
     return (
-        <li className="my-8 rounded-lg overflow-hidden">
+        <li className="rounded-lg overflow-hidden">
             <Link href={`/news/${news.slug}`}>
                 <div className="flex flex-col items-center">
                     <Image
@@ -18,7 +18,7 @@ export default function CardNews({ news }: { news: NewsType }) {
                     />
                     <div className="bg-[#151515] p-4 w-full flex flex-col text-white">
                         <h3 className="text-2xl font-extrabold Montserrat">{news.title}</h3>
-                        <p className="mt-3 text-md OpenSans font-semibold">{news.excerpt}</p>
+                        <p className="mt-3 text-md OpenSans font-semibold line-clamp-2">{news.excerpt}</p>
                         <p className="mt-3 text-sm italic OpenSans">{formattedDate}</p>
                     </div>
                 </div>
