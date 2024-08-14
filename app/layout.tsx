@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={cx(sfPro.variable, inter.variable, "bg-[#0d0d0d]")}>
         <ReduxProvider>
           <SessionWrapper>
-          <SessionLogger />
+            <SessionLogger />
             <Suspense fallback="...">
               <Nav />
               <main className="flex w-full flex-col items-center mt-16 " >
