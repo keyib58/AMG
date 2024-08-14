@@ -23,10 +23,7 @@ const Claim: React.FC = () => {
         twitter: false,
     });
 
-    const handleShare = (platform: string, shareLink: string) => {
-        // Open the sharing link immediately
-        window.open(shareLink, '_blank');
-
+    const handleShare = (platform: string) => {
         // Start the countdown and set the loading state
         setLoading(prev => ({ ...prev, [platform]: true }));
 
@@ -62,55 +59,52 @@ const Claim: React.FC = () => {
                 </p>
 
                 <div className="flex flex-col gap-4 mt-4">
-                    {/* LinkedIn Button */}
+                    {/* LinkedIn Link */}
                     <div className="flex items-center mb-2">
-                        <button
-                            onClick={() => handleShare(
-                                'linkedin',
-                                `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`
-                            )}
-                            disabled={loading.linkedin || done.linkedin}
+                        <a
+                            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => handleShare('linkedin')}
                             className={`block Montserrat font-bold w-full ${done.linkedin ? 'mr-2' : ''} py-2.5 bg-[#0077b5] text-white rounded-[25px] text-center relative transition-all duration-300 ${loading.linkedin ? 'cursor-not-allowed' : ''}`}
                         >
                             <FaLinkedinIn size={24} className="absolute left-4 top-1/2 transform -translate-y-1/2" />
                             {loading.linkedin ? <FaSpinner className="animate-spin mx-auto" /> : 'Share on LinkedIn'}
-                        </button>
+                        </a>
                         {done.linkedin && (
                             <FaCircleCheck size={24} color="#00B53E" className="transition-opacity duration-300 opacity-100" />
                         )}
                     </div>
 
-                    {/* Facebook Button */}
+                    {/* Facebook Link */}
                     <div className="flex items-center mb-2">
-                        <button
-                            onClick={() => handleShare(
-                                'facebook',
-                                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(title)}`
-                            )}
-                            disabled={loading.facebook || done.facebook}
+                        <a
+                            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(title)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => handleShare('facebook')}
                             className={`block Montserrat font-bold w-full ${done.facebook ? 'mr-2' : ''} py-2.5 bg-[#3b5998] text-white rounded-[25px] text-center relative transition-all duration-300 ${loading.facebook ? 'cursor-not-allowed' : ''}`}
                         >
                             <FaFacebookF size={24} className="absolute left-4 top-1/2 transform -translate-y-1/2" />
                             {loading.facebook ? <FaSpinner className="animate-spin mx-auto" /> : 'Share on Facebook'}
-                        </button>
+                        </a>
                         {done.facebook && (
                             <FaCircleCheck size={24} color="#00B53E" className="transition-opacity duration-300 opacity-100" />
                         )}
                     </div>
 
-                    {/* Twitter X Button */}
+                    {/* Twitter X Link */}
                     <div className="flex items-center mb-2">
-                        <button
-                            onClick={() => handleShare(
-                                'twitter',
-                                `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`
-                            )}
-                            disabled={loading.twitter || done.twitter}
+                        <a
+                            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => handleShare('twitter')}
                             className={`block Montserrat font-bold w-full ${done.twitter ? 'mr-2' : ''} py-2.5 bg-black text-white rounded-[25px] text-center relative transition-all duration-300 ${loading.twitter ? 'cursor-not-allowed' : ''}`}
                         >
                             <BsTwitterX size={24} className="absolute left-4 top-1/2 transform -translate-y-1/2" />
                             {loading.twitter ? <FaSpinner className="animate-spin mx-auto" /> : 'Share on X'}
-                        </button>
+                        </a>
                         {done.twitter && (
                             <FaCircleCheck size={24} color="#00B53E" className="transition-opacity duration-300 opacity-100" />
                         )}
