@@ -5,7 +5,7 @@ export default async function Home() {
   const title = 'Welcome to KingMidas!';
   const description = 'Join us to explore amazing opportunities and claim your goodie bag!';
   const shareUrl = 'https://km2024-jul.vercel.app/'; // Replace with your actual URL
-  const imageUrl = 'https://res.cloudinary.com/detatjujs/image/upload/v1723533256/demoslot_newsletter_thumbnail_iwlz9s.jpg';
+  const imageUrl = '/socialShare.jpg'; // Path to the image in the public folder
 
   return (
     <>
@@ -17,8 +17,8 @@ export default async function Home() {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={imageUrl} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="627" />
+        <meta property="og:image:width" content="1600" />
+        <meta property="og:image:height" content="900" />
 
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
