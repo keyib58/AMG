@@ -7,8 +7,8 @@ import { BsTwitterX } from "react-icons/bs";
 import { FaCircleCheck } from "react-icons/fa6";
 
 const shareUrl = 'https://km2024-jul.vercel.app/';
-const title = 'Claim Your Goodie Bag with KingMidas!';
-const description = 'Complete the tasks and claim your mystery goodie bag with KingMidas!';
+const title = 'Had a great time catching up with the KingMidas team today! Check out the latest next-gen game offerings they have to offer!#KingMidasGames';
+const previewImageUrl = 'https://km2024-jul.vercel.app/sbc-socialmedia-post_link_thumbnail.jpg';
 
 const Claim: React.FC = () => {
     const [completed, setCompleted] = useState<number>(0);
@@ -62,7 +62,7 @@ const Claim: React.FC = () => {
                     {/* LinkedIn Link */}
                     <div className="flex items-center mb-2">
                         <a
-                            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+                            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(title)}&source=KingMidas&image=${encodeURIComponent(previewImageUrl)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => handleShare('linkedin')}
@@ -79,7 +79,7 @@ const Claim: React.FC = () => {
                     {/* Facebook Link */}
                     <div className="flex items-center mb-2">
                         <a
-                            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(title)}`}
+                            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(title)}&picture=${encodeURIComponent(previewImageUrl)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => handleShare('facebook')}
@@ -96,7 +96,7 @@ const Claim: React.FC = () => {
                     {/* Twitter X Link */}
                     <div className="flex items-center mb-2">
                         <a
-                            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`}
+                            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}&image=${encodeURIComponent(previewImageUrl)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => handleShare('twitter')}
