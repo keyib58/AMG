@@ -11,16 +11,16 @@ import SessionLogger from "@/components/shared/SessionLogger";
 
 // Metadata API for setting metadata in the app directory
 export const metadata = {
-  title: "Kingmidas Games - Claim Your Goodie Bag Today!",
-  description: "Join us at Kingmidas Games to explore amazing opportunities and claim your goodie bag!",
+  title: "Your Next-Gen Gaming Partner",
+  description: "Try out our latest next-gen, classic, and slots games now! Check out what we have to offer and drop us a message for more information!",
   openGraph: {
     type: 'website',
     url: 'https://km2024-jul.vercel.app/',
-    title: "Kingmidas Games - Claim Your Goodie Bag Today!",
-    description: "Join us at Kingmidas Games to explore amazing opportunities and claim your goodie bag!",
+    title: "Your Next-Gen Gaming Partner",
+    description: "Try out our latest next-gen, classic, and slots games now! Check out what we have to offer and drop us a message for more information!",
     images: [
       {
-        url: 'https://km2024-jul.vercel.app/socialShare.jpg',  // Use the static image URL here
+        url: 'https://km2024-jul.vercel.app/sbc-socialmedia-post_link_thumbnail.jpg',  // Use the static image URL here
         width: 1600,
         height: 900,
         alt: 'Kingmidas Games',
@@ -29,9 +29,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Kingmidas Games - Claim Your Goodie Bag Today!",
-    description: "Join us at Kingmidas Games to explore amazing opportunities and claim your goodie bag!",
-    images: ['https://km2024-jul.vercel.app/socialShare.jpg'],  // Use the static image URL here
+    title: "Your Next-Gen Gaming Partner",
+    description: "Try out our latest next-gen, classic, and slots games now! Check out what we have to offer and drop us a message for more information!",
+    images: ['https://km2024-jul.vercel.app/sbc-socialmedia-post_link_thumbnail.jpg'],  // Use the static image URL here
   },
 };
 

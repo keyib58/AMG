@@ -5,7 +5,7 @@ import Claim from "@/components/claim/Claim";
 const ClaimPage: React.FC = () => {
     const title = "Claim Your Goodie Bag with KingMidas!";
     const description =
-        'Complete the tasks and claim your mystery goodie bag with KingMidas!';
+        'Had a great time catching up with the KingMidas team today! Check out the latest next-gen game offerings they have to offer!#KingMidasGames';
     const shareUrl = "https://km2024-jul.vercel.app";
     const imageUrl = 'https://res.cloudinary.com/detatjujs/image/upload/v1723533256/demoslot_newsletter_thumbnail_iwlz9s.jpg';
 
