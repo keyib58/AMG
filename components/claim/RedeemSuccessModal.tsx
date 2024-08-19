@@ -17,20 +17,23 @@ const RedeemSuccessModal: React.FC<RedeemSuccessModalProps> = ({ isOpen, onClose
                     animate={{ y: 0 }}
                     exit={{ y: '100%' }} // Slide down when closing
                     transition={{ duration: 0.4 }}
-                    className="fixed bottom-0 left-0 right-0 p-4 bg-[#151515] rounded-t-[1rem] shadow-lg max-w-[700px] m-auto"
+                    className="fixed bottom-0 left-0 right-0 p-4 bg-[#151515] rounded-t-[1rem] shadow-lg max-w-[700px] max-h-[80vh] overflow-y-auto m-auto"
                 >
                     <div className="relative flex flex-col items-center">
                         <button
                             onClick={onClose}
                             className="absolute top-2 right-2 text-white hover:text-neutral-200"
                             aria-label="Close"
+                            style={{ transform: 'scale(1)', transition: 'transform 0.2s ease-in-out' }}
+                            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
+                            onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                         >
                             ✕
                         </button>
                         <img
                             src="https://res.cloudinary.com/detatjujs/image/upload/v1724040581/e506dcb74d3a33e0f3c8d923f1c20147_m1mv6k.png"
                             alt="Success"
-                            className="w-full mt-4"
+                            className="w-full mt-4 max-w-[350px]"
                         />
                         <h3 className="Montserrat bg-gradient-to-r from-[#FFD868] to-[#FFFFFF] bg-clip-text px-4 text-center text-[2rem] font-semibold uppercase text-transparent lg:text-3xl mt-4">
                             Congratulations!<br />Parabéns!
