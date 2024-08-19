@@ -16,6 +16,7 @@ const navLinks = [
   { name: "About us", href: "/about" },
   { name: "Games", href: "/games" },
   { name: "News", href: "/news" },
+  { name: "Contact us", href: "/contact" },
 ];
 
 interface NavBarProps {
@@ -102,50 +103,79 @@ export default function NavBar({ session }: NavBarProps) {
             )}
           </div>
         </div>
+
+        {/* Overlay */}
         {menuOpen && (
-          <div className="md:hidden flex flex-col items-center bg-[#0D0D0D] w-full absolute top-16 z-20">
-            {navLinks.map((link) => {
-              const isActive =
-                segment === null && link.href === "/"
-                  ? true
-                  : segment === link.href.replace("/", "");
-              return (
-                <Link
-                  href={getLinkWithParams(link.href)}
-                  key={link.name}
-                  className={`py-2 ${isActive ? "text-[#FFD868]" : "text-white"}`}
-                  onClick={toggleMenu}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
+          <div className="fixed inset-0 z-20 bg-black bg-opacity-50" onClick={toggleMenu}></div>
+        )}
+
+        {/* Mobile and Tablet Menu */}
+        <div
+          className={`fixed top-0 left-0 z-30 h-full w-3/4 bg-[#151515] transform transition-transform duration-300 ease-in-out ${menuOpen ? "translate-x-0" : "-translate-x-full"
+            } md:hidden`}
+        >
+          <div className="flex flex-col h-full p-6">
+            <Link href="/" className="mb-6" onClick={toggleMenu}>
+              <Image
+                src="/logo.png"
+                alt="Kingmidas logo"
+                className="w-40"
+                width={160}
+                height={60}
+                priority
+              />
+            </Link>
+            <nav className="flex flex-col space-y-4 text-white font-bold uppercase Montserrat">
+              {navLinks.map((link) => {
+                const isActive =
+                  segment === null && link.href === "/"
+                    ? true
+                    : segment === link.href.replace("/", "");
+                return (
+                  <Link
+                    href={getLinkWithParams(link.href)}
+                    key={link.name}
+                    className={`py-2 ${isActive ? "text-[#FFD868]" : "text-white"}`}
+                    onClick={toggleMenu}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </nav>
+
             {session ? (
               <>
-                <UserDropdown session={session} />
+                <div className="mt-4 space-y-4 flex flex-col">
+                  <UserDropdown session={session} />
+                  <button
+                    className="w-full max-w-[175px] Montserrat font-bold rounded-full p-1.5 px-4 text-sm text-black transition-all "
+                    style={{ background: "linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)" }}
+                    onClick={() => {
+                      signOut();
+                      toggleMenu();
+                    }}
+                  >
+                    Logout
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="mt-4">
                 <button
-                  className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black mt-2"
+                  className="w-full max-w-[175px] Montserrat font-bold rounded-full p-1.5 px-4 text-sm text-black transition-all "
+                  style={{ background: "linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)" }}
                   onClick={() => {
-                    signOut();
+                    setShowSignInModal(true);
                     toggleMenu();
                   }}
                 >
-                  Logout
+                  Sign In
                 </button>
-              </>
-            ) : (
-              <button
-                className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black mt-2"
-                onClick={() => {
-                  setShowSignInModal(true);
-                  toggleMenu();
-                }}
-              >
-                Sign In
-              </button>
+              </div>
             )}
           </div>
-        )}
+        </div>
       </div>
     </>
   );

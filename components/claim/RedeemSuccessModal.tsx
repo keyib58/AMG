@@ -24,7 +24,7 @@ const RedeemSuccessModal: React.FC<RedeemSuccessModalProps> = ({ isOpen, onClose
                             onClick={onClose}
                             className="absolute top-2 right-2 text-white hover:text-neutral-200"
                             aria-label="Close"
-                            style={{ transform: 'scale(1)', transition: 'transform 0.2s ease-in-out' }}
+                            style={{ transform: 'scale(1.3)', transition: 'transform 0.2s ease-in-out' }}
                             onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
                             onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                         >
