@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FaFacebookF, FaLinkedinIn, FaSpinner } from 'react-icons/fa';
 import { BsTwitterX } from "react-icons/bs";
 import { FaCircleCheck } from "react-icons/fa6";
+import RedeemSuccessModal from './RedeemSuccessModal';
 
 const shareUrl = 'https://km2024-jul.vercel.app/';
 const title = 'Had a great time catching up with the KingMidas team today! Check out the latest next-gen game offerings they have to offer!#KingMidasGames';
@@ -22,17 +23,38 @@ const Claim: React.FC = () => {
         facebook: false,
         twitter: false,
     });
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const handleShare = (platform: string) => {
-        // Start the countdown and set the loading state
         setLoading(prev => ({ ...prev, [platform]: true }));
 
         setTimeout(() => {
             setLoading(prev => ({ ...prev, [platform]: false }));
             setDone(prev => ({ ...prev, [platform]: true }));
-            setCompleted(prev => prev + 1);
+            setCompleted(prev => Math.min(prev + 1, 3)); // Ensure max 3 completed
         }, 5000); // 5 seconds countdown
     };
+
+    const handleRedeemClick = () => {
+        if (completed >= 3) {
+            setIsModalOpen(true);
+            // Disable scrolling
+            document.body.style.overflow = 'hidden';
+        }
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        // Re-enable scrolling
+        document.body.style.overflow = 'auto';
+    };
+
+    useEffect(() => {
+        // Clean up in case the modal is closed and the component is unmounted
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, []);
 
     return (
         <div className="mt-10 flex justify-center p-5">
@@ -111,16 +133,17 @@ const Claim: React.FC = () => {
                     </div>
                 </div>
 
-                <p className="Montserrat text-lg text-white mt-4">{completed} / 3 completed</p>
+                <div className="Montserrat text-lg font-bold text-white mt-4">{completed} / 3 completed</div>
 
-                {completed >= 3 && (
-                    <button
-                        onClick={() => console.log('open redeem modal')}
-                        className="mt-6 bg-gradient-to-r from-[#FFD868] to-[#FFFFFF] text-black font-bold py-2.5 px-6 rounded-[25px] shadow-lg hover:shadow-xl transition-shadow duration-300"
-                    >
-                        Redeem Your Goodie Bag
-                    </button>
-                )}
+                <button
+                    onClick={handleRedeemClick}
+                    className={`mt-6 max-w-[200px] ${completed >= 3 ? 'bgGradientBtn cursor-pointer' : 'gradientOutlineBtn cursor-not-allowed'}`}
+                    disabled={completed < 3}
+                >
+                    Redeem
+                </button>
+
+                <RedeemSuccessModal isOpen={isModalOpen} onClose={closeModal} />
             </div>
         </div>
     );

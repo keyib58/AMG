@@ -5,7 +5,9 @@ const ClaimPage: React.FC = () => {
 
     return (
         <>
-            <Claim />
+            <div className="z-10">
+                <Claim />
+            </div>
         </>
     )
 }

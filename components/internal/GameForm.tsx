@@ -112,7 +112,6 @@ export default function GameForm() {
     setMessage("");
   };
 
-  // Watch input values for previews
   const thumbnailUrl = watch("thumbnailUrl");
   const gameBackgroundUrl = watch("gameBackgroundUrl");
   const gameGifUrl = watch("gameGifUrl");
