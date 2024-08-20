@@ -110,8 +110,9 @@ export default function GameListWithFilter({
 
   return (
     <>
+    <div className='flex w-full flex-col items-center'>
       <GameSlider />
-      <div className="z-5 mx-5 flex flex-col lg:flex-row max-w-[1320px] w-full">
+      <div className="z-5 mx-5  flex flex-col lg:flex-row max-w-[1320px] w-full">
         {/* Filter Component - visible on desktop */}
         <div className="hidden lg:block lg:w-1/4 p-4 mt-10">
           <SortComponent currentSort={currentSortState} />
@@ -188,6 +189,7 @@ export default function GameListWithFilter({
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
       </div>
     </>
   );

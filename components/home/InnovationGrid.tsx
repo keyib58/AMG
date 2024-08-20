@@ -51,7 +51,7 @@ const InnovationGrid: React.FC<Props> = ({ bgImage1, bgImage2, bgImage3, opacity
                     <div className="relative z-10 flex flex-col items-center">
                         <p className='Montserrat mx-4 text-white text-center font-bold mb-6 lg:mb-8'>GROWING LIBRARY OF</p>
                         <p className='Montserrat text-[#FFD96B] text-center font-bold text-[48px] lg:text-8xl mb-6 lg:mb-8 '>HUNDREDS</p>
-                        <p className='Montserrat text-white text-center font-bold'>GAMES</p>
+                        <p className='Montserrat text-white text-center font-bold'>OF GAMES</p>
                     </div>
                 </motion.div>
 

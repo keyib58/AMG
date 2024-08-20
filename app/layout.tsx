@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SessionLogger />
             <Suspense fallback="...">
               <Nav />
-              <main className="flex w-full flex-col items-center mt-16">
+              <main className="mt-16">
                 {children}
               </main>
               <Footer className="mt-[100px] lg:mt-[200px]" />

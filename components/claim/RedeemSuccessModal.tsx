@@ -17,7 +17,7 @@ const RedeemSuccessModal: React.FC<RedeemSuccessModalProps> = ({ isOpen, onClose
                     animate={{ y: 0 }}
                     exit={{ y: '100%' }} // Slide down when closing
                     transition={{ duration: 0.4 }}
-                    className="fixed bottom-0 left-0 right-0 p-4 bg-[#151515] rounded-t-[1rem] shadow-lg max-w-[700px] max-h-[80vh] overflow-y-auto m-auto"
+                    className="fixed z-10 bottom-0 left-0 right-0 p-4 bg-[#151515] rounded-t-[1rem] shadow-lg max-w-[700px] max-h-[80vh] overflow-y-auto m-auto"
                 >
                     <div className="relative flex flex-col items-center">
                         <button

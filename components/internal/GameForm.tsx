@@ -118,7 +118,7 @@ export default function GameForm() {
   const placeHolderUrl = watch("placeHolderUrl");
 
   return (
-    <div className="space-y-4 text-white bg-black p-6 rounded-lg">
+    <div className="space-y-4 text-white bg-black p-6 rounded-lg ">
       <button
         className="bg-red-500 text-white p-2 rounded-md"
         onClick={toggleEditMode}

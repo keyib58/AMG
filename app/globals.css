@@ -16,6 +16,7 @@
 .layoutWrapper {
   @apply max-w-[1320px] items-center;
 }
+
 .newsHidden {
   display: none !important;
 }

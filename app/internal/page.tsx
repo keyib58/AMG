@@ -13,8 +13,10 @@ export default async function InternalPage() {
     }
 
     return (
-        <div className="z-10 w-full max-w-xl px-5 xl:px-0">
-            <GameForm />
+        <div className="flex w-full flex-col items-center">
+            <div className="z-10 w-full max-w-xl px-5 xl:px-0">
+                <GameForm />
+            </div>
         </div>
     );
 }

@@ -21,7 +21,15 @@ const AssetDownload: React.FC<AssetDownloadProps> = ({ assetUrl }) => {
         color: 'black',
     };
 
-    if (user) {
+    if (assetUrl === 'NA') {
+        buttonText = 'Asset Not Ready';
+        buttonStyle = {
+            background: 'gray',
+            color: 'black',
+            cursor: 'not-allowed',
+        };
+        buttonAction = () => { }; // Disable click
+    } else if (user) {
         if (user.role === 'ADMIN' || user.role === 'CLIENT') {
             buttonText = 'Download';
             buttonAction = undefined; // No click action needed, handled by the <a> element below
@@ -56,11 +64,19 @@ const AssetDownload: React.FC<AssetDownloadProps> = ({ assetUrl }) => {
                 <p className='OpenSans text-white max-w-[580px]'>
                     Download the complete set of game marketing materials, including editable PSD files for landing pages and banners, plus ready-to-use JPG and PNG images in various sizes. All assets are available in multiple languages to support your global marketing campaign.
                 </p>
-                {user && (user.role === 'ADMIN' || user.role === 'CLIENT') ? (
+                {assetUrl === 'NA' ? (
+                    <button
+                        className="px-8 py-4 mt-4 rounded-full text-xl font-bold Montserrat"
+                        style={buttonStyle}
+                        disabled
+                    >
+                        {buttonText}
+                    </button>
+                ) : user && (user.role === 'ADMIN' || user.role === 'CLIENT') ? (
                     <a
                         href={assetUrl}
                         download
-                        className="px-8 py-4 rounded-full text-xl font-bold Montserrat"
+                        className="px-8 py-4 mt-4 rounded-full text-xl font-bold Montserrat"
                         style={buttonStyle}
                     >
                         {buttonText}
