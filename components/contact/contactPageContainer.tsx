@@ -3,7 +3,7 @@ import SubHeader from "../shared/subHeader";
 
 const ContactPageContainer = () => {
     return (
-        <div className="max-w-[1320px] items-center mx-auto flex flex-col lg:mt-[100px] lg:flex-row justify-between px-4 lg:px-0">
+        <div className="max-w-[1320px] items-center mx-auto flex flex-col lg:mt-[100px] lg:flex-row justify-between px-4 lg:px-4">
             {/* Left Section: Title and Description */}
             <div className="flex flex-col space-y-4 m-4 lg:m-0 text-center lg:text-left lg:max-w-[500px]">
                 <div className="bg-[#111111] p-4 rounded-xl">

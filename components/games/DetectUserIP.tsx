@@ -50,14 +50,16 @@ const FilterByIP: React.FC = () => {
       const countryName = data.countryName;
       console.log('User Country:', countryName);
 
+      let market = 'All'; // Default to "All"
       if (countryName) {
-        const market = mapCountryToMarket(countryName);
-        dispatch(setSelectedMarkets([market]));
-        sessionStorage.setItem('userMarket', market); // Store market in sessionStorage
-        const params = new URLSearchParams(window.location.search);
-        params.set('market', market);
-        router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
+        market = mapCountryToMarket(countryName) || 'All'; // Fallback to "All" if no specific market is found
       }
+
+      dispatch(setSelectedMarkets([market]));
+      sessionStorage.setItem('userMarket', market); // Store market in sessionStorage
+      const params = new URLSearchParams(window.location.search);
+      params.set('market', market);
+      router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
     } catch (error) {
       console.error('Failed to filter by market:', error);
     } finally {

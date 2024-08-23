@@ -14,17 +14,17 @@ interface GifData {
 
 const gifData: GifData[] = [
     {
-        url: "https://res.cloudinary.com/detatjujs/image/upload/v1723002364/Website-Assets_Next-Gen_GIFs_427x427_2s.gif",
+        url: "https://res.cloudinary.com/detatjujs/image/upload/v1724140560/Website-Assets_Next-Gen_GIFs_427x427_2s_yny3mq.gif",
         title: "NEXT-GEN",
         description: "Minesweeper, crash, virtual, plinko"
     },
     {
-        url: "https://res.cloudinary.com/detatjujs/image/upload/v1723002364/Website-Assets_Classic_GIFs_427x427_2s.gif",
+        url: "https://res.cloudinary.com/detatjujs/image/upload/v1724140587/Website-Assets_Classic_VID_427x427_2s_qhsqv5.gif",
         title: "CLASSIC",
         description: "Cards, dice, table, roulette, traditional"
     },
     {
-        url: "https://res.cloudinary.com/detatjujs/image/upload/v1723002364/Website-Assets_Slots_GIFs_427x427_2s.gif",
+        url: "https://res.cloudinary.com/detatjujs/image/upload/v1724140556/Website-Assets_Slots_GIFs_427x427_2s_qao9jv.gif",
         title: "SLOTS",
         description: "Cascade, reel-slot"
     }
