@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -6,10 +6,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
 
-
 const GameSlider: React.FC = () => {
   const desktopSlides = [
-    { backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724638612/e-invite_lisbon_2024_1920x1080_djah7s.jpg' },
+    { backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724644882/e-invite_lisbon_2024_1920x583_wxy8hv.jpg' },
   ];
 
   const mobileTabletSlides = [
@@ -47,8 +46,7 @@ const GameSlider: React.FC = () => {
 
   return (
     <>
-      {/* Swiper for Desktop */}
-      <div className='w-full'>
+     <div className='w-full'> 
       <Swiper
         spaceBetween={0}
         slidesPerView={1}
@@ -77,10 +75,10 @@ const GameSlider: React.FC = () => {
                 backgroundSize: 'contain',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                aspectRatio: '16/9',
+                aspectRatio: '1920 / 583', // Updated aspect ratio for the desktop banner
               }}
             >
-              {/* Remove the reference to slide.title */}
+              {/* Content inside the desktop slide can be added here */}
             </div>
           </SwiperSlide>
         ))}
@@ -101,7 +99,7 @@ const GameSlider: React.FC = () => {
         navigation={false}
         modules={[Pagination, Autoplay]}
         draggable={true}
-        className="mobile-tablet-swiper"
+        className="mobile-tablet-swiper mt-4"
         style={{
           display: 'none',
         }}
@@ -115,7 +113,7 @@ const GameSlider: React.FC = () => {
                 backgroundSize: 'contain',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                aspectRatio: '1/1',
+                aspectRatio: '1 / 1',
                 borderRadius: '15px', // Border radius applied directly here
               }}
             >

@@ -8,7 +8,7 @@ import { Pagination, Autoplay } from 'swiper/modules';
 
 const HomeSlider: React.FC = () => {
   const desktopSlides = [
-    { backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724638612/e-invite_lisbon_2024_1920x1080_djah7s.jpg' },
+    { backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724644882/e-invite_lisbon_2024_1920x583_wxy8hv.jpg' },
   ];
 
   const mobileTabletSlides = [
@@ -75,10 +75,10 @@ const HomeSlider: React.FC = () => {
                 backgroundSize: 'contain',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                aspectRatio: '16/9',
+                aspectRatio: '1920 / 583', // Updated aspect ratio for the desktop banner
               }}
             >
-              {/* Remove the reference to slide.title */}
+              {/* Content inside the desktop slide can be added here */}
             </div>
           </SwiperSlide>
         ))}
@@ -113,7 +113,7 @@ const HomeSlider: React.FC = () => {
                 backgroundSize: 'contain',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                aspectRatio: '1/1',
+                aspectRatio: '1 / 1',
                 borderRadius: '15px', // Border radius applied directly here
               }}
             >
