@@ -1,9 +1,12 @@
 import styles from "./loading-spinner.module.css";
 
-export default function LoadingSpinner() {
+interface LoadingSpinnerProps {
+  className?: string;
+}
+
+export default function LoadingSpinner({ className }: LoadingSpinnerProps) {
   return (
-    <div className={styles.spinner}>
-      <div></div>
+    <div className={`${styles.spinner} ${className || ''}`}>
       <div></div>
       <div></div>
       <div></div>

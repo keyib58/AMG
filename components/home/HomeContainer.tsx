@@ -9,7 +9,7 @@ const HomeContainer = () => {
     return (
         <div className="w-full">
             <HomeSlider />
-            <div className="m-auto max-w-[1320px]">
+            <div className="m-auto max-w-[1320px] lg:mt-20">
                 <div className="flex flex-col items-center justify-center text-center p-8">
                     <h1 className="text-5xl font-bold Montserrat uppercase bg-clip-text text-transparent bg-gradient-to-r from-[#FFD868] to-[#FFFFFF]">
                         YOUR NEXT-GEN GAMING PARTNER
@@ -33,7 +33,7 @@ const HomeContainer = () => {
                 <GifGrid className="mt-20" />
                 <StaticGrid className="mt-20" />
                 <ClientsLogo className="mt-20" />
-                <LetsTalk className="mt-20"/>
+                <LetsTalk className="mt-20" />
             </div>
         </div>
     );
