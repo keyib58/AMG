@@ -58,7 +58,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           {languageInfo.map((info, index) => (
             <label
               key={info.id}
-              className={`flex items-center justify-center cursor-pointer p-2 w-full ${index < languageInfo.length - 1 ? 'border-b border-gray-300' : ''
+              className={`flex text-center items-center justify-center cursor-pointer p-2 w-full ${index < languageInfo.length - 1 ? 'border-b border-gray-300' : ''
                 }`}
               onClick={() => handleSelect(info.id)}
             >

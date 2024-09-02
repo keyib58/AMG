@@ -18,7 +18,7 @@ const LuckyDrawForm: React.FC = () => {
 
     const [responseMessage, setResponseMessage] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
 
     // Manage body overflow based on modal state
     useEffect(() => {
@@ -60,7 +60,10 @@ const LuckyDrawForm: React.FC = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData,
+                    country_code: formData.country,
+                }),
             });
 
             const result = await response.json();
@@ -71,7 +74,7 @@ const LuckyDrawForm: React.FC = () => {
                     firstname: '',
                     lastname: '',
                     email: '',
-                    country: '65',
+                    country: '',
                     mobilephone: '',
                     agreeToCommunications: false,
                     agreeToDataProcessing: false,
@@ -86,6 +89,7 @@ const LuckyDrawForm: React.FC = () => {
             setIsLoading(false);
         }
     };
+
 
     const closeModal = () => {
         setIsModalOpen(false);
@@ -189,7 +193,7 @@ const LuckyDrawForm: React.FC = () => {
                     </label>
                 </div>
                 <p className="text-sm text-white">
-                    Please tick the checkbox below if you consent to us storing and processing your personal data in order to provide you the content requested.
+                * Please tick the checkbox above if you consent to us storing and processing your personal data in order to provide you the content requested.
                     / Marque a caixa de seleção abaixo se você consente que armazenemos e processemos seus dados pessoais para fornecer o conteúdo solicitado.
                 </p>
                 <p className="text-sm text-white">

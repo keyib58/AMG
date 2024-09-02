@@ -2,7 +2,7 @@ import LuckyDrawForm from "./luckydrawForm";
 
 const LuckydrawContainer = () => {
     return (
-        <div className="max-w-[1320px] mx-auto flex flex-col lg:mt-[100px] lg:flex-row justify-between px-6 lg:px-4">
+        <div className="mt-[50px] max-w-[1320px] mx-auto flex flex-col lg:mt-[100px] lg:flex-row justify-between px-6 lg:px-4">
             {/* Left column - 3/10 width */}
             <div style={{ flex: '3' }}>
                 <img
@@ -16,7 +16,7 @@ const LuckydrawContainer = () => {
             <div style={{ flex: '7' }}>
                 {/* // add a two column layout div */}
                 <div className="lg:flex lg:justify-between gap-4 px-4">
-                    <div className="text-white OpenSans mt-4">
+                    <div className="text-white OpenSans text-xl">
                         <p>Stand a chance to win an Apple Watch Series 9! Simply fill in the following form with your details and information.</p>
                         <p className="mt-2">The winner will be contacted via WhatsApp & email by 23rd September, Monday, 11:59PM (GMT). The winner must be present at the SBC Summit 2024 to collect the prize at our booth*!</p>
                         <p className="mt-2">*The winner must be physically present to claim the prize. Should the winner be unable to do so, he/she must authorize a designated representative to claim on his/her behalf via written communication. </p>
@@ -36,9 +36,9 @@ const LuckydrawContainer = () => {
                 </div>
 
                 <div>
-                    <div className="text-white OpenSans px-4">
+                    <div className="text-white OpenSans px-4 text-sm">
                         <p>
-                            KingMidas Games is committed to protecting and respecting your privacy, and will only use your personal information to administer your account and to provide the products and services you requested from us. Please tick the checkbox below if you consent to receive communications from us regarding our products and services, as well as other content that may be of interest to you.
+                           KingMidas Games is committed to protecting and respecting your privacy, and will only use your personal information to administer your account and to provide the products and services you requested from us. Please tick the checkbox below if you consent to receive communications from us regarding our products and services, as well as other content that may be of interest to you.
                         </p>
                         <p className="mt-2">
                             A KingMidas Games está comprometida em proteger e respeitar sua privacidade e só usará suas informações pessoais para administrar sua conta e fornecer os produtos e serviços que você nos solicitou. Marque a caixa de seleção abaixo se você concorda em receber nossas comunicações sobre nossos produtos e serviços, bem como outros conteúdos que possam ser do seu interesse.

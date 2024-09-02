@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     // Parse the form data from the request
-    const { firstname, lastname, email, country, mobilephone } = await request.json();
+    const { firstname, lastname, email, country_code, mobilephone } = await request.json();
 
     // Make a POST request to HubSpot's API with the form data
     const response = await fetch(
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
             { name: 'firstname', value: firstname },
             { name: 'lastname', value: lastname },
             { name: 'email', value: email },
-            { name: 'country', value: country },
+            { name: 'country_code', value: country_code },
             { name: 'mobilephone', value: mobilephone },
           ],
         }),

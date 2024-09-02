@@ -30,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
           </div>
           {/* Copyright Desktop */}
           <div className="border-t border-gray-200 pt-4 text-center lg:text-left w-full hidden lg:block">
-            <p> © {new Date().getFullYear()} KingMidas. All rights reserved.</p>
+            <p> © {new Date().getFullYear()} KingMidas Games All rights reserved.</p>
           </div>
         </div>
         {/* Middle Column */}

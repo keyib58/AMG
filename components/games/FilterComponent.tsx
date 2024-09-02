@@ -261,7 +261,12 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
           transition={{ duration: 0.3 }}
         >
           {markets
-            .sort((a, b) => a.market.localeCompare(b.market)) // Sort options alphabetically
+            .sort((a, b) => {
+              // Sort options alphabetically, but place 'Other' at the end
+              if (a.market === 'Other') return 1;
+              if (b.market === 'Other') return -1;
+              return a.market.localeCompare(b.market);
+            })
             .map((market) => (
               <div key={market.market} className="flex items-center mb-2">
                 <input

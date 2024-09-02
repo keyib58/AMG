@@ -15,7 +15,7 @@ const HomeContainer = () => {
                         YOUR NEXT-GEN GAMING PARTNER
                     </h1>
                     <p className="mt-4 text-lg OpenSans text-white">
-                        Since 2018, KingMidas Games has redefined iGaming.<br className="block md:hidden" /> <br className="block md:hidden" />
+                    Since 2018, KingMidas Games has been redefining iGaming.<br className="block md:hidden" /> <br className="block md:hidden" />
                         Our next-gen content isn&apos;t just different— <br className="block" />
                         it&apos;s transformative, driving engagement and revenue for partners seeking innovation and results.
                     </p>

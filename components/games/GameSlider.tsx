@@ -99,7 +99,7 @@ const GameSlider: React.FC = () => {
         navigation={false}
         modules={[Pagination, Autoplay]}
         draggable={true}
-        className="mobile-tablet-swiper mt-4"
+        className="mobile-tablet-swiper"
         style={{
           display: 'none',
         }}

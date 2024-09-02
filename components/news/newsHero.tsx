@@ -17,8 +17,8 @@ export default function NewsHero() {
 
             {/* Left Column (Text and Form) */}
             <div className="flex justify-center order-2 md:order-1">
-                <div className="lg:space-y-8 space-y-4">
-                    <h1 className="text-4xl font-bold text-white Montserrat">Stay in the loop with our newsletter</h1>
+                <div className="lg:space-y-8 space-y-4 w-full">
+                    <h1 className="text-4xl font-bold text-white Montserrat">Our newsletter</h1>
                     <p className="text-lg Montserrat text-white">
                         Game launches, company news, and more —<br />
                         conveniently packaged for a swift read.

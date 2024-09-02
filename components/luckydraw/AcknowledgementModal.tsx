@@ -25,7 +25,6 @@ const AcknowledgementModal: React.FC<AcknowledgementModalProps> = ({ isOpen, onC
                 <p className="mb-4 OpenSans text-white">Estamos ansiosos por te encontrar no nosso stand, A450, na SBC Summit 2024!</p>
                 <p className="mb-4 OpenSans text-white">Check out our latest games <a href="https://kingmidasgames.com/games" className="underline font-bold text-white">here</a> and contact us for business discussions <a href="https://kingmidasgames.com/contact/" className="text-white font-bold underline">here</a>!</p>
                 <p className="mb-4 OpenSans text-white">Confira nossos jogos mais recentes <a href="https://kingmidasgames.com/games" className="underline font-bold text-white">aqui</a> e entre em contato conosco para discussões de negócios <a href="https://kingmidasgames.com/contact/" className="text-white font-bold underline">aqui</a>!</p>
-
                 <button onClick={onClose} className="mt-4 cursor-pointer rounded-full bg-gradient-to-r from-[#FFA100] to-[#FFDD00] px-8 py-2 uppercase text-black">
                     Close
                 </button>

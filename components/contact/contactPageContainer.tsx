@@ -9,7 +9,7 @@ const ContactPageContainer = () => {
                 <div className="bg-[#111111] p-4 rounded-xl">
                     <h2 className="text-3xl lg:text-4xl font-semibold Montserrat bg-gradient-to-r text-transparent from-[#FFD868] to-[#FFFFFF] bg-clip-text">CONTACT US</h2>
                 </div>
-                <p className="text-white">
+                <p className="text-lg Montserrat text-white">
                     Get in touch with us! Whether it&apos;s marketing, general questions, or sales, we&apos;re ready to help -
                     just select the relevant department in the form and we&apos;ll get back to you promptly.
                 </p>

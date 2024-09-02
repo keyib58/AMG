@@ -23,6 +23,11 @@ const clientLogos = [
     { name: '6686sports', src: 'https://res.cloudinary.com/detatjujs/image/upload/v1723016631/6686sports_t0zyoc.png', order: 15 },
     { name: '12bet', src: 'https://res.cloudinary.com/detatjujs/image/upload/v1723016631/12bet_j5ijro.png', order: 14 },
     { name: '8xbet', src: 'https://res.cloudinary.com/detatjujs/image/upload/v1723016631/8xbet_uqosri.png', order: 13 },
+    { name: 'TCG', src: 'https://res.cloudinary.com/detatjujs/image/upload/v1725250444/TCG_logo-removebg-preview_ub7ycj.png', order: 17 },
+    { name: 'Nexiux', src: 'https://res.cloudinary.com/detatjujs/image/upload/v1725250444/Nexiux_Logo_-_White_yncic3.png', order: 18 },
+    { name: 'CasinoPlus', src: 'https://res.cloudinary.com/detatjujs/image/upload/v1725250444/casino-plus-seeklogo_jhuzny.png', order: 19 },
+    { name: 'BingoPlus', src: 'https://res.cloudinary.com/detatjujs/image/upload/v1725250444/bingoplus2_vvmmgh.png', order: 20 },
+    { name: 'LadyLuck', src: 'https://res.cloudinary.com/detatjujs/image/upload/v1725250809/llg_logo_202108_1_bhgo8j.svg', order: 21 },
 ];
 
 interface ClientsLogoProps {
@@ -60,7 +65,7 @@ const ClientsLogo: React.FC<ClientsLogoProps> = ({ className }) => {
 
     return (
         <div className={clsx("w-full mx-auto p-4", className)}>
-            <SubHeader title="PROUDLY PARTNERING WITH" />
+            {/* <SubHeader title="PROUDLY PARTNERING WITH" /> */}
             <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-5 lg:gap-6">
                 <AnimatePresence>
                     {displayedLogos
@@ -78,7 +83,7 @@ const ClientsLogo: React.FC<ClientsLogoProps> = ({ className }) => {
                                 <img
                                     src={logo.src}
                                     alt={logo.name}
-                                    className="max-w-[160px] max-h-[80px] object-contain"
+                                    className="max-w-[160px]  object-contain"
                                 />
                             </motion.div>
                         ))}
