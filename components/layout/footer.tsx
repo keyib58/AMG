@@ -2,6 +2,7 @@ import React from 'react';
 import SocialMedia from './socialMedia';
 import Image from 'next/image';
 import clsx from 'clsx';
+import Link from 'next/link';  // Import Link from next/link
 
 interface FooterProps {
   className?: string;
@@ -24,13 +25,18 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
               className="logo-image object-contain w-full max-w-[282px] lg:max-w-[252px]" // Responsive max width
             />
           </div>
-          {/* Social Media  */}
+          {/* Social Media */}
           <div className="flex justify-center lg:justify-start w-full lg:w-auto">
             <SocialMedia />
           </div>
           {/* Copyright Desktop */}
           <div className="border-t border-gray-200 pt-4 text-center lg:text-left w-full hidden lg:block">
-            <p> © {new Date().getFullYear()} KingMidas Games All rights reserved.</p>
+            <p>© {new Date().getFullYear()} KingMidas Games. All rights reserved.</p>
+            {/* Terms and Conditions & Privacy Policy Links */}
+            <div className="mt-2">
+              <Link href="/terms-and-conditions" className="text-white hover:underline mr-2">Terms and Conditions</Link>
+              <Link href="/privacy-policy" className="text-white hover:underline">Privacy Policy</Link>
+            </div>
           </div>
         </div>
         {/* Middle Column */}
@@ -56,7 +62,12 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
 
         {/* Mobile Copyright */}
         <div className="border-t border-gray-200 pt-4 text-center w-full lg:hidden">
-          <p> © {new Date().getFullYear()} KingMidas. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} KingMidas Games. All rights reserved.</p>
+          {/* Terms and Conditions & Privacy Policy Links */}
+          <div className="mt-2">
+            <Link href="/terms-and-conditions" className="text-white hover:underline mr-4">Terms and Conditions</Link>
+            <Link href="/privacy-policy" className="text-white hover:underline">Privacy Policy</Link>
+          </div>
         </div>
       </div>
     </footer>

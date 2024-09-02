@@ -1,12 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchTerm } from '@/app/slices/searchSlice';
 import { setSelectedGenres, setSelectedLanguages, setSelectedMarkets } from '@/app/slices/filterSlice';
 import { RootState } from '@/app/store';
 import { useSearchParams, useRouter } from 'next/navigation';
 import LoadingDots from './LoadingDots';
-import { XIcon } from 'lucide-react';
-import { Search } from 'lucide-react';
+import { XIcon, Search } from 'lucide-react';
 
 interface SearchComponentProps {
   currentSearch?: string;
@@ -14,12 +13,20 @@ interface SearchComponentProps {
 
 const SearchComponent = ({ currentSearch = '' }: SearchComponentProps) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const searchTerm = useSelector((state: RootState) => state.search.searchTerm);
   const [isLoading, setIsLoading] = useState(false);
   const [inputValue, setInputValue] = useState(currentSearch);
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Sync the inputValue with the 'search' parameter from the URL
+    const searchParam = searchParams.get('search');
+    if (searchParam) {
+      setInputValue(searchParam);
+      dispatch(setSearchTerm(searchParam)); // Initialize Redux state with URL parameter
+    }
+  }, [searchParams, dispatch]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -34,7 +41,6 @@ const SearchComponent = ({ currentSearch = '' }: SearchComponentProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    setSearchQuery(inputValue);
     dispatch(setSearchTerm(inputValue));
     resetFilters(); // Clear filters when search is performed
 
@@ -48,14 +54,14 @@ const SearchComponent = ({ currentSearch = '' }: SearchComponentProps) => {
       params.delete('search');
     }
     router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
+
     setTimeout(() => {
       setIsLoading(false);
-    }); // Simulate loading delay
+    }, 500); // Simulate loading delay
   };
 
   const resetSearch = () => {
     setInputValue('');
-    setSearchQuery(null);
     dispatch(setSearchTerm(''));
     const params = new URLSearchParams(window.location.search);
     params.delete('search');
@@ -91,10 +97,10 @@ const SearchComponent = ({ currentSearch = '' }: SearchComponentProps) => {
         </button>
       </form>
 
-      {searchQuery && !isLoading && (
+      {inputValue && !isLoading && (
         <div className="mt-2 p-2 bg-[#111111] text-white rounded flex items-center justify-between OpenSans relative lg:absolute">
           <div>
-            Searching: <span className="font-bold">{searchQuery}</span>
+            Searching: <span className="font-bold">{inputValue}</span>
           </div>
           <button onClick={resetSearch} className="ml-4 text-white">
             <XIcon className="w-4 h-4" />

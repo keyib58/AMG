@@ -110,86 +110,86 @@ export default function GameListWithFilter({
 
   return (
     <>
-    <div className='flex w-full flex-col items-center'>
-      <GameSlider />
-      <div className="z-5 mx-5 flex flex-col lg:flex-row max-w-[1320px] w-full">
-        {/* Filter Component - visible on desktop */}
-        <div className="hidden lg:block lg:w-1/4 p-4 mt-10">
-          <SortComponent currentSort={currentSortState} />
-          <FilterComponent
-            genres={genres}
-            languages={languages}
-            markets={markets}
-            currentGenres={selectedGenres}
-            currentLanguages={selectedLanguages}
-            currentMarkets={selectedMarkets}
-            setFiltering={(value) => dispatch(setFiltering(value))}
-            setIsFilterVisible={setIsFilterVisible} // Pass setIsFilterVisible to FilterComponent
-            isFilterVisible={false}
-          />
-        </div>
-        <div className="lg:w-3/4 p-4 lg:mt-10 w-full">
-          {/* Search Component */}
-          <SearchComponent currentSearch={currentSearchState} />
+      <div className='flex w-full flex-col items-center'>
+        <GameSlider />
+        <div className="z-5 mx-5 flex flex-col lg:flex-row max-w-[1320px] w-full">
+          {/* Filter Component - visible on desktop */}
+          <div className="hidden lg:block lg:w-1/4 p-4 mt-10">
+            <SortComponent currentSort={currentSortState} />
+            <FilterComponent
+              genres={genres}
+              languages={languages}
+              markets={markets}
+              currentGenres={selectedGenres}
+              currentLanguages={selectedLanguages}
+              currentMarkets={selectedMarkets}
+              setFiltering={(value) => dispatch(setFiltering(value))}
+              setIsFilterVisible={setIsFilterVisible} // Pass setIsFilterVisible to FilterComponent
+              isFilterVisible={false}
+            />
+          </div>
+          <div className="lg:w-3/4 p-4 lg:mt-10 w-full">
+            {/* Search Component */}
+            <SearchComponent currentSearch={currentSearchState} />
 
-          {/* Filter and Sort Buttons for Mobile/Tablet - Below Search */}
-          <div className="lg:hidden flex justify-between w-full mt-4">
-            <button
-              onClick={() => setIsFilterVisible(true)}
-              className="px-4 py-2 bg-white text-black flex flex-row items-center justify-center rounded-md w-1/2 mr-2"
-            >
-              FILTER BY
-              <ChevronDownIcon className="w-5 h-5 ml-2" />
-            </button>
-            <div className="w-1/2">
-              <SortComponent currentSort={currentSortState} />
+            {/* Filter and Sort Buttons for Mobile/Tablet - Below Search */}
+            <div className="lg:hidden flex justify-between w-full mt-4">
+              <button
+                onClick={() => setIsFilterVisible(true)}
+                className="px-4 py-2 bg-white text-black flex flex-row items-center justify-center rounded-md w-1/2 mr-2"
+              >
+                FILTER BY
+                <ChevronDownIcon className="w-5 h-5 ml-2" />
+              </button>
+              <div className="w-1/2">
+                <SortComponent currentSort={currentSortState} />
+              </div>
             </div>
+
+            {isFiltering ? (
+              <div className="mt-10 text-center">
+                <LoadingSpinner />
+              </div>
+            ) : (
+              <GameListing
+                games={filteredGames}
+                filters={{ selectedGenres, selectedLanguages, selectedMarkets }} // Pass filters object
+                searchQuery={currentSearchState} // Pass search query
+              />
+            )}
           </div>
 
-          {isFiltering ? (
-            <div className="mt-10 text-center">
-              <LoadingSpinner />
-            </div>
-          ) : (
-            <GameListing
-              games={filteredGames}
-              filters={{ selectedGenres, selectedLanguages, selectedMarkets }} // Pass filters object
-              searchQuery={currentSearchState} // Pass search query
-            />
-          )}
+          {/* Filter Modal for Mobile/Tablet */}
+          <AnimatePresence>
+            {isFilterVisible && (
+              <motion.div
+                className="fixed inset-0 z-50 bg-[#151515] flex flex-col"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 50 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="p-4 flex justify-between items-center">
+                  <h3 className="text-xl font-semibold text-white">FILTER BY</h3>
+                  <X className="w-6 h-6 ml-2 text-white" onClick={() => setIsFilterVisible(false)} />
+                </div>
+                <div className="flex-1 overflow-y-auto p-4">
+                  <FilterComponent
+                    genres={genres}
+                    languages={languages}
+                    markets={markets}
+                    currentGenres={selectedGenres}
+                    currentLanguages={selectedLanguages}
+                    currentMarkets={selectedMarkets}
+                    setFiltering={(value) => dispatch(setFiltering(value))}
+                    setIsFilterVisible={setIsFilterVisible} // Pass setIsFilterVisible to FilterComponent
+                    isFilterVisible={isFilterVisible}
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-
-        {/* Filter Modal for Mobile/Tablet */}
-        <AnimatePresence>
-          {isFilterVisible && (
-            <motion.div
-              className="fixed inset-0 z-50 bg-[#151515] flex flex-col"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 50 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="p-4 flex justify-between items-center">
-                <h3 className="text-xl font-semibold text-white">FILTER BY</h3>
-                <X className="w-6 h-6 ml-2 text-white" onClick={() => setIsFilterVisible(false)} />
-              </div>
-              <div className="flex-1 overflow-y-auto p-4">
-                <FilterComponent
-                  genres={genres}
-                  languages={languages}
-                  markets={markets}
-                  currentGenres={selectedGenres}
-                  currentLanguages={selectedLanguages}
-                  currentMarkets={selectedMarkets}
-                  setFiltering={(value) => dispatch(setFiltering(value))}
-                  setIsFilterVisible={setIsFilterVisible} // Pass setIsFilterVisible to FilterComponent
-                  isFilterVisible={isFilterVisible}
-                />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
       </div>
     </>
   );
