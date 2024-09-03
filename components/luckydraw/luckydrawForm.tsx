@@ -18,7 +18,7 @@ const LuckyDrawForm: React.FC = () => {
 
     const [responseMessage, setResponseMessage] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     // Manage body overflow based on modal state
     useEffect(() => {
