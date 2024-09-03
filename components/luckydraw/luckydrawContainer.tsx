@@ -38,7 +38,7 @@ const LuckydrawContainer = () => {
                 <div>
                     <div className="text-white OpenSans px-4 text-sm">
                         <p>
-                           KingMidas Games is committed to protecting and respecting your privacy, and will only use your personal information to administer your account and to provide the products and services you requested from us. Please tick the checkbox below if you consent to receive communications from us regarding our products and services, as well as other content that may be of interest to you.
+                            KingMidas Games is committed to protecting and respecting your privacy, and will only use your personal information to administer your account and to provide the products and services you requested from us. Please tick the checkbox below if you consent to receive communications from us regarding our products and services, as well as other content that may be of interest to you.
                         </p>
                         <p className="mt-2">
                             A KingMidas Games está comprometida em proteger e respeitar sua privacidade e só usará suas informações pessoais para administrar sua conta e fornecer os produtos e serviços que você nos solicitou. Marque a caixa de seleção abaixo se você concorda em receber nossas comunicações sobre nossos produtos e serviços, bem como outros conteúdos que possam ser do seu interesse.

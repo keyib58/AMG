@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     const game = await prisma.game.create({
       data: {
         ...data,
-        RTP: parseFloat(data.RTP.toString()),
+        RTP: data.RTP,
         maxWin: parseFloat(data.maxWin.toString()),
         popularRank: parseInt(data.popularRank.toString(), 10),
         languageInfo: {
@@ -66,7 +66,7 @@ export async function PUT(
       where: { id },
       data: {
         ...data,
-        RTP: parseFloat(data.RTP.toString()),
+        RTP: data.RTP,
         maxWin: parseFloat(data.maxWin.toString()),
         popularRank: parseInt(data.popularRank.toString(), 10),
         languageInfo: {

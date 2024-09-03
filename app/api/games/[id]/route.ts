@@ -12,7 +12,6 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       where: { id },
       data: {
         ...data,
-        RTP: parseFloat(data.RTP),
         maxWin: parseFloat(data.maxWin),
         assetUrl: data.assetUrl, // Ensure assetUrl is included in the update
         languageInfo: {

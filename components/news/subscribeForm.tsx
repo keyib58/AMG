@@ -47,10 +47,10 @@ const SubscribeForm: React.FC = () => {
         {!isLoading ? (
           <button
             type="submit"
-            className="py-2 max-w-[170px] px-4 md:ml-4 rounded-[25px] font-medium bg-gradient-to-r from-yellow-400 to-yellow-200 text-black OpenSans transition duration-300 w-full md:w-auto whitespace-nowrap"
+            className="py-2 max-w-[170px] px-14 md:ml-4 rounded-[25px] font-medium bg-gradient-to-r from-yellow-400 to-yellow-200 text-black OpenSans transition duration-300 w-full md:w-auto whitespace-nowrap"
             style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)' }}
           >
-            JOIN FREE
+            JOIN
           </button>
         ) : (
           <LoadingSpinner /> // Display spinner while loading

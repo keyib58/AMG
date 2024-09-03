@@ -99,11 +99,17 @@ const ContactForm: React.FC = () => {
                 <div>
                     <label className="block OpenSans font-medium text-white">Phone *</label>
                     <input
-                        type="tel"
+                        type="number"
                         name="phone"
                         value={formData.phone}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                            const regex = /^[0-9+()\- ]*$/;
+                            if (regex.test(e.target.value)) {
+                                handleChange(e);
+                            }
+                        }}
                         required
+                        inputMode="numeric"
                         className="w-full p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:border-transparent"
                     />
                 </div>

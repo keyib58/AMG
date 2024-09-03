@@ -27,7 +27,7 @@ export type LanguageInfo = {
     gameGifUrl: string;
     assetUrl: string;
     gameType: string;
-    RTP: number;
+    RTP: string;
     genre: string;
     volatility: string;
     maxWin: number;
@@ -36,6 +36,7 @@ export type LanguageInfo = {
     releaseDate: string;
     status: string;
     slug: string;
+    weight: string; 
     languageInfo: LanguageInfo[];
     tags: Tag[];
     targetMarkets: TargetMarket[];

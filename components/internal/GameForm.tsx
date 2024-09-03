@@ -69,6 +69,7 @@ export default function GameForm() {
   }, []);
 
   const onSubmit = async (data: FormData) => {
+    console.log(typeof (data.RTP));
     const method = editingGame ? "PUT" : "POST";
     const url = editingGame ? `/api/games/${editingGame.id}` : "/api/games";
     const response = await fetch(url, {
@@ -76,9 +77,9 @@ export default function GameForm() {
       headers: {
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify({
         ...data,
-        RTP: parseFloat(data.RTP.toString()),
         maxWin: parseFloat(data.maxWin.toString()),
         popularRank: parseInt(data.popularRank.toString(), 10),
       }),
@@ -178,7 +179,7 @@ export default function GameForm() {
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">RTP</label>
-            <input type="number" step="0.01" {...register("RTP")} required className="w-full p-2 bg-gray-800 rounded-md text-white" />
+            <input {...register("RTP")} required className="w-full p-2 bg-gray-800 rounded-md text-white" />
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">Genre</label>

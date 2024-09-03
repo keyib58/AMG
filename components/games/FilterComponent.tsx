@@ -142,7 +142,7 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
       <FilterByIP /> {/* Use the FilterByIP component */}
       <div className="mb-4">
         <div className="flex justify-between items-center">
-          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem] font-extrabold uppercase">Genre</h4>
+          <h4 className="mb-2 Montserrat text-[#FFD868] text-[1.7rem] font-extrabold uppercase">Genre</h4>
           <motion.button
             onClick={() => setIsGenreOpen(!isGenreOpen)}
             className="text-white"
@@ -192,7 +192,7 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
       </div>
       <div className="lg:mt-20 mt-[50px]">
         <div className="flex justify-between items-center">
-          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem] font-extrabold uppercase">Language</h4>
+          <h4 className="mb-2 Montserrat text-[#FFD868] text-[1.7rem] font-extrabold uppercase">Game Language</h4>
           <motion.button
             onClick={() => setIsLanguageOpen(!isLanguageOpen)}
             className="text-white"
@@ -242,7 +242,7 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
       </div>
       <div className="lg:mt-20 mt-[50px]">
         <div className="flex justify-between items-center">
-          <h4 className="mb-2 Montserrat text-[#FFD868] text-[2rem] font-extrabold uppercase">Market</h4>
+          <h4 className="mb-2 Montserrat text-[#FFD868] text-[1.7rem] font-extrabold uppercase">Market</h4>
           <motion.button
             onClick={() => setIsMarketOpen(!isMarketOpen)}
             className="text-white"

@@ -193,7 +193,7 @@ const LuckyDrawForm: React.FC = () => {
                     </label>
                 </div>
                 <p className="text-sm text-white">
-                * Please tick the checkbox above if you consent to us storing and processing your personal data in order to provide you the content requested.
+                    * Please tick the checkbox above if you consent to us storing and processing your personal data in order to provide you the content requested.
                     / Marque a caixa de seleção abaixo se você consente que armazenemos e processemos seus dados pessoais para fornecer o conteúdo solicitado.
                 </p>
                 <p className="text-sm text-white">

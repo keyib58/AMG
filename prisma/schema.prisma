@@ -78,7 +78,7 @@ model Game {
   gameBackgroundUrl   String
   gameGifUrl          String
   gameType            String
-  RTP                 Float
+  RTP                 String
   genre               String
   volatility          String
   maxWin              Float

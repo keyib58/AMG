@@ -24,7 +24,7 @@ const staticData: Data[] = [
         description: "We ensure authenticity across markets and cultures, while tailoring games for maximum market adoption and player resonance."
     },
     {
-        url: "https://res.cloudinary.com/detatjujs/image/upload/v1721808516/Rectangle_145_1_ebdd6b.png",
+        url: "https://res.cloudinary.com/detatjujs/image/upload/v1725351103/minigames_ewbngl.png",
         title: "MINIGAMES",
         description: "We add an additional layer of engagement to amplify the thrill and redefine gaming for your players."
     },

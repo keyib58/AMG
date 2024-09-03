@@ -23,6 +23,7 @@ export const countryMarketMap: { [key: string]: string } = {
   "North Korea": "East Asia",
   "South Korea": "East Asia",
   Taiwan: "East Asia",
+  "Korea (the Republic of)": "East Asia",
 
   // South Asia
   Afghanistan: "South Asia",

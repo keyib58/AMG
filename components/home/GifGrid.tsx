@@ -18,19 +18,19 @@ const gifData: GifData[] = [
     {
         url: "https://res.cloudinary.com/detatjujs/image/upload/v1724140560/Website-Assets_Next-Gen_GIFs_427x427_2s_yny3mq.gif",
         title: "NEXT-GEN",
-        description: "Minesweeper, crash, virtual, plinko",
+        description: "MINESWEEPER | CRASH | VIRTUAL | PLINKO",
         link: "/games?genre=NEXT-GEN&language=All&market=All&sort=latest"
     },
     {
         url: "https://res.cloudinary.com/detatjujs/image/upload/v1724140587/Website-Assets_Classic_VID_427x427_2s_qhsqv5.gif",
         title: "CLASSIC",
-        description: "Cards, dice, table, roulette, traditional",
+        description: "CARDS | DICE | TABLE | ROULETTE | TRADITIONAL",
         link: "/games?genre=CLASSIC&language=All&market=All&sort=latest"
     },
     {
         url: "https://res.cloudinary.com/detatjujs/image/upload/v1724140556/Website-Assets_Slots_GIFs_427x427_2s_qao9jv.gif",
         title: "SLOTS",
-        description: "Cascade, reel-slot",
+        description: "CASCADE | REEL-SLOT",
         link: "/games?genre=SLOTS&language=All&market=All&sort=latest"
     }
 ];

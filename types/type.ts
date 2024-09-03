@@ -43,7 +43,7 @@ export interface Game {
   gameBackgroundUrl: string; // Added this line
   gameGifUrl: string; // Added this line
   gameType: string; // Added this line
-  RTP: number; // Added this line
+  RTP: string; // Added this line
   genre: string; // Added this line
   volatility: string; // Added this line
   maxWin: number; // Added this line
