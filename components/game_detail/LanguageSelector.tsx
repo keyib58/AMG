@@ -4,7 +4,6 @@ import * as Popover from '@radix-ui/react-popover';
 import { ChevronDownIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { LanguageInfo } from 'types/type';
-import { sortLanguages } from '@/lib/utils'; // Import the sortLanguages function
 
 type LanguageSelectorProps = {
   languageInfo: LanguageInfo[];
@@ -29,8 +28,27 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 
   const handleSelect = (id: string) => {
     onLanguageChange(id);
-    setOpen(false);
+    setOpen(false); // Close the popover after selection
   };
+
+  // Define the order of languages
+  const languageOrder = [
+    'ENGLISH',
+    'SIMPLIFIED CHINESE',
+    'VIETNAMESE',
+    'THAI',
+    'BAHASA INDONESIA',
+    'KOREAN',
+    'BURMESE',
+    'BRAZILIAN PORTUGUESE',
+    'SPANISH',
+    'TAGALOG',
+  ];
+
+  // Sort languageInfo according to the defined order
+  const sortedLanguageInfo = languageInfo.sort(
+    (a, b) => languageOrder.indexOf(a.language.toUpperCase()) - languageOrder.indexOf(b.language.toUpperCase())
+  );
 
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
@@ -56,12 +74,10 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           transition={{ duration: 0.2 }}
           className="flex flex-col gap-2 items-center"
         >
-          {sortLanguages(languageInfo).map((info, index) => (
+          {sortedLanguageInfo.map((info, index) => (
             <label
               key={info.id}
-              className={`flex text-center items-center justify-center cursor-pointer p-2 w-full ${
-                index < languageInfo.length - 1 ? 'border-b border-gray-300' : ''
-              }`}
+              className={`flex text-center items-center justify-center cursor-pointer p-2 w-full ${index < sortedLanguageInfo.length - 1 ? 'border-b border-gray-300' : ''}`}
               onClick={() => handleSelect(info.id)}
             >
               {info.language}

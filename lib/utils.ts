@@ -268,7 +268,6 @@ export const getCountryOptions = () => {
   ];
 };
 
-// Utility function to sort languages based on a predefined order
 export function sortLanguages(languages: { language: string }[]) {
   const languageOrder = [
     'ENGLISH',

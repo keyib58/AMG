@@ -16,7 +16,7 @@ const changeLanguage = (label: string, language: string): string => {
             Spanish: 'Tráiler',
             French: 'Bande-annonce', // Not in your list but kept for reference
             THAI: 'ตัวอย่าง',
-            CHINESE: '预告片',
+            'SIMPLIFIED CHINESE': '预告片',
             VIETNAMESE: 'Đoạn phim',
             "BAHASA INDONESIA": 'Cuplikan',
             KOREAN: '예고편',
@@ -30,7 +30,7 @@ const changeLanguage = (label: string, language: string): string => {
             Spanish: 'Prueba Demo',
             French: 'Essayer Démo', // Not in your list but kept for reference
             THAI: 'ลองเล่นเกม',
-            CHINESE: '试玩演示',
+            'SIMPLIFIED CHINESE': '试玩演示',
             VIETNAMESE: 'Thử Demo',
             "BAHASA INDONESIA": 'Coba Demo',
             KOREAN: '데모 시도',
