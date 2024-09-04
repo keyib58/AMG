@@ -7,7 +7,7 @@ export default function NewsHero() {
             {/* Right Column (Image) - Moved to top for tablet and mobile */}
             <div className="flex justify-center order-1 md:order-2">
                 <Image
-                    src="https://res.cloudinary.com/detatjujs/image/upload/v1721706615/website_news_banner_2024_ver2_1_iz5ul7.png"
+                    src="https://res.cloudinary.com/detatjujs/image/upload/v1725416921/website_news_graphic_tjczsy.png"
                     alt="News Banner"
                     width={700}
                     height={500}

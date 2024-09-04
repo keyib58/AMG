@@ -1,12 +1,12 @@
-const withMDX = require('@next/mdx')({
+const withMDX = require("@next/mdx")({
   extension: /\.mdx?$/,
 });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withMDX({
-  reactStrictMode: true,  
+  reactStrictMode: true,
   swcMinify: true,
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   images: {
     domains: [
       "lh3.googleusercontent.com",
@@ -23,7 +23,7 @@ const nextConfig = withMDX({
     return [
       {
         source: "/github",
-        destination: "https://github.com/steven-tey/precedent",
+        destination: "https://github.com/",
         permanent: false,
       },
     ];

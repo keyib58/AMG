@@ -81,6 +81,7 @@ model Game {
   RTP                 String
   genre               String
   volatility          String
+  weight              String              @default("1")
   maxWin              Float
   placeHolderUrl      String
   popularRank         Int

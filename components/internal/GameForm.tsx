@@ -207,6 +207,10 @@ export default function GameForm() {
             <input type="number" {...register("popularRank")} required className="w-full p-2 bg-gray-800 rounded-md text-white" />
           </div>
           <div>
+            <label className="block text-sm font-medium mb-1">Weight</label>
+            <input {...register("weight")} required className="w-full p-2 bg-gray-800 rounded-md text-white" />
+          </div>
+          <div>
             <label className="block text-sm font-medium mb-1">Release Date</label>
             <input {...register("releaseDate")} required className="w-full p-2 bg-gray-800 rounded-md text-white" />
           </div>

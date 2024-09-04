@@ -38,6 +38,7 @@ export interface Game {
   id: string;
   name: string;
   slug: string;
+  weight: string;
   thumbnailUrl: string;
   description: string; // Added this line
   gameBackgroundUrl: string; // Added this line

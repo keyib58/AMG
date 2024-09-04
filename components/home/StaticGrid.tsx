@@ -19,7 +19,7 @@ interface AnimatedCardProps {
 
 const staticData: Data[] = [
     {
-        url: "https://res.cloudinary.com/detatjujs/image/upload/v1722928525/a32d9b783f4b32943f8eeaa3c8054cce_bn3l6o.jpg",
+        url: "https://res.cloudinary.com/detatjujs/image/upload/v1725416921/a32d9b783f4b32943f8eeaa3c8054cce_m9pjgh.jpg",
         title: "TAILORED GAMES",
         description: "We ensure authenticity across markets and cultures, while tailoring games for maximum market adoption and player resonance."
     },
@@ -29,7 +29,7 @@ const staticData: Data[] = [
         description: "We add an additional layer of engagement to amplify the thrill and redefine gaming for your players."
     },
     {
-        url: "https://res.cloudinary.com/detatjujs/image/upload/v1721808516/Rectangle_145_2_p7xi66.png",
+        url: "https://res.cloudinary.com/detatjujs/image/upload/v1725416921/gamification_banner_qubsjb.jpg",
         title: "GAMIFICATION",
         description: "We prioritise elevating player engagement and retention through the strategic use of gamification techniques."
     }

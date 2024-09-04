@@ -8,6 +8,7 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import SessionWrapper from "@/components/SessionWrapper";
 import ReduxProvider from "@/components/ReduxProvider";
 import SessionLogger from "@/components/shared/SessionLogger";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Metadata API for setting metadata in the app directory
 export const metadata = {
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <main className="mt-16">
                 {children}
               </main>
+              <SpeedInsights />
               <Footer className="mt-[100px] lg:mt-[200px]" />
             </Suspense>
             <VercelAnalytics />
