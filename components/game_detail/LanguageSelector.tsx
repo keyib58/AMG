@@ -26,6 +26,10 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     }
   }, [triggerRef]);
 
+  // Set English as default if no language is selected
+  const defaultLanguage = languageInfo.find(lang => lang.language.toUpperCase() === 'ENGLISH') || null;
+  const currentSelectedLanguage = selectedLanguage || defaultLanguage;
+
   const handleSelect = (id: string) => {
     onLanguageChange(id);
     setOpen(false); // Close the popover after selection
@@ -57,7 +61,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         className="flex-1 bg-white flex py-2 px-6 items-center text-black rounded-lg justify-between"
       >
         <span className="flex-1 text-center">
-          {selectedLanguage?.language || 'Select Language'}
+          {currentSelectedLanguage?.language || 'Select Language'}
         </span>
         <ChevronDownIcon className="w-5 h-5" />
       </Popover.Trigger>

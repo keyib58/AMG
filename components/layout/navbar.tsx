@@ -98,7 +98,7 @@ export default function NavBar({ session }: NavBarProps) {
                 style={{ background: "linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)" }}
                 onClick={() => setShowSignInModal(true)}
               >
-                Sign In
+                CLIENT AREA
               </button>
             )}
           </div>

@@ -16,9 +16,9 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials || !credentials.email || !credentials.password) {
-          throw new Error("Invalid credentials");
+          return null; // Return null if credentials are missing
         }
-
+  
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
           select: {
@@ -28,20 +28,20 @@ export const authOptions: NextAuthOptions = {
             role: true,
           },
         });
-
+  
         if (!user || !user.password) {
-          throw new Error("No user found");
+          return null; // Return null if no user is found
         }
-
+  
         const isValidPassword = await verifyPassword(
           credentials.password,
-          user.password,
+          user.password
         );
-
+  
         if (!isValidPassword) {
-          throw new Error("Invalid password");
+          return null; // Return null if password is invalid
         }
-
+  
         return { id: user.id, email: user.email, role: user.role };
       },
     }),

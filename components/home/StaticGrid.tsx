@@ -19,7 +19,7 @@ interface AnimatedCardProps {
 
 const staticData: Data[] = [
     {
-        url: "https://res.cloudinary.com/detatjujs/image/upload/v1725416921/a32d9b783f4b32943f8eeaa3c8054cce_m9pjgh.jpg",
+        url: "https://res.cloudinary.com/detatjujs/image/upload/v1725441496/tailored-games_banner_darkened-bg_jrrx7e.jpg",
         title: "TAILORED GAMES",
         description: "We ensure authenticity across markets and cultures, while tailoring games for maximum market adoption and player resonance."
     },

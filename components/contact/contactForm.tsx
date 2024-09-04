@@ -61,7 +61,7 @@ const ContactForm: React.FC = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full">
+        <form onSubmit={handleSubmit} className="w-full rounded-xl p-6 lg:p-10 bg-[#151515]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                     <label className="block OpenSans font-medium text-white">First Name *</label>
