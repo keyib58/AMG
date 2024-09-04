@@ -98,7 +98,7 @@ async function getFilteredGames(
   if (sort === 'alphabetical') {
     orderBy.name = 'asc';
   } else if (sort === 'popular') {
-    orderBy.popularRank = 'asc';
+    orderBy.popularRank = 'desc';
   } else if (sort === 'latest') {
     orderBy.releaseDate = 'desc';
   }

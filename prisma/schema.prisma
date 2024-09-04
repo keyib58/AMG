@@ -50,6 +50,7 @@ model User {
   role          String    @default("USER")
   accounts      Account[]
   sessions      Session[]
+  GameEditHistory GameEditHistory[]
 }
 
 model VerificationToken {
@@ -93,6 +94,7 @@ model Game {
   tags                Tag[]
   targetMarkets       TargetMarket[]
   targetCountriesByIP TargetCountryByIP[]
+  GameEditHistory GameEditHistory[]
 }
 
 model Tag {
@@ -133,4 +135,20 @@ model TargetCountryByIP {
   demoLinkByCountry String @default("demo-link-by-country")
 
   @@index([gameId])
+}
+
+
+model GameEditHistory {
+  id        String   @id @default(cuid())
+  gameId    String
+  action    String  
+  editorId  String   
+  timestamp DateTime @default(now())
+  details   String     
+
+  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  editor    User     @relation(fields: [editorId], references: [id], onDelete: Cascade)
+
+  @@index([gameId])
+  @@index([editorId])
 }

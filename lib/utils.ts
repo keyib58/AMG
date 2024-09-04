@@ -1,3 +1,5 @@
+// lib/utils.ts
+
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import ms from "ms";
@@ -265,3 +267,23 @@ export const getCountryOptions = () => {
     { name: 'Zimbabwe', code: '263' },
   ];
 };
+
+// Utility function to sort languages based on a predefined order
+export function sortLanguages(languages: { language: string }[]) {
+  const languageOrder = [
+    'ENGLISH',
+    'SIMPLIFIED CHINESE',
+    'VIETNAMESE',
+    'THAI',
+    'BAHASA INDONESIA',
+    'KOREAN',
+    'BURMESE',
+    'BRAZILIAN PORTUGUESE',
+    'SPANISH',
+    'TAGALOG',
+  ];
+
+  return languages.sort(
+    (a, b) => languageOrder.indexOf(a.language) - languageOrder.indexOf(b.language)
+  );
+}

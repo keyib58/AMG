@@ -4,6 +4,7 @@ import * as Popover from '@radix-ui/react-popover';
 import { ChevronDownIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { LanguageInfo } from 'types/type';
+import { sortLanguages } from '@/lib/utils'; // Import the sortLanguages function
 
 type LanguageSelectorProps = {
   languageInfo: LanguageInfo[];
@@ -28,7 +29,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 
   const handleSelect = (id: string) => {
     onLanguageChange(id);
-    setOpen(false); // Close the popover after selection
+    setOpen(false);
   };
 
   return (
@@ -45,9 +46,9 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
       <Popover.Content
         className="bg-white text-black rounded-lg z-10 shadow-lg p-2 mt-2 border-b border-gray-300"
         style={{ width: triggerWidth }}
-        side="bottom"  // Ensures the content appears below the trigger
-        align="center" // Centers the content relative to the trigger
-        sideOffset={5} // Optional: Adjusts the distance between the trigger and content
+        side="bottom"
+        align="center"
+        sideOffset={5}
       >
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -55,11 +56,12 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           transition={{ duration: 0.2 }}
           className="flex flex-col gap-2 items-center"
         >
-          {languageInfo.map((info, index) => (
+          {sortLanguages(languageInfo).map((info, index) => (
             <label
               key={info.id}
-              className={`flex text-center items-center justify-center cursor-pointer p-2 w-full ${index < languageInfo.length - 1 ? 'border-b border-gray-300' : ''
-                }`}
+              className={`flex text-center items-center justify-center cursor-pointer p-2 w-full ${
+                index < languageInfo.length - 1 ? 'border-b border-gray-300' : ''
+              }`}
               onClick={() => handleSelect(info.id)}
             >
               {info.language}

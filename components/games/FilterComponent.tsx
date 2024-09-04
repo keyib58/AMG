@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { setSelectedGenres, setSelectedLanguages, setSelectedMarkets, setFiltering, resetFilters } from '@/app/slices/filterSlice';
 import { FilterComponentProps } from 'types/type';
 import FilterByIP from './DetectUserIP';
+import { sortLanguages } from '@/lib/utils'; // Import the sortLanguages function
 
 const variants = {
   open: { opacity: 1, height: 'auto' },
@@ -26,8 +27,8 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
   currentGenres,
   currentLanguages,
   currentMarkets,
-  setIsFilterVisible, // Prop to control sidebar visibility
-  isFilterVisible, // Visibility state of the filter sidebar
+  setIsFilterVisible,
+  isFilterVisible,
 }) => {
   const dispatch = useAppDispatch();
   const { selectedGenres, selectedLanguages, selectedMarkets } = useAppSelector((state) => state.filter);
@@ -39,14 +40,12 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Initialize state from props
   useEffect(() => {
     dispatch(setSelectedGenres(currentGenres));
     dispatch(setSelectedLanguages(currentLanguages));
     dispatch(setSelectedMarkets(currentMarkets));
   }, [currentGenres, currentLanguages, currentMarkets, dispatch]);
 
-  // Sync state with URL parameters on mount
   useEffect(() => {
     const genreParam = searchParams.get('genre');
     const languageParam = searchParams.get('language');
@@ -117,13 +116,13 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
   };
 
   const handleResetFilters = () => {
-    dispatch(resetFilters()); // Dispatch the resetFilters action
+    dispatch(resetFilters());
     setIsFilterVisible(true);
     router.replace(`${window.location.pathname}?`, { scroll: false });
   };
 
   const applyFilters = () => {
-    setIsFilterVisible(false); // Close the sidebar when "Apply Filter" is clicked
+    setIsFilterVisible(false);
   };
 
   const isChecked = (type: string, value: string) => {
@@ -139,7 +138,7 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
 
   return (
     <div className="rounded-lg mb-4 lg:mt-[100px]">
-      <FilterByIP /> {/* Use the FilterByIP component */}
+      <FilterByIP />
       <div className="mb-4">
         <div className="flex justify-between items-center">
           <h4 className="mb-2 Montserrat text-[#FFD868] text-[1.7rem] font-extrabold uppercase">Genre</h4>
@@ -173,7 +172,7 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
             </label>
           </div>
           {genres
-            .sort((a, b) => a.genre.localeCompare(b.genre)) // Sort options alphabetically
+            .sort((a, b) => a.genre.localeCompare(b.genre))
             .map((genre) => (
               <div key={genre.genre} className="flex items-center mb-2">
                 <input
@@ -222,22 +221,20 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
               All
             </label>
           </div>
-          {languages
-            .sort((a, b) => a.language.localeCompare(b.language)) // Sort options alphabetically
-            .map((language) => (
-              <div key={language.language} className="flex items-center mb-2">
-                <input
-                  type="checkbox"
-                  id={`language-${language.language}`}
-                  checked={isChecked('language', language.language)}
-                  onChange={() => toggleFilter('language', language.language)}
-                  className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
-                />
-                <label className="text-white OpenSans text-lg" htmlFor={`language-${language.language}`}>
-                  {language.language}
-                </label>
-              </div>
-            ))}
+          {sortLanguages(languages).map((language) => (
+            <div key={language.language} className="flex items-center mb-2">
+              <input
+                type="checkbox"
+                id={`language-${language.language}`}
+                checked={isChecked('language', language.language)}
+                onChange={() => toggleFilter('language', language.language)}
+                className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
+              />
+              <label className="text-white OpenSans text-lg" htmlFor={`language-${language.language}`}>
+                {language.language}
+              </label>
+            </div>
+          ))}
         </motion.div>
       </div>
       <div className="lg:mt-20 mt-[50px]">
@@ -262,7 +259,6 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
         >
           {markets
             .sort((a, b) => {
-              // Sort options alphabetically, but place 'Other' at the end
               if (a.market === 'Other') return 1;
               if (b.market === 'Other') return -1;
               return a.market.localeCompare(b.market);
