@@ -27,8 +27,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   }, [triggerRef]);
 
   // Set English as default if no language is selected
-  const defaultLanguage = languageInfo.find(lang => lang.language.toUpperCase() === 'ENGLISH') || null;
-  const currentSelectedLanguage = selectedLanguage || defaultLanguage;
+  const currentSelectedLanguage = selectedLanguage || languageInfo.find((info) => info.language.toUpperCase() === 'ENGLISH') || languageInfo[0];
 
   const handleSelect = (id: string) => {
     onLanguageChange(id);

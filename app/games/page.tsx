@@ -57,7 +57,9 @@ async function getFilteredGames(
   languageInfo: { id: string; language: string; trailerLink: string; demoLink: string }[];
   targetCountriesByIP: { id: string; country: string }[];
 })[]> {
-  const where: any = {};
+  const where: any = {
+    status: 'published',  // Ensure only games with 'published' status are fetched
+  };
 
   if (genres.length > 0 && !(genres.length === 1 && genres[0] === 'All')) {
     where.genre = { in: genres };

@@ -1,8 +1,11 @@
+"use client";
+
 import Modal from "@/components/shared/modal";
 import { signIn } from "next-auth/react";
 import { useState, Dispatch, SetStateAction, useCallback, useMemo } from "react";
 import { LoadingDots } from "@/components/shared/icons";
-import * as Dialog from '@radix-ui/react-dialog';
+import * as Dialog from "@radix-ui/react-dialog";
+import { useRouter } from "next/navigation"; // Import the useRouter hook
 
 const SignInModal = ({
   showSignInModal,
@@ -15,6 +18,7 @@ const SignInModal = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); // State to hold error message
+  const router = useRouter(); // Initialize the useRouter hook
 
   const handleSignIn = async () => {
     setSignInClicked(true);
@@ -31,6 +35,7 @@ const SignInModal = ({
       setSignInClicked(false);
     } else {
       setShowSignInModal(false); // Close modal on successful sign-in
+      router.refresh(); // Refresh the current route to reflect the logged-in state
     }
   };
 

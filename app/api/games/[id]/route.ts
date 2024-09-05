@@ -13,7 +13,8 @@ export async function PUT(
   try {
     const session = await getServerSession(authOptions);
 
-    if (!session || session.user.role !== "ADMIN") {
+    // Check if the user is ADMIN OR EDITOR
+    if (!session || !["ADMIN", "EDITOR"].includes(session.user.role)) {
       console.log("Unauthorized access attempt: User role is not ADMIN");
       return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
     }

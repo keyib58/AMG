@@ -46,11 +46,14 @@ const changeLanguage = (label: string, language: string): string => {
 
 type GameInfoProps = {
     game: Game;
-    placeHolderUrl: string; // Add a placeHolderUrl prop
+    placeHolderUrl: string;
 };
 
 const GameInfo: React.FC<GameInfoProps> = ({ game, placeHolderUrl }) => {
-    const [selectedLanguage, setSelectedLanguage] = useState<LanguageInfo | null>(game.languageInfo[0]);
+    // Find English language info or fallback to the first language
+    const defaultLanguage = game.languageInfo.find(info => info.language.toUpperCase() === 'ENGLISH') || game.languageInfo[0];
+
+    const [selectedLanguage, setSelectedLanguage] = useState<LanguageInfo | null>(defaultLanguage);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState({ url: '', isTrailer: true });
     const [isLoading, setIsLoading] = useState(true); // State to manage image loading
