@@ -11,7 +11,7 @@ interface SortComponentProps {
   currentSort?: string;
 }
 
-const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
+const SortComponent = ({ currentSort = 'popular' }: SortComponentProps) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const sort = useAppSelector((state) => state.sort.sortOption);
@@ -26,11 +26,12 @@ const SortComponent = ({ currentSort = 'latest' }: SortComponentProps) => {
     }
   };
 
+  // sor
   useEffect(() => {
     if (currentSort) {
       dispatch(setSortOption(currentSort));
     } else {
-      dispatch(setSortOption('latest'));
+      dispatch(setSortOption('popular'));
     }
   }, [currentSort, dispatch]);
 
