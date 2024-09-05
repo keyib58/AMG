@@ -27,7 +27,7 @@ export default function GameListWithFilter({
   initialGenres,
   initialLanguages,
   initialMarkets,
-  initialSort = 'latest',
+  initialSort = 'popular',
   initialSearch,
   currentSort,
 }: GameListWithFilterProps) {
