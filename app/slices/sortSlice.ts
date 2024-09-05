@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // Initial state for the sort slice
 const initialState = {
-  sortOption: 'latest', // Default sort option
+  sortOption: 'popular', // Default sort option
 };
 
 // Creating the sort slice
@@ -15,10 +15,10 @@ const sortSlice = createSlice({
       state.sortOption = action.payload;
       localStorage.setItem('sortOption', action.payload); // Persist sort option to localStorage
     },
-    // Reducer to reset the sort option to 'latest'
+    // Reducer to reset the sort option to 'popular'
     resetSortOption(state) {
-      state.sortOption = 'latest';
-      localStorage.setItem('sortOption', 'latest'); // Persist sort option to localStorage
+      state.sortOption = 'popular';
+      localStorage.setItem('sortOption', 'popular'); // Persist sort option to localStorage
     },
   },
 });

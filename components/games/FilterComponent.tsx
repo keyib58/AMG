@@ -138,7 +138,7 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
 
   return (
     <div className="rounded-lg mb-4 lg:mt-[100px]">
-      <FilterByIP />
+      {/* <FilterByIP /> */}
       <div className="mb-4">
         <div className="flex justify-between items-center">
           <h4 className="mb-2 Montserrat text-[#FFD868] text-[1.7rem] font-extrabold uppercase">Genre</h4>
