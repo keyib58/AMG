@@ -8,7 +8,7 @@ export default async function GamesPage({ searchParams }: { searchParams: { [key
   const genre = searchParams.genre ? searchParams.genre.split(',') : [];
   const language = searchParams.language ? searchParams.language.split(',') : [];
   const market = searchParams.market ? searchParams.market.split(',') : [];
-  const sort = searchParams.sort || 'latest';
+  const sort = searchParams.sort || 'popular';
   const search = searchParams.search || '';
 
   const genres = await prisma.game.findMany({
