@@ -8,13 +8,22 @@ import { Pagination, Autoplay } from 'swiper/modules';
 
 const GameSlider: React.FC = () => {
   const desktopSlides = [
-    { backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724644882/e-invite_lisbon_2024_1920x583_wxy8hv.jpg' },
+    {
+      backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724644882/e-invite_lisbon_2024_1920x583_wxy8hv.jpg',
+    },
+    {
+      backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1725850135/sbc_apple-watch_lucky-draw_1920x583_yisltj.png',
+    },
   ];
 
   const mobileTabletSlides = [
-    { backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724644952/e-invite_lisbon_2024_800x800_uukl5n.jpg' },
+    {
+      backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724644952/e-invite_lisbon_2024_800x800_uukl5n.jpg',
+    },
+    {
+      backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1725850135/sbc_apple-watch_lucky-draw_800x800_eyysiq.png',
+    },
   ];
-
   useEffect(() => {
     const handleResize = () => {
       const desktopSwiper = document.querySelector('.desktop-swiper') as HTMLElement;
