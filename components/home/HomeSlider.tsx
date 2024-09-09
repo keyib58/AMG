@@ -8,11 +8,21 @@ import { Pagination, Autoplay } from 'swiper/modules';
 
 const HomeSlider: React.FC = () => {
   const desktopSlides = [
-    { backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724644882/e-invite_lisbon_2024_1920x583_wxy8hv.jpg' },
+    {
+      backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724644882/e-invite_lisbon_2024_1920x583_wxy8hv.jpg',
+    },
+    {
+      backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1725850135/sbc_apple-watch_lucky-draw_1920x583_yisltj.png',
+    },
   ];
 
   const mobileTabletSlides = [
-    { backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724644952/e-invite_lisbon_2024_800x800_uukl5n.jpg' },
+    {
+      backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724644952/e-invite_lisbon_2024_800x800_uukl5n.jpg',
+    },
+    {
+      backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1725850135/sbc_apple-watch_lucky-draw_800x800_eyysiq.png',
+    },
   ];
 
   useEffect(() => {
@@ -46,6 +56,8 @@ const HomeSlider: React.FC = () => {
 
   return (
     <>
+
+
       {/* Swiper for Desktop */}
       <Swiper
         spaceBetween={0}
@@ -75,7 +87,7 @@ const HomeSlider: React.FC = () => {
                 backgroundSize: 'contain',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                aspectRatio: '1920 / 583', // Updated aspect ratio for the desktop banner
+                aspectRatio: '1920 / 583',
               }}
             >
               {/* Content inside the desktop slide can be added here */}
@@ -114,7 +126,7 @@ const HomeSlider: React.FC = () => {
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 aspectRatio: '1 / 1',
-                borderRadius: '15px', // Border radius applied directly here
+                borderRadius: '15px',
               }}
             >
               <h1 className="text-white text-2xl Montserrat md:text-4xl lg:text-6xl font-bold"></h1>
