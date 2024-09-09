@@ -24,6 +24,7 @@ const GameSlider: React.FC = () => {
       backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1725850135/sbc_apple-watch_lucky-draw_800x800_eyysiq.png',
     },
   ];
+
   useEffect(() => {
     const handleResize = () => {
       const desktopSwiper = document.querySelector('.desktop-swiper') as HTMLElement;
@@ -32,8 +33,6 @@ const GameSlider: React.FC = () => {
         if (desktopSwiper) desktopSwiper.style.display = 'none';
         if (mobileTabletSwiper) {
           mobileTabletSwiper.style.display = 'block';
-          mobileTabletSwiper.style.padding = '20px';
-          mobileTabletSwiper.style.borderRadius = '15px';
         }
       } else {
         if (desktopSwiper) desktopSwiper.style.display = 'block';
@@ -55,82 +54,82 @@ const GameSlider: React.FC = () => {
 
   return (
     <>
-     <div className='w-full'> 
-      <Swiper
-        spaceBetween={0}
-        slidesPerView={1}
-        loop={true}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={false}
-        modules={[Pagination, Autoplay]}
-        draggable={true}
-        className="desktop-swiper"
-        style={{
-          display: 'block',
-        }}
-      >
-        {desktopSlides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <div
-              className="w-full flex items-center justify-center bg-cover bg-center"
-              style={{
-                backgroundImage: `url('${slide.backgroundImage}')`,
-                backgroundSize: 'contain',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                aspectRatio: '1920 / 583', // Updated aspect ratio for the desktop banner
-              }}
-            >
-              {/* Content inside the desktop slide can be added here */}
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className='w-full p-4 lg:p-0'>
+        <Swiper
+          spaceBetween={0}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={false}
+          modules={[Pagination, Autoplay]}
+          draggable={true}
+          className="desktop-swiper"
+          style={{
+            display: 'block',
+          }}
+        >
+          {desktopSlides.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className="w-full flex items-center justify-center bg-cover bg-center"
+                style={{
+                  backgroundImage: `url('${slide.backgroundImage}')`,
+                  backgroundSize: 'contain',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  aspectRatio: '1920 / 583', // Updated aspect ratio for the desktop banner
+                }}
+              >
+                {/* Content inside the desktop slide can be added here */}
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-      {/* Swiper for Mobile and Tablet */}
-      <Swiper
-        spaceBetween={0}
-        slidesPerView={1}
-        loop={true}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={false}
-        modules={[Pagination, Autoplay]}
-        draggable={true}
-        className="mobile-tablet-swiper"
-        style={{
-          display: 'none',
-        }}
-      >
-        {mobileTabletSlides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <div
-              className="w-full flex items-center justify-center bg-cover bg-center"
-              style={{
-                backgroundImage: `url('${slide.backgroundImage}')`,
-                backgroundSize: 'contain',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                aspectRatio: '1 / 1',
-                borderRadius: '15px', // Border radius applied directly here
-              }}
-            >
-              <h1 className="text-white text-2xl Montserrat md:text-4xl lg:text-6xl font-bold"></h1>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        {/* Swiper for Mobile and Tablet */}
+        <Swiper
+          spaceBetween={0}  // No space between slides
+          slidesPerView={1}  // One slide at a time, full width
+          loop={true}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={false}
+          modules={[Pagination, Autoplay]}
+          draggable={true}
+          className="mobile-tablet-swiper"
+          style={{
+            display: 'none',
+          }}
+        >
+          {mobileTabletSlides.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className="w-full flex items-center justify-center bg-cover bg-center"
+                style={{
+                  backgroundImage: `url('${slide.backgroundImage}')`,
+                  backgroundSize: 'contain',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  aspectRatio: '1 / 1',
+                  borderRadius: '15px', // Border radius applied directly here
+                }}
+              >
+                <h1 className="text-white text-2xl Montserrat md:text-4xl lg:text-6xl font-bold"></h1>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </>
   );
