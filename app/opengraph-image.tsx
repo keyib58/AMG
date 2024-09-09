@@ -6,5 +6,5 @@ export const contentType = "image/jpeg";
 
 export default async function OG() {
   // Instead of generating an image, simply redirect or return the static image
-  return NextResponse.redirect('https://km2024-jul.vercel.app/sbc-socialmedia-post_link_thumbnail.jpg');
+  return NextResponse.redirect('https://kingmidasgames.com/sbc-socialmedia-post_link_thumbnail.jpg');
 }

@@ -16,12 +16,12 @@ export const metadata = {
   description: "Try out our latest next-gen, classic, and slots games now! Check out what we have to offer and drop us a message for more information!",
   openGraph: {
     type: 'website',
-    url: 'https://km2024-jul.vercel.app/',
+    url: 'https://kingmidasgames.com/',
     title: "Your Next-Gen Gaming Partner",
     description: "Try out our latest next-gen, classic, and slots games now! Check out what we have to offer and drop us a message for more information!",
     images: [
       {
-        url: 'https://km2024-jul.vercel.app/sbc-socialmedia-post_link_thumbnail.jpg',
+        url: 'https://kingmidasgames.com/sbc-socialmedia-post_link_thumbnail.jpg',
         width: 1600,
         height: 900,
         alt: 'Kingmidas Games',
@@ -32,7 +32,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: "Your Next-Gen Gaming Partner",
     description: "Try out our latest next-gen, classic, and slots games now! Check out what we have to offer and drop us a message for more information!",
-    images: ['https://km2024-jul.vercel.app/sbc-socialmedia-post_link_thumbnail.jpg'],
+    images: ['https://kingmidasgames.com/sbc-socialmedia-post_link_thumbnail.jpg'],
   },
 };
 
