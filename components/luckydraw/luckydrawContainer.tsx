@@ -2,19 +2,27 @@ import LuckyDrawForm from "./luckydrawForm";
 
 const LuckydrawContainer = () => {
     return (
-        <div className="mt-[50px] max-w-[1320px] mx-auto flex flex-col lg:mt-[100px] lg:flex-row justify-between px-6 lg:px-4">
+        <div className="mt-[50px] max-w-[1320px] mx-auto flex flex-col lg:mt-[100px] justify-between px-6 lg:px-4">
             {/* Left column - 3/10 width */}
-            <div style={{ flex: '3' }}>
-                <img
-                    src="https://res.cloudinary.com/detatjujs/image/upload/v1724655638/SBC_Summit-Lisbon-2024_Floorplan-CTA_9x16_PNG_ezlq19.png"
-                    alt="Banner"
-                    style={{ width: '100%', height: 'auto' }}
-                />
+            <div className="my-4">
+                {/* Add a picture tag to conditionally load the correct image */}
+                <picture>
+                    {/* Image for tablet and mobile */}
+                    <source
+                        media="(max-width: 1024px)"
+                        srcSet="https://res.cloudinary.com/detatjujs/image/upload/v1725850135/sbc_apple-watch_lucky-draw_800x800_eyysiq.png"
+                    />
+                    {/* Default image for desktop */}
+                    <img
+                        src="https://res.cloudinary.com/detatjujs/image/upload/v1725850135/sbc_apple-watch_lucky-draw_1920x583_yisltj.png"
+                        alt="Banner"
+                        style={{ width: '100%', height: 'auto' }}
+                    />
+                </picture>
             </div>
 
             {/* Right column - 7/10 width */}
-            <div style={{ flex: '7' }}>
-                {/* // add a two column layout div */}
+            <div>
                 <div className="lg:flex lg:justify-between gap-4 px-4">
                     <div className="text-white OpenSans text-xl">
                         <p>Stand a chance to win an Apple Watch Series 9! Simply fill in the following form with your details and information.</p>
@@ -48,6 +56,6 @@ const LuckydrawContainer = () => {
             </div>
         </div>
     );
-}
+};
 
 export default LuckydrawContainer;
