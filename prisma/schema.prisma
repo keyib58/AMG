@@ -41,15 +41,15 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
-  password      String
-  name          String?
-  emailVerified DateTime?
-  image         String?
-  role          String    @default("USER")
-  accounts      Account[]
-  sessions      Session[]
+  id              String            @id @default(cuid())
+  email           String            @unique
+  password        String
+  name            String?
+  emailVerified   DateTime?
+  image           String?
+  role            String            @default("USER")
+  accounts        Account[]
+  sessions        Session[]
   GameEditHistory GameEditHistory[]
 }
 
@@ -91,10 +91,11 @@ model Game {
   status              String              @default("published")
   slug                String              @unique @default("game-slug")
   languageInfo        LanguageInfo[]
+  sa_languageInfo     sa_languageInfo[]
   tags                Tag[]
   targetMarkets       TargetMarket[]
   targetCountriesByIP TargetCountryByIP[]
-  GameEditHistory GameEditHistory[]
+  GameEditHistory     GameEditHistory[]
 }
 
 model Tag {
@@ -107,6 +108,17 @@ model Tag {
 }
 
 model LanguageInfo {
+  id          String @id @default(cuid())
+  gameId      String
+  language    String
+  trailerLink String
+  demoLink    String
+  game        Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  @@index([gameId])
+}
+
+model sa_languageInfo {
   id          String @id @default(cuid())
   gameId      String
   language    String
@@ -137,17 +149,16 @@ model TargetCountryByIP {
   @@index([gameId])
 }
 
-
 model GameEditHistory {
   id        String   @id @default(cuid())
   gameId    String
-  action    String  
-  editorId  String   
+  action    String
+  editorId  String
   timestamp DateTime @default(now())
-  details   String     
+  details   String
 
-  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
-  editor    User     @relation(fields: [editorId], references: [id], onDelete: Cascade)
+  game   Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  editor User @relation(fields: [editorId], references: [id], onDelete: Cascade)
 
   @@index([gameId])
   @@index([editorId])
