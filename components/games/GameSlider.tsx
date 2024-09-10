@@ -54,7 +54,7 @@ const GameSlider: React.FC = () => {
 
   return (
     <>
-      <div className='w-full p-4 lg:p-0'>
+      <div className='w-full py-4 px-6 lg:p-0'>
         <Swiper
           spaceBetween={0}
           slidesPerView={1}
