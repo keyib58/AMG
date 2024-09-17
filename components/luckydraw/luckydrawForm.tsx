@@ -10,10 +10,10 @@ const LuckyDrawForm: React.FC = () => {
         firstname: '',
         lastname: '',
         email: '',
-        country: '65', // Default to Singapore's country code
+        country_code: '65', // Default to Singapore's country code
         mobilephone: '',
-        agreeToCommunications: false, // State for the first checkbox
-        agreeToDataProcessing: false, // State for the mandatory checkbox
+        agreeToCommunications: false,
+        agreeToDataProcessing: false,
     });
 
     const [responseMessage, setResponseMessage] = useState<string>('');
@@ -23,12 +23,10 @@ const LuckyDrawForm: React.FC = () => {
     // Manage body overflow based on modal state
     useEffect(() => {
         if (isModalOpen) {
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden';
         } else {
-            document.body.style.overflow = ''; // Restore scrolling
+            document.body.style.overflow = '';
         }
-
-        // Clean up by restoring the body's overflow style when the component unmounts
         return () => {
             document.body.style.overflow = '';
         };
@@ -54,6 +52,12 @@ const LuckyDrawForm: React.FC = () => {
         event.preventDefault();
         setIsLoading(true);
 
+        // Append country_code to the start of mobilephone
+        const formattedPhone = `+${formData.country_code} ${formData.mobilephone}`;
+
+        // Debugging: Log the formatted phone number
+        console.log('Formatted Phone:', formattedPhone);
+
         try {
             const response = await fetch('/api/luckydraw', {
                 method: 'POST',
@@ -62,7 +66,7 @@ const LuckyDrawForm: React.FC = () => {
                 },
                 body: JSON.stringify({
                     ...formData,
-                    country_code: formData.country,
+                    mobilephone: formattedPhone, // Pass the formatted phone number
                 }),
             });
 
@@ -74,13 +78,13 @@ const LuckyDrawForm: React.FC = () => {
                     firstname: '',
                     lastname: '',
                     email: '',
-                    country: '',
+                    country_code: '65', // Reset to default
                     mobilephone: '',
                     agreeToCommunications: false,
                     agreeToDataProcessing: false,
                 });
 
-                setIsModalOpen(true); // Open the modal on successful submission
+                setIsModalOpen(true);
             }
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -90,11 +94,9 @@ const LuckyDrawForm: React.FC = () => {
         }
     };
 
-
     const closeModal = () => {
         setIsModalOpen(false);
     };
-
     return (
         <>
             <form onSubmit={handleSubmit} className="w-full mx-auto p-4">
@@ -142,8 +144,8 @@ const LuckyDrawForm: React.FC = () => {
                     <div className="mb-4 w-1/2">
                         <label className="block OpenSans text-sm font-medium text-white">Country / Código do país</label>
                         <select
-                            name="country"
-                            value={formData.country}
+                            name="country_code"
+                            value={formData.country_code}
                             onChange={handleChange}
                             className="w-full OpenSans p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:border-transparent"
                         >
@@ -154,6 +156,7 @@ const LuckyDrawForm: React.FC = () => {
                             ))}
                         </select>
                     </div>
+
                     <div className='mb-4 w-1/2'>
                         <label className="block OpenSans text-sm font-medium text-white">Phone No. / Telefone</label>
                         <input

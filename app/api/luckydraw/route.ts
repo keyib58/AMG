@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
 
     // Make a POST request to HubSpot's API with the form data
     const response = await fetch(
-      `https://api.hsforms.com/submissions/v3/integration/submit/40119618/8939d348-026d-4661-af54-9d7bcbd7e086`,
+      `https://api.hsforms.com/submissions/v3/integration/submit/40119618/c09c28e0-c27e-452b-87b0-70eda9145e97`,
       {
         method: 'POST',
         headers: {

@@ -17,7 +17,7 @@ const ContactForm: React.FC = () => {
     const [formData, setFormData] = useState(initialFormData);
     const [responseMessage, setResponseMessage] = useState<string>('');
     const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
-    const [isLoading, setIsLoading] = useState<boolean>(false); // State for loading spinner
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -29,6 +29,15 @@ const ContactForm: React.FC = () => {
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
+
+        // Basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            setResponseMessage('Please enter a valid email address.');
+            setIsSuccess(false);
+            return;
+        }
+
         setIsLoading(true); // Show loading spinner
 
         try {
@@ -99,7 +108,7 @@ const ContactForm: React.FC = () => {
                 <div>
                     <label className="block OpenSans font-medium text-white">Phone *</label>
                     <input
-                        type="number"
+                        type="tel" // Changed type to "tel"
                         name="phone"
                         value={formData.phone}
                         onChange={(e) => {
@@ -156,6 +165,13 @@ const ContactForm: React.FC = () => {
                 {!isLoading ? (
                     <button
                         type="submit"
+                        disabled={
+                            !formData.firstname ||
+                            !formData.lastname ||
+                            !formData.email ||
+                            !formData.phone ||
+                            !formData.subject
+                        } // Disable button if required fields are empty
                         className="py-2 max-w-[170px] px-4 rounded-[25px] font-medium bg-gradient-to-r from-yellow-400 to-yellow-200 text-black OpenSans transition duration-300 w-full md:w-auto whitespace-nowrap"
                         style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)' }}
                     >
