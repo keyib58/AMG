@@ -144,24 +144,6 @@ const Claim: React.FC = () => {
                 >
                     Redeem
                 </button>
-
-                <div className='space-y-2'>
-                    {isAuthenticated ? (
-                        <Button onClick={() => { LogOut() }}>
-                            Log out
-                        </Button>
-                    ) : (
-                        <div>
-                        <Button onClick={()=>{LogIn()}}>
-                            Log in
-                        </Button>
-                        <Button onClick={()=>{Register()}}>
-                            Register
-                        </Button>
-                        </div>
-                    )}
-                </div>
-
                 <RedeemSuccessModal isOpen={isModalOpen} onClose={closeModal} />
             </div>
         </div>

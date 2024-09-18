@@ -21,7 +21,7 @@ const AboutGrid: React.FC<AboutGridProps> = ({ className }) => {
                 >
                     <h3 className="subheader">OUR VISION</h3>
                     <p className='hidden lg:block max-w-[900px] mt-4 text-md OpenSans font-semidbold text-center text-white'>
-                        Our vision is to revolutionise the iGaming landscape with products that captivate the next generation digital native.
+                        Our vision is to revolutionise the iGaming landscape with products that captivate the next generation of digital natives.
                     </p>
                 </motion.div>
 
