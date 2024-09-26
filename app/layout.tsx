@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 {children}
               </main>
               <SpeedInsights />
-              <Footer className="mt-[100px] lg:mt-[200px]" />
+              <Footer className="mt-[90px] lg:mt-[200px]" />
             </Suspense>
             <VercelAnalytics />
           </SessionWrapper>
