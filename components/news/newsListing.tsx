@@ -6,7 +6,7 @@ export default function NewsListing() {
   const allNewsData: NewsType[] = getSortedNewsData();
 
   return (
-    <ul className="w-full mt-6 grid grid-cols-2 lg:grid-cols-4 gap-6">
+    <ul className="w-full mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
       {allNewsData.map((news) => (
         <CardNews key={news.slug} news={news} />
       ))}

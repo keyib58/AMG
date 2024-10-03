@@ -9,19 +9,25 @@ import { Pagination, Autoplay } from 'swiper/modules';
 const HomeSlider: React.FC = () => {
   const desktopSlides = [
     {
-      backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724644882/e-invite_lisbon_2024_1920x583_wxy8hv.jpg',
+      videoUrl: 'https://kingmakergames-public.s3.ap-southeast-1.amazonaws.com/Gameplay_Shorts/1920x583/WebsiteAssets_Classic-CoinDozer_1920x583_5s.mp4',
     },
     {
-      backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1725850135/sbc_apple-watch_lucky-draw_1920x583_yisltj.png',
+      videoUrl: 'https://kingmakergames-public.s3.ap-southeast-1.amazonaws.com/Gameplay_Shorts/1920x583/WebsiteAssets_NextGen-InterstellarRun_1920x583_5s.mp4',
+    },
+    {
+      videoUrl: 'https://kingmakergames-public.s3.ap-southeast-1.amazonaws.com/Gameplay_Shorts/1920x583/WebsiteAssets_Slots-SugarBlast_1920x583_5s.mp4',
     },
   ];
 
   const mobileTabletSlides = [
     {
-      backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1724644952/e-invite_lisbon_2024_800x800_uukl5n.jpg',
+      videoUrl: 'https://kingmakergames-public.s3.ap-southeast-1.amazonaws.com/Gameplay_Shorts/800x800/WebsiteAssets_Classic-CoinDozer_800x800_5s.mp4',
     },
     {
-      backgroundImage: 'https://res.cloudinary.com/detatjujs/image/upload/v1725850135/sbc_apple-watch_lucky-draw_800x800_eyysiq.png',
+      videoUrl: 'https://kingmakergames-public.s3.ap-southeast-1.amazonaws.com/Gameplay_Shorts/800x800/WebsiteAssets_NextGen-InterstellarRun_800x800_5s.mp4',
+    },
+    {
+      videoUrl: 'https://kingmakergames-public.s3.ap-southeast-1.amazonaws.com/Gameplay_Shorts/800x800/WebsiteAssets_Slots-SugarBlast_800x800_5s.mp4',
     },
   ];
 
@@ -54,85 +60,86 @@ const HomeSlider: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <div className='w-full py-4 px-6 lg:p-0'>
-        <Swiper
-          spaceBetween={0}
-          slidesPerView={1}
-          loop={true}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={false}
-          modules={[Pagination, Autoplay]}
-          draggable={true}
-          className="desktop-swiper"
-          style={{
-            display: 'block',
-          }}
-        >
-          {desktopSlides.map((slide, index) => (
-            <SwiperSlide key={index}>
-              <div
-                className="w-full flex items-center justify-center bg-cover bg-center"
+    <div className='w-full py-4 px-6 lg:p-0'>
+      {/* Swiper for Desktop */}
+      <Swiper
+        spaceBetween={0}
+        slidesPerView={1}
+        loop={true}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={false}
+        modules={[Pagination, Autoplay]}
+        className="desktop-swiper"
+        style={{
+          display: 'block',
+        }}
+      >
+        {desktopSlides.map((slide, index) => (
+          <SwiperSlide key={index}>
+            <div className="w-full flex items-center justify-center">
+              <video
+                src={slide.videoUrl}
+                autoPlay
+                loop
+                muted
+                playsInline
                 style={{
-                  backgroundImage: `url('${slide.backgroundImage}')`,
-                  backgroundSize: 'contain',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                  aspectRatio: '1920 / 583', // Updated aspect ratio for the desktop banner
+                  width: '100%',
+                  height: 'auto',
+                  aspectRatio: '1920 / 583',
                 }}
-              >
-                {/* Content inside the desktop slide can be added here */}
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
-        {/* Swiper for Mobile and Tablet */}
-        <Swiper
-          spaceBetween={0}  // No space between slides
-          slidesPerView={1}  // One slide at a time, full width
-          loop={true}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={false}
-          modules={[Pagination, Autoplay]}
-          draggable={true}
-          className="mobile-tablet-swiper"
-          style={{
-            display: 'none',
-          }}
-        >
-          {mobileTabletSlides.map((slide, index) => (
-            <SwiperSlide key={index}>
-              <div
-                className="w-full flex items-center justify-center bg-cover bg-center"
+      {/* Swiper for Mobile and Tablet */}
+      <Swiper
+        spaceBetween={0}  // No space between slides
+        slidesPerView={1}  // One slide at a time, full width
+        loop={true}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={false}
+        modules={[Pagination, Autoplay]}
+        className="mobile-tablet-swiper"
+        style={{
+          display: 'none',
+        }}
+      >
+        {mobileTabletSlides.map((slide, index) => (
+          <SwiperSlide key={index}>
+            <div className="w-full flex items-center justify-center">
+              <video
+                src={slide.videoUrl}
+                autoPlay
+                loop
+                muted
+                playsInline
                 style={{
-                  backgroundImage: `url('${slide.backgroundImage}')`,
-                  backgroundSize: 'contain',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
+                  width: '100%',
+                  height: 'auto',
                   aspectRatio: '1 / 1',
-                  borderRadius: '15px', // Border radius applied directly here
+                  borderRadius: '15px',
                 }}
-              >
-                <h1 className="text-white text-2xl Montserrat md:text-4xl lg:text-6xl font-bold"></h1>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </>
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 };
 
