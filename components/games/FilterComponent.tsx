@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { setSelectedGenres, setSelectedLanguages, setSelectedMarkets, setFiltering, resetFilters } from '@/app/slices/filterSlice';
 import { FilterComponentProps } from 'types/type';
-import FilterByIP from './DetectUserIP';
 import { sortLanguages } from '@/lib/utils'; // Import the sortLanguages function
 
 const variants = {

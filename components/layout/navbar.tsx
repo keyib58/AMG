@@ -81,26 +81,6 @@ export default function NavBar({ session }: NavBarProps) {
                 </Link>
               );
             })}
-            {session ? (
-              <>
-                <UserDropdown session={session} />
-                <button
-                  className="rounded-full text-black p-1.5 px-4 text-sm hover:text-white transition-all"
-                  style={{ background: "linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)" }}
-                  onClick={() => signOut()}
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <button
-                className="rounded-full text-black p-1.5 px-4 text-sm hover:text-white transition-all"
-                style={{ background: "linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)" }}
-                onClick={() => setShowSignInModal(true)}
-              >
-                CLIENT AREA
-              </button>
-            )}
           </div>
         </div>
 
@@ -144,36 +124,6 @@ export default function NavBar({ session }: NavBarProps) {
               })}
             </nav>
 
-            {session ? (
-              <>
-                <div className="mt-4 space-y-4 flex flex-col">
-                  <UserDropdown session={session} />
-                  <button
-                    className="w-full max-w-[175px] Montserrat font-bold rounded-full p-1.5 px-4 text-sm text-black transition-all "
-                    style={{ background: "linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)" }}
-                    onClick={() => {
-                      signOut();
-                      toggleMenu();
-                    }}
-                  >
-                    Logout
-                  </button>
-                </div>
-              </>
-            ) : (
-              <div className="mt-4">
-                <button
-                  className="w-full max-w-[175px] Montserrat font-bold rounded-full p-1.5 px-4 text-sm text-black transition-all "
-                  style={{ background: "linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)" }}
-                  onClick={() => {
-                    setShowSignInModal(true);
-                    toggleMenu();
-                  }}
-                >
-                  Sign In
-                </button>
-              </div>
-            )}
           </div>
         </div>
       </div>
