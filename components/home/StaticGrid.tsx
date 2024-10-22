@@ -77,8 +77,8 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ data, index }) => {
                     />
                 </div>
                 <div className="py-4 px-8">
-                    <h3 className="text-white text-center text-2xl font-semibold Montserrat uppercase">{data.title}</h3>
-                    <p className="text-white text-center mt-2 OpenSans">{data.description}</p>
+                    <h3 className="text-white text-center text-2xl font-semibold title-font uppercase">{data.title}</h3>
+                    <p className="text-white text-center mt-2 content-font">{data.description}</p>
                 </div>
             </div>
         </motion.div>

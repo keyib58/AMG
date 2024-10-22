@@ -8,15 +8,14 @@ const ContactPageContainer = () => {
             {/* Left Section: Title and Description */}
             <div className="flex flex-col space-y-4 m-4 lg:m-0 text-center lg:text-left lg:max-w-[500px]">
 
-    <h2 className="text-3xl lg:text-4xl font-semibold Montserrat bg-gradient-to-r text-transparent from-[#FFD868] to-[#FFFFFF] bg-clip-text">CONTACT US</h2>
-  <p className="text-lg OpenSans text-white">
-    Get in touch with us! Whether it&apos;s marketing, general questions, or sales, we&apos;re ready to help -
-    just select the relevant department in the form and we&apos;ll get back to you promptly.
+    <h2 className="text-3xl lg:text-4xl font-semibold title-font bg-gradient-to-r text-transparent from-[#FFD868] to-[#FFFFFF] bg-clip-text"> Let&apos;s Ace the Game:</h2>
+  <p className="text-lg content-font text-white">
+  Together, we can create a new world in the entertainment industry. Have any exciting ideas? Start the change today by connecting with us!
   </p>
 
   <div className="flex lg:pt-[80px] flex-col items-center text-white lg:items-start space-y-2 text-center lg:text-left">
-    <a href="mailto:hello@kingmidasgames.com" className="block OpenSans text-xl">hello@kingmidasgames.com</a>
-    <a href="mailto:sales@kingmidasgames.com" className="block OpenSans text-xl">sales@kingmidasgames.com</a>
+    <a href="mailto:hello@kingmidasgames.com" className="block content-font text-xl">hello@kingmidasgames.com</a>
+    <a href="mailto:sales@kingmidasgames.com" className="block content-font text-xl">sales@kingmidasgames.com</a>
   </div>
 
   {/* Divider */}

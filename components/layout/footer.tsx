@@ -17,12 +17,11 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
           {/* Logo */}
           <div className="flex justify-center lg:justify-start w-full lg:w-auto">
             <Image
-              src="/footerlogo.png"
+              src="/logo.png"
               alt="King Midas Logo"
-              width={0} // Remove hardcoded width
-              height={33} // Maintain height
-              sizes="(max-width: 1024px) 50vw, 252px" // Control size based on screen width
-              className="logo-image object-contain w-full max-w-[282px] lg:max-w-[252px]" // Responsive max width
+              width={1000} // Remove hardcoded width
+              height={400} // Maintain height
+              className="logo-image object-contain w-full max-w-[150px] lg:max-w-[100px]" // Responsive max width
             />
           </div>
           {/* Social Media */}
@@ -30,20 +29,20 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
             <SocialMedia />
           </div>
           {/* Copyright Desktop */}
-          <div className="border-t border-gray-200 pt-4 text-center lg:text-left w-full hidden lg:block">
-            <p>© {new Date().getFullYear()} KingMidas Games. All rights reserved.</p>
+          <div className="border-t content-font border-gray-200 pt-4 text-center lg:text-left w-full hidden lg:block">
+            <p>© {new Date().getFullYear()} AMG Games. All rights reserved.</p>
             {/* Terms and Conditions & Privacy Policy Links */}
-            <div className="mt-2">
+            <div className="mt-2 ">
               <Link href="/terms-and-conditions" className="text-white hover:underline mr-2">Terms and Conditions</Link>
               <Link href="/privacy-policy" className="text-white hover:underline">Privacy Policy</Link>
             </div>
           </div>
         </div>
         {/* Middle Column */}
-        <div className="flex flex-col items-center lg:items-start space-y-6 text-center lg:text-left">
-          <h2 className="text-xl font-bold OpenSans">Contact Us</h2>
-          <a href="mailto:hello@kingmidasgames.com" className="block OpenSans text-xl">hello@kingmidasgames.com</a>
-          <a href="mailto:sales@kingmidasgames.com" className="block OpenSans text-xl">sales@kingmidasgames.com</a>
+        <div className="flex flex-col items-center lg:items-start space-y-6 text-center lg:text-left content-font">
+          <h2 className="text-xl font-bold">Contact Us</h2>
+          <a href="mailto:hello@kingmidasgames.com" className="block text-xl">hello@kingmidasgames.com</a>
+          <a href="mailto:sales@kingmidasgames.com" className="block text-xl">sales@kingmidasgames.com</a>
         </div>
 
         {/* Right Column */}

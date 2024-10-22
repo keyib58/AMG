@@ -8,6 +8,7 @@ const AboutPageContainer = () => {
             <AboutHero />
             <AboutGrid className="mt-[50px] lg:mt-[150px]" />
             <ClientsLogo className="mt-[50px] lg:mt-[150px]" />
+            
         </div>
     );
 }

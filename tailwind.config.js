@@ -9,8 +9,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["var(--font-sf)", "system-ui", "sans-serif"],
-        default: ["var(--font-inter)", "system-ui", "sans-serif"],
+        // Use Arcon and Proxima Nova as default fonts
+        sans: ["var(--font-arcon)", "system-ui", "sans-serif"], // Default to Arcon
+        proxima: ["var(--font-proxima)", "system-ui", "sans-serif"], // Add Proxima Nova
+        display: ["var(--font-arcon)", "system-ui", "sans-serif"], // Use Arcon for display purposes
       },
       animation: {    
         // Fade up and down

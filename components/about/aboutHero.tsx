@@ -1,6 +1,7 @@
 'use client';
 import Image from "next/image";
 import React from "react";
+import { Arcon } from "@/app/fonts";
 
 const AboutHero = () => {
   return (
@@ -16,17 +17,12 @@ const AboutHero = () => {
         />
       </div>
 
-
       {/* Right Column (Text) */}
       <div className="flex justify-center order-2 lg:order-1 px-4">
         <div className="space-y-4">
-          <h2 className="text-[20px] lg:text-4xl font-bold text-white Montserrat">
-            We’ve been the pioneers, the visionaries, and the fearless explorers of the iGaming world.
+          <h2 className="text-[20px] lg:text-6xl text-white OpenSans">
+          aka
           </h2>
-          <p className="text-lg Montserrat text-white">
-            We create gaming products without shying away from innovation, <br />
-            turning the most daring and fun ideas into reality.
-          </p>
         </div>
       </div>
     </div>

@@ -1,7 +1,33 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Bahnschrift";
+  src: url("/fonts/BAHNSCHRIFT.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: var(--font-arcon), sans-serif;
+}
+/* Class for Font */
+.menu-btn-font {
+  font-family: "Bahnschrift", sans-serif;
+}
+
+/* Update global classes to use Arcon */
+.content-font {
+  font-family: var(--font-arcon), sans-serif;
+}
+
+.title-font {
+  font-family: var(--font-proxima), sans-serif;
+}
+
+/* Class for Font */
+
 .swiper-pagination-bullet {
   width: 10px !important;
   height: 10px !important;
@@ -10,15 +36,6 @@
   background-color: white !important;
 }
 
-.Montserrat {
-  @apply font-display;
-  font-family: "Montserrat", sans-serif;
-}
-
-.OpenSans {
-  @apply font-display;
-  font-family: "Open Sans", sans-serif;
-}
 
 .layoutWrapper {
   @apply max-w-[1320px] items-center;
@@ -29,7 +46,8 @@
 }
 
 .subheader {
-  @apply Montserrat bg-gradient-to-r from-[#FFD868] to-[#FFFFFF] bg-clip-text px-4 py-2 text-center text-[2rem] font-semibold uppercase text-transparent lg:text-5xl;
+  font-family: var(--font-proxima), sans-serif;
+  @apply bg-gradient-to-r from-[#FFD868] to-[#FFFFFF] bg-clip-text px-4 py-2 text-center text-[2rem] font-semibold uppercase text-transparent lg:text-5xl;
 }
 
 .subheader_bg {
@@ -58,7 +76,7 @@
 
 @layer components {
   .gradientOutlineBtn {
-    @apply Montserrat w-full rounded-full border-2 px-8 py-2 font-bold uppercase;
+    @apply w-full rounded-full border-2 px-8 py-2 font-bold uppercase;
     border-color: #ffa100;
     background: none;
     color: transparent;
@@ -69,7 +87,7 @@
   }
 
   .bgGradientBtn {
-    @apply Montserrat w-full rounded-full px-8 py-2 font-bold uppercase text-black shadow-md;
+    @apply menu-btn-font w-full rounded-full px-8 py-2 font-bold uppercase text-black shadow-md;
     background: linear-gradient(90deg, #ffa100 0%, #ffdd00 100%);
   }
 }

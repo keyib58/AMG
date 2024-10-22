@@ -88,25 +88,26 @@ const AmgGameFilter = ({
   const isChecked = (selectedValues: string[], value: string) => selectedValues.includes(value);
 
   return (
-    <div className="rounded-lg">
-      {/* Market Filter */}
+    <div className="rounded-lg mt-10">
+
+      {/* Genre Filter */}
       <div className="mb-6">
         <div className="flex justify-between items-center">
-          <h3 className="text-white text-xl mb-2">Market</h3>
+          <h3 className="text-white text-xl title-font mb-2">Genre</h3>
           <motion.button
-            onClick={() => setIsMarketOpen(!isMarketOpen)}
-            className="text-white"
+            onClick={() => setIsGenreOpen(!isGenreOpen)}
+            className="text-white "
             initial={false}
-            animate={isMarketOpen ? 'open' : 'closed'}
+            animate={isGenreOpen ? 'open' : 'closed'}
             variants={iconVariants}
             transition={{ duration: 0.3 }}
           >
-            {isMarketOpen ? <MinusIcon size={24} /> : <PlusIcon size={24} />}
+            {isGenreOpen ? <MinusIcon size={24} /> : <PlusIcon size={24} />}
           </motion.button>
         </div>
         <motion.div
           initial={false}
-          animate={isMarketOpen ? 'open' : 'closed'}
+          animate={isGenreOpen ? 'open' : 'closed'}
           variants={variants}
           transition={{ duration: 0.3 }}
         >
@@ -115,22 +116,22 @@ const AmgGameFilter = ({
               <input
                 type="checkbox"
                 value="All" // Explicitly set the value to "All"
-                checked={selectedMarkets.includes('All')}
-                onChange={() => handleAllSelection(setSelectedMarkets)}
+                checked={selectedGenres.includes('All')}
+                onChange={() => handleAllSelection(setSelectedGenres)}
                 className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
               />
-              <span className="text-white text-lg">All</span>
+              <span className="text-white menu-btn-font text-lg">ALL</span>
             </label>
-            {markets.map(market => (
-              <label className="flex items-center" key={market}>
+            {genres.map(genre => (
+              <label className="flex items-center" key={genre}>
                 <input
                   type="checkbox"
-                  value={market} // Explicitly set the value to the market name
-                  checked={isChecked(selectedMarkets, market)}
-                  onChange={(e) => handleCheckboxChange(e, setSelectedMarkets, selectedMarkets)}
+                  value={genre} // Explicitly set the value to the genre name
+                  checked={isChecked(selectedGenres, genre)}
+                  onChange={(e) => handleCheckboxChange(e, setSelectedGenres, selectedGenres)}
                   className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
                 />
-                <span className="text-white text-lg">{market}</span>
+                <span className="text-white menu-btn-font text-lg">{genre}</span>
               </label>
             ))}
           </div>
@@ -140,7 +141,7 @@ const AmgGameFilter = ({
       {/* Language Filter */}
       <div className="mb-6">
         <div className="flex justify-between items-center">
-          <h3 className="text-white text-xl mb-2">Language</h3>
+          <h3 className="text-white title-font text-xl mb-2">Language</h3>
           <motion.button
             onClick={() => setIsLanguageOpen(!isLanguageOpen)}
             className="text-white"
@@ -167,7 +168,7 @@ const AmgGameFilter = ({
                 onChange={() => handleAllSelection(setSelectedLanguages)}
                 className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
               />
-              <span className="text-white text-lg">All</span>
+              <span className="text-white text-lg menu-btn-font">ALL</span>
             </label>
             {languages.map(language => (
               <label className="flex items-center" key={language}>
@@ -178,31 +179,31 @@ const AmgGameFilter = ({
                   onChange={(e) => handleCheckboxChange(e, setSelectedLanguages, selectedLanguages)}
                   className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
                 />
-                <span className="text-white text-lg">{language}</span>
+                <span className="text-white text-lg menu-btn-font">{language}</span>
               </label>
             ))}
           </div>
         </motion.div>
       </div>
 
-      {/* Genre Filter */}
+      {/* Market Filter */}
       <div className="mb-6">
         <div className="flex justify-between items-center">
-          <h3 className="text-white text-xl mb-2">Genre</h3>
+          <h3 className="text-white text-xl title-font mb-2">Market</h3>
           <motion.button
-            onClick={() => setIsGenreOpen(!isGenreOpen)}
+            onClick={() => setIsMarketOpen(!isMarketOpen)}
             className="text-white"
             initial={false}
-            animate={isGenreOpen ? 'open' : 'closed'}
+            animate={isMarketOpen ? 'open' : 'closed'}
             variants={iconVariants}
             transition={{ duration: 0.3 }}
           >
-            {isGenreOpen ? <MinusIcon size={24} /> : <PlusIcon size={24} />}
+            {isMarketOpen ? <MinusIcon size={24} /> : <PlusIcon size={24} />}
           </motion.button>
         </div>
         <motion.div
           initial={false}
-          animate={isGenreOpen ? 'open' : 'closed'}
+          animate={isMarketOpen ? 'open' : 'closed'}
           variants={variants}
           transition={{ duration: 0.3 }}
         >
@@ -211,22 +212,22 @@ const AmgGameFilter = ({
               <input
                 type="checkbox"
                 value="All" // Explicitly set the value to "All"
-                checked={selectedGenres.includes('All')}
-                onChange={() => handleAllSelection(setSelectedGenres)}
+                checked={selectedMarkets.includes('All')}
+                onChange={() => handleAllSelection(setSelectedMarkets)}
                 className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
               />
-              <span className="text-white text-lg">All</span>
+              <span className="text-white text-lg menu-btn-font">ALL</span>
             </label>
-            {genres.map(genre => (
-              <label className="flex items-center" key={genre}>
+            {markets.map(market => (
+              <label className="flex items-center" key={market}>
                 <input
                   type="checkbox"
-                  value={genre} // Explicitly set the value to the genre name
-                  checked={isChecked(selectedGenres, genre)}
-                  onChange={(e) => handleCheckboxChange(e, setSelectedGenres, selectedGenres)}
+                  value={market} // Explicitly set the value to the market name
+                  checked={isChecked(selectedMarkets, market)}
+                  onChange={(e) => handleCheckboxChange(e, setSelectedMarkets, selectedMarkets)}
                   className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
                 />
-                <span className="text-white text-lg">{genre}</span>
+                <span className="text-white text-lg menu-btn-font">{market}</span>
               </label>
             ))}
           </div>

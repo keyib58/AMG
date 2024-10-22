@@ -97,7 +97,7 @@ const ClientsLogo: React.FC<ClientsLogoProps> = ({ className }) => {
             >
                 <button
                     onClick={toggleShowMore}
-                    className="flex items-center Montserrat font-bold text-white hover:text-[#FFD96B] transition-colors duration-300"
+                    className="flex items-center menu-btn-font font-bold text-white hover:text-[#FFD96B] transition-colors duration-300"
                 >
                     {showMore ? 'SHOW LESS' : 'SHOW MORE'}
                     {showMore ? (

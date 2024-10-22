@@ -48,24 +48,24 @@ export default function NavBar({ session }: NavBarProps) {
       <div
         className={`fixed bg-[#0D0D0D] top-0 w-full flex justify-center ${scrolled ? "bg-[#0D0D0D]" : "bg-[#0D0D0D]"} z-30 transition-all`}
       >
-        <div className="mx-5 flex h-16 max-w-[1320px] items-center justify-between w-full relative">
+        <div className="mx-5 h-20 flex max-w-[1320px] items-center justify-between w-full relative">
           <button
             className="text-white md:hidden absolute left-0"
             onClick={toggleMenu}
           >
             <HamburgerIcon />
           </button>
-          <Link href="/" className="lg:mx-0 mx-auto md:mx-0 font-display text-2xl">
+          <Link href="/" className="lg:mx-0 mx-auto md:mx-0 font-display text-2xl text-white">
             <Image
               src="/logo.png"
-              alt="Kingmidas logo"
-              className="max-w-[12rem] lg:max-w-[280px]"
+              alt="AMG Logo"
+              className="max-w-[6rem] lg:max-w-[100px] p-2 lg:p-2"
               width={300}
               height={100}
               priority
             />
           </Link>
-          <div className="hidden md:flex space-x-6 text-white font-bold items-center uppercase Montserrat">
+          <div className="hidden md:flex space-x-6 text-white font-bold items-center uppercase menu-btn-font">
             {navLinks.map((link) => {
               const isActive =
                 segment === null && link.href === "/"
@@ -98,14 +98,14 @@ export default function NavBar({ session }: NavBarProps) {
             <Link href="/" className="mb-6" onClick={toggleMenu}>
               <Image
                 src="/logo.png"
-                alt="Kingmidas logo"
-                className="w-40"
+                alt="AMG Logo"
+                className="w-24"
                 width={160}
                 height={60}
                 priority
               />
             </Link>
-            <nav className="flex flex-col space-y-4 text-white font-bold uppercase Montserrat">
+            <nav className="flex flex-col space-y-4 text-white font-bold uppercase menu-btn-font">
               {navLinks.map((link) => {
                 const isActive =
                   segment === null && link.href === "/"

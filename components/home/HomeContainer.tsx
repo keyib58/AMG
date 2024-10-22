@@ -11,13 +11,11 @@ const HomeContainer = () => {
             <HomeSlider />
             <div className="m-auto max-w-[1320px] lg:mt-20">
                 <div className="flex flex-col items-center justify-center text-center p-8">
-                    <h1 className="text-5xl font-bold Montserrat uppercase bg-clip-text text-transparent bg-gradient-to-r from-[#FFD868] to-[#FFFFFF]">
-                        YOUR NEXT-GEN GAMING PARTNER
+                    <h1 className="text-5xl title-font font-bold uppercase bg-clip-text text-transparent bg-gradient-to-r from-[#FFD868] to-[#FFFFFF]">
+                        Ace the Game
                     </h1>
-                    <p className="mt-4 text-lg OpenSans text-white">
-                    Since 2018, KingMidas Games has been redefining iGaming.<br className="block md:hidden" /> <br className="block md:hidden" />
-                        Our next-gen content isn&apos;t just different— <br className="block" />
-                        it&apos;s transformative, driving engagement and revenue for partners seeking innovation and results.
+                    <p className="mt-4 text-lg content-font text-white">
+                        We offer advanced responsible gaming features and seamless out-of-the-box integrations with top-tier providers. With support for multiple regulatory jurisdictions, our highly customizable open platform delivers the best operational tools in the industry.
                     </p>
                 </div>
 

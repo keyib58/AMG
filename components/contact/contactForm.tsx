@@ -73,7 +73,7 @@ const ContactForm: React.FC = () => {
         <form onSubmit={handleSubmit} className="w-full rounded-xl p-6 lg:p-10 bg-[#151515]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                    <label className="block OpenSans font-medium text-white">First Name *</label>
+                    <label className="block content-font font-medium text-white">First Name *</label>
                     <input
                         type="text"
                         name="firstname"
@@ -84,7 +84,7 @@ const ContactForm: React.FC = () => {
                     />
                 </div>
                 <div>
-                    <label className="block OpenSans font-medium text-white">Last Name *</label>
+                    <label className="block content-font font-medium text-white">Last Name *</label>
                     <input
                         type="text"
                         name="lastname"
@@ -95,7 +95,7 @@ const ContactForm: React.FC = () => {
                     />
                 </div>
                 <div>
-                    <label className="block OpenSans font-medium text-white">Email *</label>
+                    <label className="block content-font font-medium text-white">Email *</label>
                     <input
                         type="email"
                         name="email"
@@ -106,7 +106,7 @@ const ContactForm: React.FC = () => {
                     />
                 </div>
                 <div>
-                    <label className="block OpenSans font-medium text-white">Phone *</label>
+                    <label className="block content-font font-medium text-white">Phone *</label>
                     <input
                         type="tel" // Changed type to "tel"
                         name="phone"
@@ -126,7 +126,7 @@ const ContactForm: React.FC = () => {
 
             <div className="mb-4">
                 <div className="mb-4">
-                    <label className="block OpenSans font-medium text-white">Department *</label>
+                    <label className="block content-font font-medium text-white">Department *</label>
                     <select
                         name="department"
                         value={formData.department}
@@ -139,7 +139,7 @@ const ContactForm: React.FC = () => {
                         <option value="general">General Enquiries</option>
                     </select>
                 </div>
-                <label className="block OpenSans font-medium text-white">Subject *</label>
+                <label className="block content-font font-medium text-white">Subject *</label>
                 <input
                     type="text"
                     name="subject"
@@ -151,7 +151,7 @@ const ContactForm: React.FC = () => {
             </div>
 
             <div className="mb-4">
-                <label className="block OpenSans font-medium text-white">Message</label>
+                <label className="block content-font font-medium text-white">Message</label>
                 <textarea
                     name="message"
                     value={formData.message}
@@ -172,7 +172,7 @@ const ContactForm: React.FC = () => {
                             !formData.phone ||
                             !formData.subject
                         } // Disable button if required fields are empty
-                        className="py-2 max-w-[170px] px-4 rounded-[25px] font-medium bg-gradient-to-r from-yellow-400 to-yellow-200 text-black OpenSans transition duration-300 w-full md:w-auto whitespace-nowrap"
+                        className="py-2 max-w-[170px] px-4 rounded-[25px] font-medium bg-gradient-to-r from-yellow-400 to-yellow-200 text-black content-font transition duration-300 w-full md:w-auto whitespace-nowrap"
                         style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)' }}
                     >
                         SEND MESSAGE

@@ -8,6 +8,11 @@ export const sfPro = localFont({
   variable: "--font-sf",
 });
 
+export const ProximaNova = localFont({  
+  src: "./ProximaNova.woff2",
+  variable: "--font-proxima",
+});
+
 export const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -16,4 +21,11 @@ export const inter = Inter({
 export const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
+});
+
+
+// Arcon Font (local font)
+export const Arcon = localFont({
+  src: "./Arcon-Regular.otf", // Path to your Arcon font file
+  variable: "--font-arcon",
 });
