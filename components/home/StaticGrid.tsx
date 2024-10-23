@@ -38,7 +38,14 @@ const staticData: Data[] = [
 const StaticGrid: React.FC<{ className?: string }> = ({ className }) => {
     return (
         <div className={clsx("w-full mx-auto p-4", className)}>
-            <SubHeader title='BOOSTING PLAYER ENGAGEMENT AND GROWTH' />
+                   <div className="flex flex-col items-center justify-center text-center p-8 mt-20">
+                    <h2 className="text-5xl title-font font-bold uppercase text-[#dab765]">
+                    We Are Here with Our Solutions
+                    </h2>
+
+                    <p className="mt-4 text-lg content-font text-white max-w-[800px]">
+                    We craft customized solutions for partners worldwide, always attuned to local needs. From initial concept to design and round-the-clock access, we provide a diverse and original product range. Whatever your brand and audience need, we can develop it specifically for you.
+                    </p>                </div>
             <div className="flex flex-wrap -mx-2 mt-8">
                 {staticData.map((data, index) => (
                     <AnimatedCard key={index} data={data} index={index} />

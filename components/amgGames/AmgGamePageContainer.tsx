@@ -31,21 +31,21 @@ const AmgGamePageContainer = () => {
 
   // Parse the searchParams and set the initial state for filters, search, and sorting
   useEffect(() => {
-    const market = searchParams.get('market') || 'All';
-    const language = searchParams.get('language') || 'All';
-    const genre = searchParams.get('genre') || 'All';
+    const market = searchParams.get('market')?.split(',') || ['All']; // Handle multiple markets
+    const language = searchParams.get('language')?.split(',') || ['All']; // Handle multiple languages
+    const genre = searchParams.get('genre')?.split(',') || ['All']; // Handle multiple genres
     const search = searchParams.get('search') || '';
     const sort = searchParams.get('sort') || 'popularity';
 
-    setSelectedMarkets([market]);
-    setSelectedLanguages([language]);
-    setSelectedGenres([genre]);
+    setSelectedMarkets(market);
+    setSelectedLanguages(language);
+    setSelectedGenres(genre);
     setSearchQuery(search);
     setSortType(sort);
 
     setIsLoading(true);
 
-    const filters: GameFilter = { market: [market], language: [language], genre: [genre] };
+    const filters: GameFilter = { market, language, genre };
     const filtered = filterGames(filters, search);
     setFilteredGames(filtered);
     setTotalPages(Math.ceil(filtered.length / itemsPerPage)); // Calculate total pages
@@ -53,7 +53,6 @@ const AmgGamePageContainer = () => {
   }, [searchParams]);
 
   // Function to filter games based on selected filters, search query, and status
-
   const filterGames = useCallback(
     (filters: GameFilter, searchQuery: string): Game[] => {
       return games
@@ -92,11 +91,15 @@ const AmgGamePageContainer = () => {
   const updateSearchParams = useCallback(
     (filters: GameFilter, search: string, sort: string) => {
       const params = new URLSearchParams();
-      if (filters.market[0] !== 'All') params.set('market', filters.market[0]);
-      if (filters.language[0] !== 'All') params.set('language', filters.language[0]);
-      if (filters.genre[0] !== 'All') params.set('genre', filters.genre[0]);
+      
+      // Handle multiple selected values by joining them with commas
+      if (!filters.market.includes('All')) params.set('market', filters.market.join(','));
+      if (!filters.language.includes('All')) params.set('language', filters.language.join(','));
+      if (!filters.genre.includes('All')) params.set('genre', filters.genre.join(','));
+      
       if (search) params.set('search', search);
       if (sort) params.set('sort', sort);
+      
       router.push(`?${params.toString()}`);
     },
     [router]
@@ -105,7 +108,7 @@ const AmgGamePageContainer = () => {
   // Pagination function
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-  }
+  };
 
   const paginatedGames = filteredGames.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 

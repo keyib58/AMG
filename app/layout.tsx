@@ -1,6 +1,6 @@
 import "./globals.css";
 import cx from "classnames";
-import { Arcon, ProximaNova } from "./fonts";
+import { Arcon, Bahnschrift, ProximaNova } from "./fonts";
 import Nav from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
@@ -38,7 +38,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={cx(Arcon.variable, ProximaNova.variable, "bg-[#0d0d0d]")}> {/* Arcon applied globally */}
+      <body className={cx(Arcon.variable, ProximaNova.variable, Bahnschrift.variable, "bg-[#000000]")}> {/* Arcon applied globally */}
         <ReduxProvider>
           <SessionWrapper>
             <SessionLogger />

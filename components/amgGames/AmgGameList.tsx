@@ -1,4 +1,3 @@
-// app/game/AmgGameList.tsx
 'use client';
 import Image from 'next/image';
 import { Game } from 'types/amg'; // Import the Game type
@@ -11,7 +10,12 @@ const AmgGameList = ({ games }: AmgGameListProps) => {
   return (
     <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
       {games.map((game, index) => (
-        <div key={index} >
+        <a 
+          key={index} 
+          href={game.redirectLink} 
+          rel="noopener noreferrer" 
+          className="block"
+        >
           <Image
             src={game.thumbnail} // Ensure you have the correct property name for the thumbnail
             alt={`${game.name} thumbnail`}
@@ -20,7 +24,7 @@ const AmgGameList = ({ games }: AmgGameListProps) => {
             style={{ borderRadius: '8px' }}
           />
           <h3 className='text-white text-center mt-2 content-font'>{game.name}</h3>
-        </div>
+        </a>
       ))}
     </div>
   );

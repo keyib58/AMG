@@ -1,20 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* 
 @font-face {
   font-family: "Bahnschrift";
   src: url("/fonts/BAHNSCHRIFT.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 body {
   font-family: var(--font-arcon), sans-serif;
 }
 /* Class for Font */
 .menu-btn-font {
-  font-family: "Bahnschrift", sans-serif;
+  font-family: var(--font-bahnschrift), sans-serif;
 }
 
 /* Update global classes to use Arcon */
@@ -47,7 +47,7 @@ body {
 
 .subheader {
   font-family: var(--font-proxima), sans-serif;
-  @apply bg-gradient-to-r from-[#FFD868] to-[#FFFFFF] bg-clip-text px-4 py-2 text-center text-[2rem] font-semibold uppercase text-transparent lg:text-5xl;
+  @apply px-4 py-2 text-center text-[2rem] font-semibold uppercase text-[#dab765] lg:text-5xl;
 }
 
 .subheader_bg {

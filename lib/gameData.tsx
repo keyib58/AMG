@@ -114,7 +114,7 @@ export const games = [
       "CLASSIC"
     ],
     "market": [
-      "US"
+      "Other"
     ],
     "publishedDate": "2024-09-18",
     "popularRank": 90,
@@ -247,7 +247,7 @@ export const games = [
       "CLASSIC"
     ],
     "market": [
-      "US"
+      "Other"
     ],
     "publishedDate": "2024-09-18",
     "popularRank": 90,
@@ -299,7 +299,7 @@ export const games = [
       "CLASSIC"
     ],
     "market": [
-      "US"
+      "Other"
     ],
     "publishedDate": "2024-09-18",
     "popularRank": 90,
@@ -324,7 +324,7 @@ export const games = [
       "CLASSIC"
     ],
     "market": [
-      "US"
+      "Other"
     ],
     "publishedDate": "2024-09-18",
     "popularRank": 90,
@@ -505,7 +505,7 @@ export const games = [
       "VIETNAMESE",
       "THAI",
       "BAHASA INDONESIA",
-      "KOREAN"  
+      "KOREAN"
     ]
   },
   {
@@ -930,7 +930,7 @@ export const games = [
       "VIETNAMESE",
       "THAI",
       "BAHASA INDONESIA",
-      "BRAZILIAN PORTUGUESE"  
+      "BRAZILIAN PORTUGUESE"
     ]
   },
   {
@@ -1105,7 +1105,7 @@ export const games = [
       "THAI",
       "BAHASA INDONESIA",
       "KOREAN",
-      "BURMESE" 
+      "BURMESE"
     ]
   },
   {
@@ -1630,7 +1630,7 @@ export const games = [
       "CLASSIC"
     ],
     "market": [
-      "US"
+      "Other"
     ],
     "publishedDate": "2024-09-18",
     "popularRank": 87,

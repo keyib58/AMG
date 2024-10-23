@@ -67,11 +67,16 @@ const AmgGameFilter = ({
 
   // Update filter whenever selected filters change
   useEffect(() => {
-    onFilterChange({
+    const filters: GameFilter = {
       market: selectedMarkets,
       language: selectedLanguages,
       genre: selectedGenres,
-    });
+    };
+
+    // Debugging: Log the selected filters
+    // console.log('Updated Filters:', filters);
+
+    onFilterChange(filters);
   }, [selectedMarkets, selectedLanguages, selectedGenres, onFilterChange]);
 
   // Extract unique values from game data
@@ -89,7 +94,6 @@ const AmgGameFilter = ({
 
   return (
     <div className="rounded-lg mt-10">
-
       {/* Genre Filter */}
       <div className="mb-6">
         <div className="flex justify-between items-center">
@@ -115,7 +119,7 @@ const AmgGameFilter = ({
             <label className="flex items-center">
               <input
                 type="checkbox"
-                value="All" // Explicitly set the value to "All"
+                value="All"
                 checked={selectedGenres.includes('All')}
                 onChange={() => handleAllSelection(setSelectedGenres)}
                 className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
@@ -126,7 +130,7 @@ const AmgGameFilter = ({
               <label className="flex items-center" key={genre}>
                 <input
                   type="checkbox"
-                  value={genre} // Explicitly set the value to the genre name
+                  value={genre}
                   checked={isChecked(selectedGenres, genre)}
                   onChange={(e) => handleCheckboxChange(e, setSelectedGenres, selectedGenres)}
                   className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
@@ -163,7 +167,7 @@ const AmgGameFilter = ({
             <label className="flex items-center">
               <input
                 type="checkbox"
-                value="All" // Explicitly set the value to "All"
+                value="All"
                 checked={selectedLanguages.includes('All')}
                 onChange={() => handleAllSelection(setSelectedLanguages)}
                 className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
@@ -174,7 +178,7 @@ const AmgGameFilter = ({
               <label className="flex items-center" key={language}>
                 <input
                   type="checkbox"
-                  value={language} // Explicitly set the value to the language name
+                  value={language}
                   checked={isChecked(selectedLanguages, language)}
                   onChange={(e) => handleCheckboxChange(e, setSelectedLanguages, selectedLanguages)}
                   className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
@@ -211,7 +215,7 @@ const AmgGameFilter = ({
             <label className="flex items-center">
               <input
                 type="checkbox"
-                value="All" // Explicitly set the value to "All"
+                value="All"
                 checked={selectedMarkets.includes('All')}
                 onChange={() => handleAllSelection(setSelectedMarkets)}
                 className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"
@@ -222,7 +226,7 @@ const AmgGameFilter = ({
               <label className="flex items-center" key={market}>
                 <input
                   type="checkbox"
-                  value={market} // Explicitly set the value to the market name
+                  value={market}
                   checked={isChecked(selectedMarkets, market)}
                   onChange={(e) => handleCheckboxChange(e, setSelectedMarkets, selectedMarkets)}
                   className="mr-4 rounded border-2 border-[#ffffff] bg-transparent checked:bg-[#0d0d0d] checked:border-[#ffffff] appearance-none hover:bg-[#1a1a1a] active:bg-[#1a1a1a]"

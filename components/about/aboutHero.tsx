@@ -20,8 +20,8 @@ const AboutHero = () => {
       {/* Right Column (Text) */}
       <div className="flex justify-center order-2 lg:order-1 px-4">
         <div className="space-y-4">
-          <h2 className="text-[20px] lg:text-6xl text-white OpenSans">
-          aka
+          <h2 className="text-[20px] title-font lg:text-6xl text-white OpenSans">
+          Ace the Game
           </h2>
         </div>
       </div>

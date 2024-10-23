@@ -11,6 +11,7 @@ module.exports = {
       fontFamily: {
         // Use Arcon and Proxima Nova as default fonts
         sans: ["var(--font-arcon)", "system-ui", "sans-serif"], // Default to Arcon
+        bahnschrift: ["var(--font-bahnschrift)", "system-ui", "sans-serif"], // Add Bahnschrift
         proxima: ["var(--font-proxima)", "system-ui", "sans-serif"], // Add Proxima Nova
         display: ["var(--font-arcon)", "system-ui", "sans-serif"], // Use Arcon for display purposes
       },

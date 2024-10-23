@@ -6,8 +6,6 @@ import Link from "next/link";
 import { useSelectedLayoutSegment, useSearchParams } from "next/navigation";
 import useScroll from "@/lib/hooks/use-scroll";
 import { useSignInModal } from "./sign-in-modal";
-import UserDropdown from "./user-dropdown";
-import { signOut } from "next-auth/react";
 import { Session } from "next-auth";
 import HamburgerIcon from "../icon/hamburger";
 
@@ -15,7 +13,7 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "About us", href: "/about" },
   { name: "Games", href: "/games" },
-  { name: "News", href: "/news" },
+  { name: "Services", href: "/services" },
   { name: "Contact us", href: "/contact" },
 ];
 
@@ -46,7 +44,7 @@ export default function NavBar({ session }: NavBarProps) {
     <>
       <SignInModal />
       <div
-        className={`fixed bg-[#0D0D0D] top-0 w-full flex justify-center ${scrolled ? "bg-[#0D0D0D]" : "bg-[#0D0D0D]"} z-30 transition-all`}
+        className={`fixed bg-[#000000] top-0 w-full flex justify-center ${scrolled ? "bg-[#000000]" : "bg-[#000000]"} z-30 transition-all`}
       >
         <div className="mx-5 h-20 flex max-w-[1320px] items-center justify-between w-full relative">
           <button
@@ -75,7 +73,7 @@ export default function NavBar({ session }: NavBarProps) {
                 <Link
                   href={getLinkWithParams(link.href)}
                   key={link.name}
-                  className={`${isActive ? "text-[#FFD868]" : ""}`}
+                  className={`${isActive ? "text-[#dab765]" : ""}`}
                 >
                   {link.name}
                 </Link>
@@ -91,7 +89,7 @@ export default function NavBar({ session }: NavBarProps) {
 
         {/* Mobile and Tablet Menu */}
         <div
-          className={`fixed top-0 left-0 z-30 h-full w-3/4 bg-[#151515] transform transition-transform duration-300 ease-in-out ${menuOpen ? "translate-x-0" : "-translate-x-full"
+          className={`fixed top-0 left-0 z-30 h-full w-3/4 bg-[#000000] transform transition-transform duration-300 ease-in-out ${menuOpen ? "translate-x-0" : "-translate-x-full"
             } md:hidden`}
         >
           <div className="flex flex-col h-full p-6">

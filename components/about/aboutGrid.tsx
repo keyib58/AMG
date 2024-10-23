@@ -12,9 +12,6 @@ const AboutGrid: React.FC<AboutGridProps> = ({ className }) => {
     return (
         <div className={clsx("w-full mx-auto p-4", className)}>
             <div className="grid grid-cols-2 lg:grid-cols-2 grid-rows-1 gap-y-4">
-                {/* Title card */}
-
-
                 {/* WHO WE ARE */}
                 <motion.div
                     className="mt-10 lg:mt-0 col-span-2 lg:col-span-1 subheader_bg lg:mr-2"
