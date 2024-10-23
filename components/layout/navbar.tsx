@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSelectedLayoutSegment, useSearchParams } from "next/navigation";
 import useScroll from "@/lib/hooks/use-scroll";
-import { useSignInModal } from "./sign-in-modal";
-import { Session } from "next-auth";
+// import { useSignInModal } from "./sign-in-modal"; // Commenting out session-related import
+// import { Session } from "next-auth"; // Commenting out session-related import
 import HamburgerIcon from "../icon/hamburger";
 
 const navLinks = [
@@ -17,12 +17,12 @@ const navLinks = [
   { name: "Contact us", href: "/contact" },
 ];
 
-interface NavBarProps {
-  session: Session | null;
-}
+// interface NavBarProps {
+//   session: Session | null; // Commenting out session-related prop
+// }
 
-export default function NavBar({ session }: NavBarProps) {
-  const { SignInModal, setShowSignInModal } = useSignInModal();
+export default function NavBar() {
+  // const { SignInModal, setShowSignInModal } = useSignInModal(); // Commenting out session-related code
   const scrolled = useScroll(50);
   const segment = useSelectedLayoutSegment();
   const searchParams = useSearchParams();
@@ -42,7 +42,7 @@ export default function NavBar({ session }: NavBarProps) {
 
   return (
     <>
-      <SignInModal />
+      {/* <SignInModal /> */} {/* Commenting out session-related component */}
       <div
         className={`fixed bg-[#000000] top-0 w-full flex justify-center ${scrolled ? "bg-[#000000]" : "bg-[#000000]"} z-30 transition-all`}
       >
@@ -121,7 +121,6 @@ export default function NavBar({ session }: NavBarProps) {
                 );
               })}
             </nav>
-
           </div>
         </div>
       </div>
