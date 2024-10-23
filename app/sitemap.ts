@@ -1,22 +1,21 @@
 import { MetadataRoute } from "next";
-import prisma from "@/lib/prisma";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const users = await prisma.user.findMany({
-    select: {
-      id: true,
-    },
-    take: 1,
-  });
-
-  return [
+export default function sitemap(): MetadataRoute.Sitemap {
+  const staticUrls = [
     {
       url: "https://precedent.dev",
       lastModified: new Date(),
     },
-    ...users.map((user) => ({
-      url: `https://precedent.dev/${user.id}`,
+    {
+      url: "https://precedent.dev/about",
       lastModified: new Date(),
-    })),
+    },
+    {
+      url: "https://precedent.dev/contact",
+      lastModified: new Date(),
+    },
+    // Add more static URLs as needed
   ];
+
+  return staticUrls;
 }
