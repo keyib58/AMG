@@ -36,7 +36,7 @@ const ServicesPageContainer = () => {
           We attract gaming companies worldwide through our transparent and compliant approach, coupled with outstanding game products. Our deep connections and friendly partnerships enable us to transform the gaming industry together, infusing it with fresh ideas and showcasing our impact to the world. Let&rsquo;s make a difference together!
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-14">
           {services.map((service, index) => (
             <div key={index} className=" p-8 rounded-lg shadow-lg text-left">
               <h3 className="text-2xl font-bold mb-4 text-[#dab765]">{service.title}</h3>
