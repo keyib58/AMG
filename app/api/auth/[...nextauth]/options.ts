@@ -1,4 +1,5 @@
-// //app > api > auth > [...nextauth] > options.ts
+// Commenting out NextAuthOptions and Prisma-related code as it's not needed right now
+
 // import { NextAuthOptions } from "next-auth";
 // import { PrismaAdapter } from "@next-auth/prisma-adapter";
 // import CredentialsProvider from "next-auth/providers/credentials";

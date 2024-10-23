@@ -5,9 +5,9 @@ import Nav from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
-import SessionWrapper from "@/components/SessionWrapper";
+// import SessionWrapper from "@/components/SessionWrapper";
 import ReduxProvider from "@/components/ReduxProvider";
-import SessionLogger from "@/components/shared/SessionLogger";
+// import SessionLogger from "@/components/shared/SessionLogger";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = {
@@ -40,8 +40,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={cx(Arcon.variable, ProximaNova.variable, Bahnschrift.variable, "bg-[#000000]")}> {/* Arcon applied globally */}
         <ReduxProvider>
-          <SessionWrapper>
-            <SessionLogger />
+          {/* <SessionWrapper>
+            <SessionLogger /> */}
             <Suspense fallback="...">
               <Nav />
               <main className="mt-16">
@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Footer className="mt-[120px] lg:mt-[200px]" />
             </Suspense>
             <VercelAnalytics />
-          </SessionWrapper>
+          {/* </SessionWrapper> */}
         </ReduxProvider>
       </body>
     </html>
