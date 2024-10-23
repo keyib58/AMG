@@ -1,5 +1,5 @@
 // components/layout/Nav.tsx
-import { authOptions } from "@/app/api/auth/[...nextauth]/options";
+import { authOptions } from "@/app/api/auth/[...nextauth]/optionsbackup";
 import Navbar from "./navbar";
 import { getServerSession } from "next-auth/next";
 
