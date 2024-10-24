@@ -41,8 +41,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
         {/* Middle Column */}
         <div className="flex flex-col items-center lg:items-start space-y-6 text-center lg:text-left content-font">
           <h2 className="text-xl font-bold">Contact Us</h2>
-          <a href="mailto:hello@kingmidasgames.com" className="block text-xl">hello@kingmidasgames.com</a>
-          <a href="mailto:sales@kingmidasgames.com" className="block text-xl">sales@kingmidasgames.com</a>
+          <a href="mailto:hello@acemakergaming.com" className="block text-xl">hello@acemakergaming.com</a>
         </div>
 
         {/* Right Column */}

@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import SubHeader from './subHeader';
 import clsx from 'clsx';
 
 const clientLogos = [
@@ -35,7 +33,6 @@ interface ClientsLogoProps {
 }
 
 const ClientsLogo: React.FC<ClientsLogoProps> = ({ className }) => {
-    const [showMore, setShowMore] = useState(false);
     const [isDesktop, setIsDesktop] = useState(false);
 
     useEffect(() => {
@@ -50,25 +47,11 @@ const ClientsLogo: React.FC<ClientsLogoProps> = ({ className }) => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const initialLogosDesktop = clientLogos.slice(0, 15);
-    const initialLogosMobile = clientLogos.slice(0, 8);
-
-    const displayedLogos = showMore
-        ? clientLogos
-        : isDesktop
-            ? initialLogosDesktop
-            : initialLogosMobile;
-
-    const toggleShowMore = () => {
-        setShowMore(!showMore);
-    };
-
     return (
         <div className={clsx("w-full mx-auto p-4", className)}>
-            {/* <SubHeader title="PROUDLY PARTNERING WITH" /> */}
             <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-5 lg:gap-6">
                 <AnimatePresence>
-                    {displayedLogos
+                    {clientLogos
                         .sort((a, b) => a.order - b.order)
                         .map((logo) => (
                             <motion.div
@@ -83,30 +66,12 @@ const ClientsLogo: React.FC<ClientsLogoProps> = ({ className }) => {
                                 <img
                                     src={logo.src}
                                     alt={logo.name}
-                                    className="max-w-[160px]  object-contain"
+                                    className="max-w-[160px] object-contain"
                                 />
                             </motion.div>
                         ))}
                 </AnimatePresence>
             </div>
-            <motion.div
-                className="flex justify-end mt-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-            >
-                <button
-                    onClick={toggleShowMore}
-                    className="flex items-center menu-btn-font font-bold text-white hover:text-[#FFD96B] transition-colors duration-300"
-                >
-                    {showMore ? 'SHOW LESS' : 'SHOW MORE'}
-                    {showMore ? (
-                        <ChevronUp className="ml-2 w-4 h-4" />
-                    ) : (
-                        <ChevronDown className="ml-2 w-4 h-4" />
-                    )}
-                </button>
-            </motion.div>
         </div>
     );
 };
