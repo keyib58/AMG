@@ -172,7 +172,7 @@ const AmgGamePageContainer = () => {
   return (
     <>
       <div className="flex flex-row lg:hidden space-x-4 px-6">
-        <div className="w-full flex-1">
+        <div className="w-full flex-1 mt-10">
           <button
             className="w-full bg-white text-black border-2 border-black px-4 py-2 rounded-lg whitespace-nowrap"
             onClick={() => setIsFilterOpen(!isFilterOpen)}
@@ -181,14 +181,14 @@ const AmgGamePageContainer = () => {
           </button>
         </div>
 
-        <div className="w-full flex-1">
+        <div className="w-full flex-1  mt-10">
           <AmgSort onSort={handleSort} />
         </div>
       </div>
 
-      {/* Sliding Filter Panel for Mobile/Tablet */}
+      {/* Sliding Filter Panel for Mobile/Tablet with scrollable content */}
       <motion.div
-        className="fixed inset-0 z-40 bg-neutral-800 px-6 lg:hidden"
+        className="fixed inset-0 z-40 bg-neutral-800 px-6 lg:hidden overflow-y-auto max-h-[100vh]" // Set max height and overflow
         initial={{ x: '-100%' }}
         animate={{ x: isFilterOpen ? '0%' : '-100%' }}
         transition={{ duration: 0.3 }}
@@ -206,8 +206,9 @@ const AmgGamePageContainer = () => {
           selectedLanguages={selectedLanguages}
           setSelectedLanguages={setSelectedLanguages}
           selectedGenres={selectedGenres}
-          setSelectedGenres={setSelectedGenres} />
-        <div className="flex gap-4 mt-4">
+          setSelectedGenres={setSelectedGenres}
+        />
+        <div className="flex gap-4 mt-4 py-4">
           <button
             className="bg-blue-500 text-white px-4 py-2 rounded-lg"
             onClick={() => setIsFilterOpen(false)}
@@ -227,7 +228,8 @@ const AmgGamePageContainer = () => {
       {isFilterOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
-          onClick={() => setIsFilterOpen(false)} />
+          onClick={() => setIsFilterOpen(false)}
+        />
       )}
 
       <div className="flex w-full flex-col items-center px-6">
@@ -235,7 +237,7 @@ const AmgGamePageContainer = () => {
         <div className="z-5 mx-5 flex flex-col lg:flex-row max-w-[1320px] w-full gap-10">
           {/* Left section: Sort and Filter Components for Desktop */}
           <div className="hidden lg:block lg:w-1/4 mt-10">
-            <AmgSort onSort={handleSort} /> {/* Sort Component */}
+            <AmgSort onSort={handleSort} />
             <AmgGameFilter
               onFilterChange={handleFilterChange}
               selectedMarkets={selectedMarkets}
@@ -243,7 +245,8 @@ const AmgGamePageContainer = () => {
               selectedLanguages={selectedLanguages}
               setSelectedLanguages={setSelectedLanguages}
               selectedGenres={selectedGenres}
-              setSelectedGenres={setSelectedGenres} />
+              setSelectedGenres={setSelectedGenres}
+            />
           </div>
 
           {/* Right section: Search and Game List Components */}
