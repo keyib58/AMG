@@ -60,7 +60,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
 
         {/* Mobile Copyright */}
         <div className="border-t border-gray-200 pt-4 text-center w-full lg:hidden">
-          <p>© {new Date().getFullYear()} KingMidas Games. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} AMG Games. All rights reserved.</p>
           {/* Terms and Conditions & Privacy Policy Links */}
           <div className="mt-2">
             <Link href="/terms-and-conditions" className="text-white hover:underline mr-4">Terms and Conditions</Link>
