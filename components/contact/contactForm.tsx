@@ -1,16 +1,14 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import { LoadingSpinner } from '../shared/icons'; // Ensure this import path is correct
+import { LoadingSpinner } from '../shared/icons';
 
 const ContactForm: React.FC = () => {
     const initialFormData = {
-        firstname: '',
-        lastname: '',
+        name: '',
         email: '',
         phone: '',
-        department: 'sales',
-        subject: '',
+        company: '',
         message: '',
     };
 
@@ -18,8 +16,36 @@ const ContactForm: React.FC = () => {
     const [responseMessage, setResponseMessage] = useState<string>('');
     const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [formErrors, setFormErrors] = useState({ name: '', email: '', message: '' });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const validateForm = () => {
+        const errors = { name: '', email: '', message: '' };
+        let isValid = true;
+
+        if (!formData.name.trim()) {
+            errors.name = 'Name is required.';
+            isValid = false;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!formData.email.trim()) {
+            errors.email = 'Email is required.';
+            isValid = false;
+        } else if (!emailRegex.test(formData.email)) {
+            errors.email = 'Please enter a valid email address.';
+            isValid = false;
+        }
+
+        if (!formData.message.trim()) {
+            errors.message = 'Message is required.';
+            isValid = false;
+        }
+
+        setFormErrors(errors);
+        return isValid;
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
@@ -30,15 +56,9 @@ const ContactForm: React.FC = () => {
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
 
-        // Basic email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(formData.email)) {
-            setResponseMessage('Please enter a valid email address.');
-            setIsSuccess(false);
-            return;
-        }
+        if (!validateForm()) return;
 
-        setIsLoading(true); // Show loading spinner
+        setIsLoading(true);
 
         try {
             const response = await fetch('/api/contact', {
@@ -50,22 +70,23 @@ const ContactForm: React.FC = () => {
             });
 
             const result = await response.json();
-            console.log('API Response:', result); // Log the API response
+            console.log('API Response:', result);
 
             if (response.ok) {
                 setResponseMessage(result.message);
-                setIsSuccess(true); // Indicate success
-                setFormData(initialFormData); // Reset form fields
+                setIsSuccess(true);
+                setFormData(initialFormData);
+                setFormErrors({ name: '', email: '', message: '' }); // Reset errors on success
             } else {
                 setResponseMessage(result.message);
-                setIsSuccess(false); // Indicate failure
+                setIsSuccess(false);
             }
         } catch (error) {
             console.error('Error submitting form:', error);
             setResponseMessage('An error occurred while submitting the form.');
             setIsSuccess(false);
         } finally {
-            setIsLoading(false); // Hide loading spinner after API call completes
+            setIsLoading(false);
         }
     };
 
@@ -73,26 +94,16 @@ const ContactForm: React.FC = () => {
         <form onSubmit={handleSubmit} className="w-full rounded-xl p-6 lg:p-10 bg-[#151515]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                    <label className="block content-font font-medium text-white">First Name *</label>
+                    <label className="block content-font font-medium text-white">Name *</label>
                     <input
                         type="text"
-                        name="firstname"
-                        value={formData.firstname}
+                        name="name"
+                        value={formData.name}
                         onChange={handleChange}
                         required
                         className="w-full p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:border-transparent"
                     />
-                </div>
-                <div>
-                    <label className="block content-font font-medium text-white">Last Name *</label>
-                    <input
-                        type="text"
-                        name="lastname"
-                        value={formData.lastname}
-                        onChange={handleChange}
-                        required
-                        className="w-full p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:border-transparent"
-                    />
+                    {formErrors.name && <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>}
                 </div>
                 <div>
                     <label className="block content-font font-medium text-white">Email *</label>
@@ -104,50 +115,29 @@ const ContactForm: React.FC = () => {
                         required
                         className="w-full p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:border-transparent"
                     />
+                    {formErrors.email && <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>}
                 </div>
                 <div>
-                    <label className="block content-font font-medium text-white">Phone *</label>
+                    <label className="block content-font font-medium text-white">Phone</label>
                     <input
-                        type="tel" // Changed type to "tel"
+                        type="tel"
                         name="phone"
                         value={formData.phone}
-                        onChange={(e) => {
-                            const regex = /^[0-9+()\- ]*$/;
-                            if (regex.test(e.target.value)) {
-                                handleChange(e);
-                            }
-                        }}
-                        required
+                        onChange={handleChange}
                         inputMode="numeric"
                         className="w-full p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:border-transparent"
                     />
                 </div>
-            </div>
-
-            <div className="mb-4">
-                <div className="mb-4">
-                    <label className="block content-font font-medium text-white">Department *</label>
-                    <select
-                        name="department"
-                        value={formData.department}
+                <div>
+                    <label className="block content-font font-medium text-white">Company</label>
+                    <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
                         onChange={handleChange}
-                        required
                         className="w-full p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:border-transparent"
-                    >
-                        <option value="sales">Sales</option>
-                        <option value="marketing">Marketing</option>
-                        <option value="general">General Enquiries</option>
-                    </select>
+                    />
                 </div>
-                <label className="block content-font font-medium text-white">Subject *</label>
-                <input
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className="w-full p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:border-transparent"
-                />
             </div>
 
             <div className="mb-4">
@@ -159,26 +149,21 @@ const ContactForm: React.FC = () => {
                     rows={5}
                     className="w-full p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:border-transparent"
                 />
+                {formErrors.message && <p className="text-red-500 text-sm mt-1">{formErrors.message}</p>}
             </div>
 
             <div className="flex justify-center lg:justify-end">
                 {!isLoading ? (
                     <button
                         type="submit"
-                        disabled={
-                            !formData.firstname ||
-                            !formData.lastname ||
-                            !formData.email ||
-                            !formData.phone ||
-                            !formData.subject
-                        } // Disable button if required fields are empty
-                        className="py-2 max-w-[170px] px-4 rounded-[25px] font-medium bg-gradient-to-r from-yellow-400 to-yellow-200 text-black content-font transition duration-300 w-full md:w-auto whitespace-nowrap"
-                        style={{ background: 'linear-gradient(90deg, #FFA100 0%, #FFDD00 100%)' }}
+                        disabled={!formData.name || !formData.email || !formData.message}
+                        className="py-2 max-w-[170px] px-4 rounded-[25px] font-medium text-white content-font transition duration-300 w-full md:w-auto whitespace-nowrap cursor-pointer"
+                        style={{ background: 'linear-gradient(90deg, #693365 0%, #a64ca6 100%)' }}
                     >
                         SEND MESSAGE
                     </button>
                 ) : (
-                    <LoadingSpinner /> // Display spinner while loading
+                    <LoadingSpinner />
                 )}
             </div>
 

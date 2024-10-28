@@ -11,7 +11,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPage, onPageC
     <div className="flex justify-center items-center space-x-4 mt-6">
       {/* Previous Button */}
       <button
-        className="bg-[#dab765] px-4 py-2 rounded-lg disabled:opacity-50 menu-btn-font"
+        className="bg-[#693365] text-white px-4 py-2 rounded-lg disabled:opacity-50 menu-btn-font"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
@@ -25,7 +25,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPage, onPageC
 
       {/* Next Button */}
       <button
-        className="bg-[#dab765]  px-4 py-2 rounded-lg disabled:opacity-50 menu-btn-font"
+        className="bg-[#693365] text-white px-4 py-2 rounded-lg disabled:opacity-50 menu-btn-font"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPage}
       >

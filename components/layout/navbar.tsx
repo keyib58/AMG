@@ -73,7 +73,7 @@ export default function NavBar() {
                 <Link
                   href={getLinkWithParams(link.href)}
                   key={link.name}
-                  className={`${isActive ? "text-[#dab765]" : ""}`}
+                  className={`${isActive ? "text-[#693365]" : ""}`}
                 >
                   {link.name}
                 </Link>

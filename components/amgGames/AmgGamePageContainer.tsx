@@ -188,7 +188,7 @@ const AmgGamePageContainer = () => {
 
       {/* Sliding Filter Panel for Mobile/Tablet with scrollable content */}
       <motion.div
-        className="fixed inset-0 z-40 bg-neutral-800 px-6 lg:hidden overflow-y-auto max-h-[100vh]" // Set max height and overflow
+        className="fixed inset-0 z-40 bg-black px-6 lg:hidden overflow-y-auto max-h-[100vh]" // Set max height and overflow
         initial={{ x: '-100%' }}
         animate={{ x: isFilterOpen ? '0%' : '-100%' }}
         transition={{ duration: 0.3 }}
@@ -210,7 +210,7 @@ const AmgGamePageContainer = () => {
         />
         <div className="flex gap-4 mt-4 py-4">
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+            className="bg-[#693365] text-white px-4 py-2 rounded-lg"
             onClick={() => setIsFilterOpen(false)}
           >
             Apply Filter

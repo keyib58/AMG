@@ -1,51 +1,46 @@
-// app/privacy-policy/page.tsx
 import React from 'react';
 
 const PrivacyPolicyPage: React.FC = () => {
   return (
     <div className="max-w-[1320px] lg:mt-[150px] mt-[100px] text-white mx-auto px-6">
       <h1 className="text-2xl font-bold">Privacy Policy</h1>
-      <p className="text-xl mb-4">Last updated: 26 Jan 2024</p>
+      <p className="text-xl mb-4">Last updated: 28 Oct 2024</p>
 
       <h3 className="text-xl font-bold">Introduction</h3>
       <p>
-        Your use of this Website is also governed by our Privacy Policy, which can be viewed at <a href="https://kingmidasgames.com/privacy-policy/" className="underline">https://kingmidasgames.com/privacy-policy/</a>. By using this Website, you consent to the collection and use of your personal information as described in the Privacy Policy.
+        We collect personal information to enhance our services. Your data is secured and will not be sold to third parties. You have the right to access, correct, or delete your information at any time. We may update this policy, and you will be notified of significant changes.
       </p>
 
-      <h3 className="text-xl font-bold mt-4">Termination</h3>
+      <h3 className="text-xl font-bold mt-4">Information Collection</h3>
       <p>
-        CSS Tech may at any time, without liability or notice, and for any reason, terminate your access to the Website, which may result in the forfeiture and destruction of all information associated with you. All provisions of the Terms that by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitation of liability.
+        We collect personal information when you register or use our services, including data provided during account creation, website interactions, and communications with us.
       </p>
 
-      <h3 className="text-xl font-bold mt-4">Disclaimer</h3>
+      <h3 className="text-xl font-bold mt-4">Use of Information</h3>
       <p>
-        Although CSS Tech makes reasonable efforts to ensure that information presented on the Website is accurate, the Website, including all content and any services made available through the Website, is provided on an “as is” and “as available” basis. We make no warranties, express or implied, regarding the accuracy, reliability, or availability of the Website. Your use of the Website is at your own risk. CSS Tech disclaims all warranties, representations, covenants, and conditions in connection with the Website, including any warranties, representations, covenants or conditions of merchantability, fitness for a particular purpose, accuracy, completeness, performance, or non-infringement. CSS Tech makes no representations or warranties about any third-party websites or related content directly or indirectly accessed through links on the Website. Your sole and exclusive remedy for dissatisfaction with the Website is to stop using the Website.
+        Your information is used to provide and improve our services, communicate with you, and comply with legal obligations. We may also use data to personalize your experience and respond to your inquiries.
       </p>
 
-      <h3 className="text-xl font-bold mt-4">Limitation of Liability</h3>
+      <h3 className="text-xl font-bold mt-4">Data Security</h3>
       <p>
-        In no event will CSS Tech (or CSS Tech’s directors, officers, employees, service providers, subsidiaries, and agents) be liable for any direct, indirect, incidental, special, consequential, exemplary, aggravated, or punitive damages arising out of or in connection with your use of this Website. In addition, CSS Tech will not be liable for any loss of revenue, goodwill, or reputation whatsoever, based on any legal theory (including tort or negligence), and even if advised of the possibility of those damages.
+        We implement reasonable security measures to protect your information; however, absolute security cannot be guaranteed. We continuously assess and improve our security practices to safeguard your data.
       </p>
 
-      <h3 className="text-xl font-bold mt-4">Indemnity</h3>
+      <h3 className="text-xl font-bold mt-4">Sharing Information</h3>
       <p>
-        This Website may contain links to third-party websites that are not owned or controlled by CSS Tech for your convenience. We do not endorse or control these websites and are not responsible for their content or practices. Your use of third-party websites is at your own risk and CSS Tech expressly disclaims all liability in connection with any of them. We strongly advise you to read the terms and conditions and privacy policies of any third-party site that you visit.
+        We do not sell your personal information to third parties. Your information may only be shared with trusted partners to support service improvements, under strict confidentiality and data protection requirements.
       </p>
 
-      <h3 className="text-xl font-bold mt-4">Links to Third-Party Websites</h3>
+      <h3 className="text-xl font-bold mt-4">Your Rights</h3>
       <p>
-        This Website may contain links to third-party websites that are not owned or controlled by CSS Tech for your convenience. We do not endorse or control these websites and are not responsible for their content or practices. Your use of third-party websites is at your own risk and CSS Tech expressly disclaims all liability in connection with any of them. We strongly advise you to read the terms and conditions and privacy policies of any third-party site that you visit.
+        You have the right to access, correct, or delete your personal information at any time. Additionally, you may request information about how your data is being used or request restrictions on certain processing activities.
       </p>
 
-      <h3 className="text-xl font-bold mt-4">Severability</h3>
+      <h3 className="text-xl font-bold mt-4">Changes to Privacy Policy</h3>
       <p>
-        If any provision of these Terms is determined by a court with jurisdiction to be unlawful, void or unenforceable, then that provision shall be deemed severed from the remaining provisions and shall not affect the validity and enforceability of the remaining provisions.
+        We may update this Privacy Policy periodically. In the event of significant changes, we will notify you through appropriate communication channels. Your continued use of our services following these changes constitutes acceptance of the updated policy.
       </p>
 
-      <h3 className="text-xl font-bold mt-4">Contact Information</h3>
-      <p>
-        If you have any questions or concerns about these Terms and Conditions, please contact us via the contact form at <a href="https://kingmidasgames.com/contact/" className=" underline">https://kingmidasgames.com/contact/</a>.
-      </p>
     </div>
   );
 };

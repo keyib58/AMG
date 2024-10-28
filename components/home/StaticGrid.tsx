@@ -39,7 +39,7 @@ const StaticGrid: React.FC<{ className?: string }> = ({ className }) => {
     return (
         <div className={clsx("w-full mx-auto p-4", className)}>
                    <div className="flex flex-col items-center justify-center text-center p-8 mt-20">
-                    <h2 className="text-5xl title-font font-bold uppercase text-[#dab765]">
+                    <h2 className="text-5xl title-font font-bold uppercase text-[#693365]">
                     We Are Here with Our Solutions
                     </h2>
 
@@ -84,7 +84,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ data, index }) => {
                     />
                 </div>
                 <div className="py-4 px-8">
-                    <h3 className="text-white text-center text-2xl font-semibold title-font uppercase">{data.title}</h3>
+                    <h3 className="text-[#dab765] text-center text-2xl font-semibold title-font uppercase">{data.title}</h3>
                     <p className="text-white text-center mt-2 content-font">{data.description}</p>
                 </div>
             </div>

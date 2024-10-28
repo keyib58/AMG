@@ -36,12 +36,11 @@ const ClientsLogo: React.FC<ClientsLogoProps> = ({ className }) => {
     const [isDesktop, setIsDesktop] = useState(false);
 
     useEffect(() => {
-        // This will run only on the client-side
         const handleResize = () => {
             setIsDesktop(window.innerWidth >= 1024);
         };
 
-        handleResize(); // Set initial value
+        handleResize();
         window.addEventListener('resize', handleResize);
 
         return () => window.removeEventListener('resize', handleResize);
@@ -56,7 +55,7 @@ const ClientsLogo: React.FC<ClientsLogoProps> = ({ className }) => {
                         .map((logo) => (
                             <motion.div
                                 key={logo.name}
-                                className="bg-[#151515] rounded-[20px] flex items-center justify-center"
+                                className="bg-[#151515] rounded-lg border border-[#dab765] flex items-center justify-center"
                                 style={{ width: '100%', height: '145px', flexBasis: 'calc(100% / 5 - 1rem)' }}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}

@@ -2,7 +2,7 @@ const Commitment = () => {
     return (
         <div className="flex flex-col items-center justify-center text-center p-8 mt-20">
             {/* Title */}
-            <h2 className="text-5xl title-font font-bold uppercase text-[#dab765]">
+            <h2 className="text-5xl title-font font-bold uppercase text-[#693365]">
                 You Have Our Commitment
             </h2>
 
@@ -19,7 +19,7 @@ const Commitment = () => {
 
                 {/* GLS Column */}
                 <div className="p-6 rounded-lg">
-                    <h3 className="text-2xl font-semibold text-[#dab765] mb-4 title-font">GLS</h3>
+                    <h3 className="text-2xl font-semibold text-[#693365] mb-4 title-font">GLS</h3>
                     <p className="text-lg text-white">
                         The Gaming Supplier License as a part of the regulatory framework set by the Alcohol and Gaming Commission of Ontario (AGCO). AMG will be obtaining the GLS license to foster the Ontario and the greater Canadian market.
                     </p>
@@ -30,7 +30,7 @@ const Commitment = () => {
 
                 {/* GLI Column */}
                 <div className="p-6 rounded-lg">
-                    <h3 className="text-2xl font-semibold text-[#dab765] mb-4 title-font">GLI</h3>
+                    <h3 className="text-2xl font-semibold text-[#693365] mb-4 title-font">GLI</h3>
                     <p className="text-lg text-white">
                         Gaming labs certified refers to a process where independent testing laboratories evaluate and certify gaming software and equipment for fairness, security, and compliance with industry standards. This certification ensures that games operate fairly and randomly, giving players a level playing field.
                     </p>
@@ -38,7 +38,7 @@ const Commitment = () => {
 
                 {/* BMM Column */}
                 <div className="p-6 rounded-lg">
-                    <h3 className="text-2xl font-semibold text-[#dab765] mb-4 title-font">BMM</h3>
+                    <h3 className="text-2xl font-semibold text-[#693365] mb-4 title-font">BMM</h3>
                     <p className="text-lg text-white">
                         A leading independent testing laboratory that specializes in the gaming industry. They provide testing, certification, and consulting services for gaming software and equipment. BMM ensures that games and systems comply with regulatory standards, operate fairly, and meet the necessary technical requirements.
                     </p>

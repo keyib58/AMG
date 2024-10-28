@@ -13,7 +13,7 @@ const StorySection: React.FC<StorySectionProps> = ({ className }) => {
         <div className={clsx("w-full mx-auto p-6 text-white", className)}>
             {/* Main Title */}
             <motion.h2
-                className="text-4xl font-extrabold text-[#dab765] text-center mb-8 title-font"
+                className="text-4xl font-extrabold text-[#693365] text-center mb-8 title-font"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
