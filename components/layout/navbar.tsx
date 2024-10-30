@@ -57,7 +57,7 @@ export default function NavBar() {
             <Image
               src="/logo.png"
               alt="AMG Logo"
-              className="max-w-[6rem] lg:max-w-[100px] p-2 lg:p-2"
+              className="max-w-[6rem] lg:max-w-[100px] p-2 lg:p-2 "
               width={300}
               height={100}
               priority
@@ -92,8 +92,8 @@ export default function NavBar() {
           className={`fixed top-0 left-0 z-30 h-full w-3/4 bg-[#000000] transform transition-transform duration-300 ease-in-out ${menuOpen ? "translate-x-0" : "-translate-x-full"
             } md:hidden`}
         >
-          <div className="flex flex-col h-full p-6">
-            <Link href="/" className="mb-6" onClick={toggleMenu}>
+          <div className="flex flex-col h-full p-6 bg-white">
+            <Link href="/" className="mb-6 " onClick={toggleMenu}>
               <Image
                 src="/logo.png"
                 alt="AMG Logo"
