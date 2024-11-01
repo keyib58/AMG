@@ -12,7 +12,7 @@ const HomeContainer = () => {
             <HomeSlider />
             <div className="m-auto max-w-[1320px] lg:mt-20">
                 <div className="flex flex-col items-center justify-center text-center p-8">
-                    <h1 className="text-5xl title-font font-bold uppercase text-[#693365]">
+                    <h1 className="text-5xl title-font font-bold uppercase text-[#d8b866]">
                         Ace the Game
                     </h1>
                     <p className="mt-4 text-lg content-font text-white max-w-[800px]">
@@ -21,7 +21,7 @@ const HomeContainer = () => {
                 </div>
 
                 <div className="flex flex-col items-center justify-center text-center p-8 mt-20">
-                    <h2 className="text-5xl title-font font-bold uppercase text-[#693365]">
+                    <h2 className="text-5xl title-font font-bold uppercase text-[#d8b866]">
                         Our Growing List of Partners
                     </h2>
                     <p className="mt-4 text-lg content-font text-white max-w-[800px]">

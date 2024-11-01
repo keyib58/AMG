@@ -39,7 +39,7 @@ const StaticGrid: React.FC<{ className?: string }> = ({ className }) => {
     return (
         <div className={clsx("w-full mx-auto p-4", className)}>
                    <div className="flex flex-col items-center justify-center text-center p-8 mt-20">
-                    <h2 className="text-5xl title-font font-bold uppercase text-[#693365]">
+                    <h2 className="text-5xl title-font font-bold uppercase text-[#d8b866]">
                     We Are Here with Our Solutions
                     </h2>
 

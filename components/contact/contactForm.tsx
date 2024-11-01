@@ -158,7 +158,7 @@ const ContactForm: React.FC = () => {
                         type="submit"
                         disabled={!formData.name || !formData.email || !formData.message}
                         className="py-2 max-w-[170px] px-4 rounded-[25px] font-medium text-white content-font transition duration-300 w-full md:w-auto whitespace-nowrap cursor-pointer"
-                        style={{ background: 'linear-gradient(90deg, #693365 0%, #a64ca6 100%)' }}
+                        style={{ background: 'linear-gradient(90deg, #d9b75e 0%, #d9b75e 100%)' }}
                     >
                         SEND MESSAGE
                     </button>

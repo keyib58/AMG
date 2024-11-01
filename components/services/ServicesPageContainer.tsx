@@ -29,7 +29,7 @@ const ServicesPageContainer = () => {
   return (
     <section className="px-4 py-12 lg:px-16 lg:py-20 text-white">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-bold text-[#693365] uppercase title-font mb-6">
+        <h2 className="text-4xl font-bold text-[#d9b75e] uppercase title-font mb-6">
           Our Services
         </h2>
         <p className="text-lg mb-12">
