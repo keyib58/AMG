@@ -42,7 +42,6 @@ export default function NavBar() {
 
   return (
     <>
-      {/* <SignInModal /> */} {/* Commenting out session-related component */}
       <div
         className={`fixed bg-[#000000] top-0 w-full flex justify-center ${scrolled ? "bg-[#000000]" : "bg-[#000000]"} z-30 transition-all`}
       >
@@ -92,7 +91,7 @@ export default function NavBar() {
           className={`fixed top-0 left-0 z-30 h-full w-3/4 bg-[#000000] transform transition-transform duration-300 ease-in-out ${menuOpen ? "translate-x-0" : "-translate-x-full"
             } md:hidden`}
         >
-          <div className="flex flex-col h-full p-6 bg-white">
+          <div className="flex flex-col h-full p-6">
             <Link href="/" className="mb-6 " onClick={toggleMenu}>
               <Image
                 src="/logo.png"

@@ -36,7 +36,6 @@ body {
   background-color: white !important;
 }
 
-
 .layoutWrapper {
   @apply max-w-[1320px] items-center;
 }
