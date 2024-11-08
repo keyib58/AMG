@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   // Check if the URL path is `/news`
-  if (request.nextUrl.pathname === '/news') {
+  if (request.nextUrl.pathname === '/nope') {
     // Return a 404 response for /news
     return NextResponse.rewrite(new URL('/404', request.url));
   }

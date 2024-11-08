@@ -10,10 +10,10 @@ const AmgGameList = ({ games }: AmgGameListProps) => {
   return (
     <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
       {games.map((game, index) => (
-        <a 
-          key={index} 
-          href={game.redirectLink} 
-          rel="noopener noreferrer" 
+        <a
+          key={index}
+          href={game.redirectLink}
+          rel="noopener noreferrer"
           className="block"
         >
           <Image

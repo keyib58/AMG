@@ -110,8 +110,8 @@ const GameSlider: React.FC = () => {
           pagination={{
             clickable: true,
           }}
-          touchRatio={2.5}  
-          touchReleaseOnEdges={true} 
+          touchRatio={2.5}
+          touchReleaseOnEdges={true}
           modules={[Pagination, Autoplay]}
           className="mobile-tablet-swiper"
           style={{

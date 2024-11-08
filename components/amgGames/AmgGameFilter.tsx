@@ -205,6 +205,7 @@ const AmgGameFilter = ({
             {isMarketOpen ? <MinusIcon size={24} /> : <PlusIcon size={24} />}
           </motion.button>
         </div>
+        
         <motion.div
           initial={false}
           animate={isMarketOpen ? 'open' : 'closed'}

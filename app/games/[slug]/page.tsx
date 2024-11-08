@@ -20,7 +20,7 @@ export default async function GamePage({ params }: { params: { slug: string } })
   // }
 
   return (
-      // <GameInfo game={game as Game} placeHolderUrl={''} />
-      <></>
+    // <GameInfo game={game as Game} placeHolderUrl={''} />
+    <></>
   );
 }

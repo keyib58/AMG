@@ -91,15 +91,15 @@ const AmgGamePageContainer = () => {
   const updateSearchParams = useCallback(
     (filters: GameFilter, search: string, sort: string) => {
       const params = new URLSearchParams();
-      
+
       // Handle multiple selected values by joining them with commas
       if (!filters.market.includes('All')) params.set('market', filters.market.join(','));
       if (!filters.language.includes('All')) params.set('language', filters.language.join(','));
       if (!filters.genre.includes('All')) params.set('genre', filters.genre.join(','));
-      
+
       if (search) params.set('search', search);
       if (sort) params.set('sort', sort);
-      
+
       router.push(`?${params.toString()}`);
     },
     [router]

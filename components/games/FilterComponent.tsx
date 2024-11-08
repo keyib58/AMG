@@ -27,7 +27,6 @@ const FilterComponent: React.FC<FilterComponentProps & { setIsFilterVisible: (vi
   currentLanguages,
   currentMarkets,
   setIsFilterVisible,
-  isFilterVisible,
 }) => {
   const dispatch = useAppDispatch();
   const { selectedGenres, selectedLanguages, selectedMarkets } = useAppSelector((state) => state.filter);
