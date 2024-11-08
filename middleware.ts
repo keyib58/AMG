@@ -8,6 +8,11 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(new URL('/404', request.url));
   }
 
+  // redirect /news to /blog
+  if (request.nextUrl.pathname === '/news') {
+    return NextResponse.redirect(new URL('/blog', request.url));
+  }
+
   // Continue processing other routes
   return NextResponse.next();
 }

@@ -7,7 +7,7 @@ export default function CardNews({ news }: { news: NewsType }) {
 
     return (
         <li className="rounded-lg overflow-hidden">
-            <Link href={`/news/${news.slug}`}>
+            <Link href={`/blog/${news.slug}`}>
                 <div className="flex flex-col items-center">
                     <Image
                         src={news.thumbnail}

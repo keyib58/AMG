@@ -9,7 +9,7 @@ const NewsListContainer = () => {
       
 
             <div className="w-full mt-8">
-                <SubHeader title="OUR LATEST NEWS" />
+                <SubHeader title="OUR LATEST BLOG" />
             </div>
 
             <NewsListing />
