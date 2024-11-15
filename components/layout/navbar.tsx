@@ -14,7 +14,7 @@ const navLinks = [
   { name: "About us", href: "/about" },
   { name: "Games", href: "/games" },
   { name: "Services", href: "/services" },
-  { name: "Blog", href: "/blog"},
+  { name: "Blog", href: "/blog" },
   { name: "Contact us", href: "/contact" },
 ];
 
@@ -57,7 +57,7 @@ export default function NavBar() {
             <Image
               src="/logo.png"
               alt="AMG Logo"
-              className="max-w-[6rem] lg:max-w-[100px] p-2 lg:p-2 "
+              className="max-w-[10rem] lg:max-w-[150px] p-2 lg:p-2 "
               width={300}
               height={100}
               priority
@@ -97,8 +97,8 @@ export default function NavBar() {
               <Image
                 src="/logo.png"
                 alt="AMG Logo"
-                className="w-24"
-                width={160}
+                className="w-26"
+                width={200}
                 height={60}
                 priority
               />
