@@ -1,49 +1,44 @@
 import { NextRequest, NextResponse } from "next/server";
+import sendgrid from "@sendgrid/mail";
+
+// Set your SendGrid API key
+if (!process.env.SENDGRID_API_KEY) {
+  throw new Error("SENDGRID_API_KEY is not defined");
+}
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 export async function POST(request: NextRequest) {
   const { firstname, lastname, email, phone, department, subject, message } = await request.json();
 
-  // Construct the body for HubSpot API submission
-  const body = {
-    fields: [
-      { name: "firstname", value: firstname },
-      { name: "lastname", value: lastname },
-      { name: "email", value: email },
-      { name: "phone", value: phone },
-      { name: "department", value: department }, // Ensure this matches HubSpot's property name and expected value
-      { name: "subject", value: subject },       // Ensure this matches HubSpot's property name and expected value
-      { name: "message", value: message },
-    ],
+  const emailContent = `
+    You have received a new contact form submission:
+
+    Name: ${firstname} ${lastname}
+    Email: ${email}
+    Phone: ${phone || "Not provided"}
+    Department: ${department || "Not provided"}
+    Subject: ${subject}
+    Message: ${message}
+
+    Please respond as soon as possible.
+  `;
+
+  const mailOptions = {
+    to: "hello@amgaming.ca", // Your email address
+    from: "no-reply@amgaming.ca", // Must be verified in SendGrid
+    subject: `New Contact Form Submission: ${subject}`,
+    text: emailContent,
   };
 
   try {
-    const response = await fetch(
-      `https://api.hsforms.com/submissions/v3/integration/submit/40119618/93524f13-da86-4637-aee9-6b2f4d477756`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      }
-    );
+    // Send email using SendGrid
+    await sendgrid.send(mailOptions);
 
-    const result = await response.json();
-
-    if (response.ok) {
-      return NextResponse.json({ message: "Form submitted successfully!" });
-    } else {
-      // Log the error response for debugging
-      console.error('HubSpot API Error:', result);
-      return NextResponse.json(
-        { message: `Failed to submit form: ${result.message || 'Unknown error'}` },
-        { status: 500 }
-      );
-    }
+    return NextResponse.json({ message: "Form submitted successfully and email sent!" });
   } catch (error) {
-    console.error('Error submitting form:', error);
+    console.error("Error sending email:", error.response?.body || error.message);
     return NextResponse.json(
-      { message: 'An unexpected error occurred while submitting the form.' },
+      { message: "Failed to send email. Please try again later." },
       { status: 500 }
     );
   }

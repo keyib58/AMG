@@ -1,7 +1,4 @@
 // app/game/gameData.tsx
-
-import { language } from "gray-matter";
-
 export const games = [
   {
     "name": "VIETNAMESE FISH PRAWN CRAB",
