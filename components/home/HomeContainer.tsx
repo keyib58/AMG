@@ -29,7 +29,7 @@ const HomeContainer = () => {
                     </p>
 
                     <p className="mt-4 text-lg content-font text-white max-w-[800px]">
-                        We collaborate with the most innovative game providers to ensure we have countless games to suit your players. What’s more? We are continuously onboarding new providers!
+                    We have established long-term partnerships with top-tier game suppliers and possess abundant resources from various game distribution platforms. What’s more? We are continuously onboarding new providers!
                     </p>
                 </div>
                 
