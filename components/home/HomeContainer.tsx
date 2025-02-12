@@ -4,7 +4,7 @@ import GifGrid from "./GifGrid";
 import StaticGrid from "./StaticGrid";
 import LetsTalk from "../shared/letstalk";
 import ClientsLogo from "../shared/clientLogos";
-import Commitment from "./Commitment";
+// import Commitment from "./Commitment";
 
 const HomeContainer = () => {
     return (
@@ -35,7 +35,7 @@ const HomeContainer = () => {
                 
                 <ClientsLogo />
                 <StaticGrid className="mt-20" />    
-                <Commitment />
+                {/* <Commitment /> */}
                 <LetsTalk className="mt-20" />
             </div>
         </div>
