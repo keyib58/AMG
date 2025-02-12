@@ -46,15 +46,15 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
 
         {/* Right Column */}
         <div className="flex flex-col items-center lg:items-start space-y-6">
-          {/* Client Logos */}
+          {/* Client Logos
           <div className="flex flex-col space-y-2 items-center lg:items-start">
-            <div className="flex justify-center lg:justify-start space-x-12">
+            <div className="flex justify-center lg:justify-start items-center space-x-12">
               <Image width={146} height={77} src="/footerLogo1.png" alt="Client 1" className="object-contain" />
             </div>
             <div className="flex justify-center lg:justify-start">
               <Image width={315} height={40} src="/footerLogo3.png" alt="Horizontal Client" className="object-contain" />
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Mobile Copyright */}
